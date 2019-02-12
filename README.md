@@ -14,5 +14,5 @@
 - **Forest (Green)** - Reduced movement
 - **Lava (Red)** - Instant death if landed on
 - **Water (Blue)** - Takes 1 damage if landed on
-- **Mountains (Gray)** - Cannot be moved through or shot through
+- **Rocks (Gray)** - Cannot be moved through or shot through
 

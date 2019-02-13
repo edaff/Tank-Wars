@@ -7,15 +7,21 @@ public class Tank1 : Tank
     // Data Members
 
     // Constructors
-    public Tank1() {
+    public Tank1(Player player, CoordinateSet coordinates) {
         this.health = 5;
-        this.baseMovement = 2;
+        this.movement = 2;
         this.weapon = new Cannon();
         this.powerup = new EmptyPowerupSlot();
+        this.player = player;
+        this.coordinates = coordinates;
     }
 
     // Member Functions
     public override bool isValidMovement() {
+        return true;
+    }
+
+    public override bool isValidAttack() {
         return true;
     }
 }

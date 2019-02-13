@@ -28,6 +28,12 @@ public class GridNode : MonoBehaviour
         this.coordinates = new CoordinateSet(0,0);
     }
 
+    public GridNode(Terrain terrain, CoordinateSet coordinates) {
+        this.terrain = terrain;
+        this.tank = new EmptyTankSlot();
+        this.coordinates = coordinates;
+    }
+
     public GridNode(Terrain terrain, Tank tank, CoordinateSet coordinates) {
         this.terrain = terrain;
         this.tank = tank;

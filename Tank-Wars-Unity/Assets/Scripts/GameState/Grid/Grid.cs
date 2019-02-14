@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class Grid
 {
     // **********************
     //      Data Members
@@ -21,6 +21,20 @@ public class Grid : MonoBehaviour
         randomlyGenerateGridTerrain();
     }
 
+    // Pass in the game object name so the grid can be constructed off of the pre-built gameobject
+    public Grid(string sceneGridName, int gridSize) {
+        this.gridSize = gridSize;
+        grid = new GridNode[gridSize,gridSize];
+        GameObject sceneGrid = GameObject.Find(sceneGridName);
+
+        int tileX, tileY;
+        foreach (Transform child in sceneGrid.transform) {
+            tileX = (int)child.position.x;
+            tileY = (int)child.position.z;
+            grid[tileX, tileY] = new GridNode(Terrain.getTerrainFromTag(child.tag), new CoordinateSet(tileX, tileY));
+        }
+    }
+
     // Create a default grid of custom size with randomly generated terrain
     public Grid(int size) {
         grid = new GridNode[size,size];
@@ -34,9 +48,10 @@ public class Grid : MonoBehaviour
         this.gridSize = terrainMap.GetLength(0);
         this.grid = new GridNode[gridSize, gridSize];
 
-        // Set up the grid
+        // Set up the grid terrains
         assignTerrains(terrainMap);
-        assignTanks();
+        // assignTanks(player1);
+        // assignTanks(player2);
     }
 
     // ************************
@@ -60,7 +75,9 @@ public class Grid : MonoBehaviour
         }
     }
 
-
+    private void assignTanks(Player player) {
+        
+    }
 
     private void randomlyGenerateGridTerrain() {
         for(int i = 0; i < gridSize; i++) {
@@ -78,7 +95,7 @@ public class Grid : MonoBehaviour
         return this.grid;
     }
 
-    public GridNode getGrideNode(int x, int y) {
+    public GridNode getGridNode(int x, int y) {
         return this.grid[x,y];
     }
 }

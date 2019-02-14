@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cannon : Weapon
-{
+public class Sniper : Weapon {
     // Data Members
 
-    // Constructors 
-    public Cannon() {
-        this.damage = 2;
-        this.distance = 3;
+    // Constructors
+    public Sniper() {
+        this.damage = 1;
+        this.distance = 10;
     }
 
     // Member Functions

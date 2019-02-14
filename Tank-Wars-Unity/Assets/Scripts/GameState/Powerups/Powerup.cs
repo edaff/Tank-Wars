@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Powerup : MonoBehaviour {
-    public static int numberOfPowerups = 3;
-    public static int emptyGambleSlots = 3;
+public abstract class Powerup {
+    private static int numberOfPowerups = 3;
+    private static int emptyGambleSlots = 3;
+    protected int duration;
 
     virtual public bool isEmptySlot() {
         return false;

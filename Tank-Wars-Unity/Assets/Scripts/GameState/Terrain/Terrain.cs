@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Terrain : MonoBehaviour
+public abstract class Terrain
 {
     // Static Members
     public static int numberOfTerrains = 5;
@@ -41,6 +41,23 @@ public abstract class Terrain : MonoBehaviour
             case 3:
                 return new Lava();
             case 4:
+                return new Mountain();
+            default:
+                return new Neutral();
+        }
+    }
+
+    public static Terrain getTerrainFromTag(string tag) {
+        switch (tag) {
+            case "Neutral":
+                return new Neutral();
+            case "Forest":
+                return new Forest();
+            case "Water":
+                return new Water();
+            case "Lava":
+                return new Lava();
+            case "Mountain":
                 return new Mountain();
             default:
                 return new Neutral();

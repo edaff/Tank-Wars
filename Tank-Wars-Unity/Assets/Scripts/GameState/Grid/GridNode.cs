@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridNode : MonoBehaviour
+public class GridNode
 {
     // Data Members
     private Terrain terrain;
@@ -47,5 +47,9 @@ public class GridNode : MonoBehaviour
 
     public Terrain getTerrain() {
         return this.terrain;
+    }
+
+    public CoordinateSet getCoordinateSet() {
+        return this.coordinates;
     }
 }

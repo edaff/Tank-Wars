@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class Invicibility : Powerup
 {
-
+    public Invicibility() {
+        this.duration = 1;
+    }
 }

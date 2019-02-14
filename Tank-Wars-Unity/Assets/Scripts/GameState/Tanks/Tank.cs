@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Tank : MonoBehaviour
+public abstract class Tank
 {
     // **********************
     //      Data Members
@@ -22,10 +22,6 @@ public abstract class Tank : MonoBehaviour
     }
 
     virtual public bool isValidMovement() {
-        return true;
-    }
-
-    virtual public bool isValidAttack() {
         return true;
     }
 

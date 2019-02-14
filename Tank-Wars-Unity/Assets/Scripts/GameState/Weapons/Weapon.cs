@@ -2,26 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public abstract class Weapon
 {
     // Members
-    public int baseDistance;
-    public int baseDamage;
+    public int distance;
+    public int damage;
 
     // Functions
-    public int getBaseDamage() {
-        return this.baseDamage;
+    virtual public bool isValidAttack(Grid grid) {
+        return true;
+    }
+    
+    public int getDamage() {
+        return this.damage;
     }
 
-    public int getBaseDistance() {
-        return this.baseDistance;
+    public int getDistance() {
+        return this.distance;
     }
 
-    public void setBaseDamage(int baseDamage) {
-        this.baseDamage = baseDamage;
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
-    public void setBaseDistance(int baseDistance) {
-        this.baseDistance = baseDistance;
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 }

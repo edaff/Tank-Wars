@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class BonusDamage : Powerup
 {
-
+    public BonusDamage() {
+        this.duration = 1;
+    }
 }

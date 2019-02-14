@@ -7,6 +7,13 @@ public class Mortar : Weapon
     // Data Members
 
     // Constructors
+    public Mortar() {
+        this.damage = 3;
+        this.distance = 5;
+    }
 
     // Member Functions
+    public override bool isValidAttack(Grid grid) {
+        return true;
+    }
 }

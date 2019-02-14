@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class BonusMovement : Powerup
 {
-    
+    public BonusMovement() {
+        this.duration = 1;
+    }
 }

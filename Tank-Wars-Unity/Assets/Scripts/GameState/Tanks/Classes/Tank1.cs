@@ -20,8 +20,4 @@ public class Tank1 : Tank
     public override bool isValidMovement() {
         return true;
     }
-
-    public override bool isValidAttack() {
-        return true;
-    }
 }

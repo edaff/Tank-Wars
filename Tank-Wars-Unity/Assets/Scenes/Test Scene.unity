@@ -2140,7 +2140,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100060, guid: 1368dc6245198ba4097004b17a6b0115, type: 3}
       propertyPath: m_Name
-      value: Tank_01 (1)
+      value: Blue_Tank_01 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 400060, guid: 1368dc6245198ba4097004b17a6b0115, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9388,7 +9388,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100060, guid: 1368dc6245198ba4097004b17a6b0115, type: 3}
       propertyPath: m_Name
-      value: Tank_01
+      value: Red_Tank_01
       objectReference: {fileID: 0}
     - target: {fileID: 400060, guid: 1368dc6245198ba4097004b17a6b0115, type: 3}
       propertyPath: m_LocalPosition.x

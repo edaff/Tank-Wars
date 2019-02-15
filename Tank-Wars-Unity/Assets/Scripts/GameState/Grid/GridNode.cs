@@ -52,4 +52,8 @@ public class GridNode
     public CoordinateSet getCoordinateSet() {
         return this.coordinates;
     }
+
+    public void setTank(Tank tank) {
+        this.tank = tank;
+    }
 }

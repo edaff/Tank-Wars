@@ -75,6 +75,7 @@ public class Grid
         }
     }
 
+    // TODO: Assign tanks to the grid based on the player arrays
     private void assignTanks(Player player) {
         
     }
@@ -97,5 +98,9 @@ public class Grid
 
     public GridNode getGridNode(int x, int y) {
         return this.grid[x,y];
+    }
+
+    public GridNode getGridNode(CoordinateSet coordinates) {
+        return this.grid[coordinates.getX(), coordinates.getY()];
     }
 }

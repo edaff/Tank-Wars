@@ -13,6 +13,18 @@ public class Player
         this.color = (playerNumber == 1) ? "Red" : "Blue";
         this.tanks = new Tank[3] { new EmptyTankSlot(), new EmptyTankSlot(), new EmptyTankSlot() };
     }
+
+    public int getPlayerNumber() {
+        return this.number;
+    }
+
+    public string getPlayerColor() {
+        return this.color;
+    }
+
+    public Tank[] getPlayerTanks() {
+        return this.tanks;
+    }
 }
 
 public enum Players {

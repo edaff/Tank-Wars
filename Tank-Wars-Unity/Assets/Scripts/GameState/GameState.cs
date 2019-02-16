@@ -16,10 +16,10 @@ public class GameState : MonoBehaviour
         grid = new Grid("10x10 Grid Template", 10);
         GridNode node;
 
+        // Initialize grid
         for(int i = 0; i < grid.getGridSize(); i++) {
             for(int j=0;j < grid.getGridSize(); j++) {
                 node = grid.getGridNode(i, j);
-                print("(" + node.getCoordinateSet().getX() + ", " + node.getCoordinateSet().getY() + ") - " + node.getTerrain());
             }
         }
     }

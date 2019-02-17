@@ -14,7 +14,7 @@ public class MainMenuTankSpawner : MonoBehaviour
     void Start()
     {
         
-        Instantiate(tanksPreFabs[Random.Range(0, tanksPreFabs.Length-1)], transform.position, Quaternion.Euler(0, 180, 0));
+        Instantiate(tanksPreFabs[Random.Range(0, tanksPreFabs.Length)], transform.position, Quaternion.Euler(0, 180, 0));
     }
 
 }

@@ -26,4 +26,21 @@ public abstract class Powerup {
                 return new EmptyPowerupSlot();
         }
     }
+
+    public void decrementPowerupDuration() {
+        this.duration--;
+    }
+
+    public int getPowerupDuration() {
+        return this.duration;
+    }
+
+    public bool isExpired() {
+        if(this.duration <= 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

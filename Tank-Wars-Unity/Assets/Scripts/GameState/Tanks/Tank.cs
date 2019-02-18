@@ -51,4 +51,16 @@ public abstract class Tank
     public CoordinateSet getCoordinates() {
         return this.coordinates;
     }
+
+    public void updatePowerupState() {
+        if(this.powerup is EmptyPowerupSlot) {
+            return;
+        }
+
+        this.powerup.decrementPowerupDuration();
+
+        if (this.powerup.isExpired()) {
+            this.powerup = new EmptyPowerupSlot();
+        }
+    }
 }

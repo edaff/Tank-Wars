@@ -5,11 +5,12 @@ using UnityEngine;
 public abstract class Weapon
 {
     // Members
-    public int distance;
-    public int damage;
+    protected int distance;
+    protected int damage;
+    protected Tank tank;
 
     // Functions
-    virtual public bool isValidAttack(Grid grid) {
+    virtual public bool isValidAttack(Grid grid, CoordinateSet targetCoordinates) {
         return true;
     }
     

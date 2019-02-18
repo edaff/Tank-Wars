@@ -22,8 +22,10 @@ public class Grid
     }
 
     // Pass in the game object name so the grid can be constructed off of the pre-built gameobject
-    public Grid(string sceneGridName, int gridSize) {
+    public Grid(string sceneGridName, int gridSize, Player player1, Player player2) {
         this.gridSize = gridSize;
+
+        // Create Grid
         grid = new GridNode[gridSize,gridSize];
         GameObject sceneGrid = GameObject.Find(sceneGridName);
 
@@ -33,6 +35,10 @@ public class Grid
             tileY = (int)child.position.z;
             grid[tileX, tileY] = new GridNode(Terrain.getTerrainFromTag(child.tag), new CoordinateSet(tileX, tileY));
         }
+
+        // Assign tanks
+        assignTanks(player1);
+        assignTanks(player2);
     }
 
     // Create a default grid of custom size with randomly generated terrain
@@ -42,44 +48,31 @@ public class Grid
         randomlyGenerateGridTerrain();
     }
 
-    // Create a grid based off a terrain map. Used the dimensions of the terrain
-    // map for the size.
-    public Grid(int[,] terrainMap) {
-        this.gridSize = terrainMap.GetLength(0);
-        this.grid = new GridNode[gridSize, gridSize];
-
-        // Set up the grid terrains
-        assignTerrains(terrainMap);
-        // assignTanks(player1);
-        // assignTanks(player2);
-    }
-
     // ************************
     //      Member Functons
     // ************************
 
-    // Assign terrains to the grid based on the terrain map    
-    private void assignTerrains(int[,] terrainMap) {
-
-        int terrainX = 0;
-        int terrainY = gridSize - 1;
-
-        for(int i = 0;i < gridSize; i++) {
-            terrainY = gridSize - 1;
-            for(int j = 0;j < gridSize; j++) {
-                grid[i, j] = new GridNode(Terrain.getTerrainFromTerrainMapValue(terrainMap[terrainX, terrainY]),
-                                          new CoordinateSet(i,j));
-                terrainY--;
-            }
-            terrainX++;
-        }
-    }
-
     // TODO: Assign tanks to the grid based on the player arrays
     private void assignTanks(Player player) {
-        
+        Tank[] playerTanks = player.getPlayerTanks();
+
+        for(int i = 0;i < playerTanks.Length; i++) {
+            Tank currentTank = playerTanks[i];
+
+            if(playerTanks[i] is EmptyTankSlot) {
+                continue;
+            }
+
+            int currentTankX = currentTank.getCoordinates().getX();
+            int currentTankY = currentTank.getCoordinates().getY();
+
+            grid[currentTankX, currentTankY].setTank(currentTank);
+        }
+
+        Debug.Log("Player " + player.getPlayerNumber() + "'s tanks have been assigned to the grid...");
     }
 
+    // Code to randomly genereate terrains
     private void randomlyGenerateGridTerrain() {
         for(int i = 0; i < gridSize; i++) {
             for(int j = 0; j < gridSize; j++) {

@@ -28,6 +28,9 @@ public abstract class Tank
     public int getHealth() {
         return this.health;
     }
+    public void decrementHealth(int amount) {
+        this.health -= amount;
+    }
 
     public int getMovement() {
         return this.movement;
@@ -43,5 +46,9 @@ public abstract class Tank
 
     public Player getPlayer() {
         return this.player;
+    }
+
+    public CoordinateSet getCoordinates() {
+        return this.coordinates;
     }
 }

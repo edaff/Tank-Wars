@@ -10,7 +10,7 @@ public class Tank1 : Tank
     public Tank1(Player player, CoordinateSet coordinates) {
         this.health = 5;
         this.movement = 2;
-        this.weapon = new Cannon();
+        this.weapon = new Cannon(this);
         this.powerup = new EmptyPowerupSlot();
         this.player = player;
         this.coordinates = coordinates;

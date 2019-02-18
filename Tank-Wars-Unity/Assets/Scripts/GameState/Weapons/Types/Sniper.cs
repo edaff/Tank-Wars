@@ -12,7 +12,7 @@ public class Sniper : Weapon {
     }
 
     // Member Functions
-    public override bool isValidAttack(Grid grid) {
+    public override bool isValidAttack(Grid grid, CoordinateSet targetCoordinates) {
         return true;
     }
 }

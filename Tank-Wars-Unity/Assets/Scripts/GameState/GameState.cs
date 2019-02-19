@@ -1,13 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GameState
-{
+﻿
+public class GameState {
     Grid grid;
     Player player1;
     Player player2;
-    int level = 1;
 
     public GameState(int level) {
         player1 = new Player(1);
@@ -46,12 +41,12 @@ public class GameState
 
     private bool areAllPlayerTanksAreDead(Tank[] tanks) {
         bool allTanksDead = true;
-        for(int i = 0;i < tanks.Length; i++) {
-            if(tanks[i] is EmptyTankSlot) {
+        for (int i = 0; i < tanks.Length; i++) {
+            if (tanks[i] is EmptyTankSlot) {
                 continue;
             }
 
-            if(tanks[i].getHealth() >= 0) {
+            if (tanks[i].getHealth() >= 0) {
                 allTanksDead = false;
             }
         }

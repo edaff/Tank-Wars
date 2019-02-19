@@ -4,11 +4,9 @@ public class GameState {
     Player player1;
     Player player2;
 
-    public GameState(int level) {
-        player1 = new Player(1);
-        player2 = new Player(2);
-
-        // Assign player tanks
+    public GameState(int level, int[] player1Tanks, int[] player2Tanks) {
+        player1 = new Player(1, player1Tanks);
+        player2 = new Player(2, player2Tanks);
 
         // Create the grid
         switch (level) {
@@ -52,5 +50,22 @@ public class GameState {
         }
 
         return allTanksDead;
+    }
+
+    public bool checkValidMove(int playerTurn, int tankArrayIndex, CoordinateSet targetCoordinates) {
+        Tank currentTank;
+
+        if(playerTurn == 1) {
+            currentTank = player1.getPlayerTanks()[tankArrayIndex];
+        }
+        else {
+            currentTank = player2.getPlayerTanks()[tankArrayIndex];
+        }
+
+        return currentTank.isValidMovement(this.grid, targetCoordinates);
+    }
+
+    public bool checkValidAttack() {
+        return true;
     }
 }

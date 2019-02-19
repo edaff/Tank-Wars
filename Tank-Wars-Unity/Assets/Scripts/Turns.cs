@@ -5,15 +5,19 @@ using UnityEngine;
 public class Turns : MonoBehaviour
 {
 	public ObjectClicker oc;
-	public int round;
-	public int playerTurn;
+	public GameState gs;
 	public GameObject objectClicked = null;
 	public GameObject tankClicked = null;
+	public GameObject tankClicked2 = null;
 	public GameObject tileClicked = null;
-	public GameState gs;
 	public int[] tankSet1;
 	public int[] tankSet2;
-
+	public int round;
+	public int playerTurn;
+	public int redPlayerTurn = 1;
+	public int bluePlayerTurn = 2;
+	public bool gamblePressed = false;
+	
     void Start()
     {
     	oc = GetComponent<ObjectClicker>();
@@ -42,8 +46,8 @@ public class Turns : MonoBehaviour
                         Rigidbody rb;
                         if (rb = hit.transform.GetComponent<Rigidbody>())
                         {                        
-                            print(hit.transform.gameObject);
-                            if(hit.transform.gameObject.tag == "Red Tank" || hit.transform.gameObject.tag == "Blue Tank")
+                            //print(hit.transform.gameObject);
+                            if((hit.transform.gameObject.tag == "Red Tank" && playerTurn == redPlayerTurn) || (hit.transform.gameObject.tag == "Blue Tank" && playerTurn == bluePlayerTurn))
                             {
                                 tankClicked = hit.transform.gameObject;
                             }
@@ -56,10 +60,63 @@ public class Turns : MonoBehaviour
                                     tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 1,tileClicked.transform.position.z);
                                     tileClicked = null;
                                     tankClicked = null;
-                                    round += 0;
+                                    round++;
                                 }
                             }
                         }
+                    }
+                }
+            }
+            else if(round == 2)
+            {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, 100.0f))
+                {
+                    if (hit.transform != null)
+                    {
+                        Rigidbody rb;
+                        if (rb = hit.transform.GetComponent<Rigidbody>())
+                        {
+                            if(hit.transform.gameObject.tag == "Red Tank")
+                            {
+                                tankClicked = hit.transform.gameObject;
+                            }
+                            else if(hit.transform.gameObject.tag == "Blue Tank")
+                            {
+                                tankClicked2 = hit.transform.gameObject;
+                            }
+                            if(tankClicked != null && tankClicked2 != null)
+                            {
+                                if(gs.checkValidAttack())
+                                {
+                                    print("Good attack");
+                                }
+                                else
+                                {
+                                    print("Bad attack");
+                                }
+                                round = 1;
+                                tankClicked = null;
+                                tankClicked2 = null;
+                                if(++playerTurn > 2)
+                                {
+                                	playerTurn = 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if(round == 3)
+            {
+                if(gamblePressed)
+                {
+                    gamblePressed = false;
+                    round = 1;
+                    if(++playerTurn > 2)
+                    {
+                        playerTurn = 1;
                     }
                 }
             }

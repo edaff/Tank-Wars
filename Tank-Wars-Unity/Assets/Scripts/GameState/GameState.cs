@@ -2,49 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameState : MonoBehaviour
+public class GameState
 {
     Grid grid;
     Player player1;
     Player player2;
-    bool player1Turn;
-    bool player2Turn;
-    bool move, attack, gamble;
-    // Start is called before the first frame update
-    void Start()
-    {
+    int level = 1;
+
+    public GameState(int level) {
         player1 = new Player(1);
         player2 = new Player(2);
 
-        grid = new Grid("10x10 Grid Template", 10, player1, player2);
+        // Assign player tanks
 
-        player1Turn = true;
-        player2Turn = false;
-        move = true;
-        attack = false;
-        gamble = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (player1Turn) {
-            takeTurn(player1);
-        }
-        else if(player2Turn) {
-            takeTurn(player2);
-        }
-    }
-
-    void takeTurn(Player player) {
-        if (move) { 
-
-        }
-        else if (attack) {
-
-        }
-        else if (gamble) {
-
+        switch (level) {
+            case 1:
+                grid = new Grid("10x10 Grid Template", 10, player1, player2);
+                break;
+            case 2:
+                grid = new Grid("15x15 Grid Template", 15, player1, player2);
+                break;
+            case 3:
+                grid = new Grid("20x20 Grid Template", 20, player1, player2);
+                break;
+            default:
+                grid = new Grid("10x10 Grid Template", 10, player1, player2);
+                break;
         }
     }
 

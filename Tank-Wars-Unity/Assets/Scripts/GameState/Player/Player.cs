@@ -25,6 +25,10 @@ public class Player
     public Tank[] getPlayerTanks() {
         return this.tanks;
     }
+
+    public void setPlayerTanks(Tank[] tanks) {
+        this.tanks = tanks;
+    }
 }
 
 public enum Players {

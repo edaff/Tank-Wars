@@ -1,19 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GameState
-{
+﻿
+public class GameState {
     Grid grid;
     Player player1;
     Player player2;
-    int level = 1;
 
-    public GameState(int level) {
-        player1 = new Player(1);
-        player2 = new Player(2);
-
-        // Assign player tanks
+    public GameState(int level, int[] player1Tanks, int[] player2Tanks) {
+        player1 = new Player(1, player1Tanks);
+        player2 = new Player(2, player2Tanks);
 
         // Create the grid
         switch (level) {
@@ -46,16 +39,33 @@ public class GameState
 
     private bool areAllPlayerTanksAreDead(Tank[] tanks) {
         bool allTanksDead = true;
-        for(int i = 0;i < tanks.Length; i++) {
-            if(tanks[i] is EmptyTankSlot) {
+        for (int i = 0; i < tanks.Length; i++) {
+            if (tanks[i] is EmptyTankSlot) {
                 continue;
             }
 
-            if(tanks[i].getHealth() >= 0) {
+            if (tanks[i].getHealth() >= 0) {
                 allTanksDead = false;
             }
         }
 
         return allTanksDead;
+    }
+
+    public bool checkValidMove(int playerTurn, int tankArrayIndex, CoordinateSet targetCoordinates) {
+        Tank currentTank;
+
+        if(playerTurn == 1) {
+            currentTank = player1.getPlayerTanks()[tankArrayIndex];
+        }
+        else {
+            currentTank = player2.getPlayerTanks()[tankArrayIndex];
+        }
+
+        return currentTank.isValidMovement(this.grid, targetCoordinates);
+    }
+
+    public bool checkValidAttack() {
+        return true;
     }
 }

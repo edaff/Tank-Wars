@@ -7998,6 +7998,7 @@ GameObject:
   - component: {fileID: 1330315665}
   - component: {fileID: 1330315668}
   - component: {fileID: 1330315669}
+  - component: {fileID: 1330315670}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8096,13 +8097,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oc: {fileID: 0}
-  round: 0
-  playerTurn: 0
   objectClicked: {fileID: 0}
   tankClicked: {fileID: 0}
+  tankClicked2: {fileID: 0}
   tileClicked: {fileID: 0}
   tankSet1: 
   tankSet2: 
+  round: 0
+  playerTurn: 0
+  redPlayerTurn: 1
+  bluePlayerTurn: 2
+  gamblePressed: 0
+--- !u!114 &1330315670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330315664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2d9f11caa5e77d41be8e09aafd5f630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  select: 0
+  birdCam: 0
+  angleCam: 0
 --- !u!1001 &1332693159
 PrefabInstance:
   m_ObjectHideFlags: 0

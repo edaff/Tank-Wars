@@ -8,6 +8,8 @@ TagManager:
   - Forest
   - Neutral
   - Mountain
+  - Red Tank
+  - Blue Tank
   layers:
   - Default
   - TransparentFX

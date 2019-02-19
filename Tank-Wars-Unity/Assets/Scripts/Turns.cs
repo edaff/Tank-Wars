@@ -16,7 +16,7 @@ public class Turns : MonoBehaviour
 
     void Start()
     {
-    	objectClicked = GetComponent<ObjectClicker>();
+    	oc = GetComponent<ObjectClicker>();
     	tankSet1 = new int[] {1,0,0};
     	tankSet2 = new int[] {1,0,0};
     	gs = new GameState(1,tankSet1,tankSet2);
@@ -30,7 +30,7 @@ public class Turns : MonoBehaviour
         if(oc.objectClicked != null)
         {
         	objectClicked = oc.objectClicked;
-        	objectClicked.objectClicked = null;
+        	oc.objectClicked = null;
         	if(round == 1)
             {
                 RaycastHit hit;
@@ -51,9 +51,9 @@ public class Turns : MonoBehaviour
                             {
                                 tileClicked = hit.transform.gameObject;
                                 CoordinateSet cs = new CoordinateSet((int)tileClicked.transform.position.x, (int)tileClicked.transform.position.z);
-                                if(gs.CheckVaildMove(playerTurn, 0, cs))
+                                if(gs.checkValidMove(playerTurn, 0, cs))
                                 {
-                                    tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, yVal,tileClicked.transform.position.z);
+                                    tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 1,tileClicked.transform.position.z);
                                     tileClicked = null;
                                     tankClicked = null;
                                     round += 0;

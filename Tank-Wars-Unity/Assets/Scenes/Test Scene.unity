@@ -2142,6 +2142,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue_Tank_01
       objectReference: {fileID: 0}
+    - target: {fileID: 227385369, guid: 4cc575401872a8c489a90ffc08d63afc, type: 3}
+      propertyPath: m_TagString
+      value: Blue Tank
+      objectReference: {fileID: 0}
     - target: {fileID: 8045766433907539764, guid: 4cc575401872a8c489a90ffc08d63afc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7993,6 +7997,7 @@ GameObject:
   - component: {fileID: 1330315666}
   - component: {fileID: 1330315665}
   - component: {fileID: 1330315668}
+  - component: {fileID: 1330315669}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8078,6 +8083,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectClicked: {fileID: 0}
+--- !u!114 &1330315669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330315664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5cee4994e9b0a429ba80caa17b3cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oc: {fileID: 0}
+  round: 0
+  playerTurn: 0
+  objectClicked: {fileID: 0}
+  tankClicked: {fileID: 0}
+  tileClicked: {fileID: 0}
+  tankSet1: 
+  tankSet2: 
 --- !u!1001 &1332693159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9392,6 +9417,10 @@ PrefabInstance:
     - target: {fileID: 1459388758, guid: 46a3fd245671a1f4eb461f63a0070803, type: 3}
       propertyPath: m_Name
       value: Red_Tank_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459388758, guid: 46a3fd245671a1f4eb461f63a0070803, type: 3}
+      propertyPath: m_TagString
+      value: Red Tank
       objectReference: {fileID: 0}
     - target: {fileID: 5067605054119739764, guid: 46a3fd245671a1f4eb461f63a0070803,
         type: 3}
@@ -10988,7 +11017,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1881379757}
-  - component: {fileID: 1881379758}
   m_Layer: 0
   m_Name: 10x10 Grid Template
   m_TagString: Untagged
@@ -11110,18 +11138,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1881379758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881379756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce01e3af04e240a46ac706e6a16bea10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1884919952
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class GameState
 
         // Assign player tanks
 
+        // Create the grid
         switch (level) {
             case 1:
                 grid = new Grid("10x10 Grid Template", 10, player1, player2);

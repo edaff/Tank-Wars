@@ -35,4 +35,23 @@ public class CoordinateSet
     public void setY(int y) {
         this.y = y;
     }
+
+    // Operator Overload
+    public static bool operator== (CoordinateSet set1, CoordinateSet set2) {
+        if(set1.getX() == set2.getX() && set1.getY() == set2.getY()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public static bool operator!= (CoordinateSet set1, CoordinateSet set2) {
+        if (set1.getX() != set2.getX() || set1.getY() != set2.getY()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

@@ -52,20 +52,29 @@ public class GameState {
         return allTanksDead;
     }
 
-    public bool checkValidMove(int playerTurn, int tankArrayIndex, CoordinateSet targetCoordinates) {
+    public bool checkValidMove(int playerTurn, CoordinateSet tankCoordinates, CoordinateSet targetCoordinates) {
         Tank currentTank;
 
-        if(playerTurn == 1) {
-            currentTank = player1.getPlayerTanks()[tankArrayIndex];
+        if(playerTurn == (int)Players.Red) {
+            currentTank = player1.getPlayerTankByCoordinates(tankCoordinates);
         }
         else {
-            currentTank = player2.getPlayerTanks()[tankArrayIndex];
+            currentTank = player2.getPlayerTankByCoordinates(tankCoordinates);
         }
 
         return currentTank.isValidMovement(this.grid, targetCoordinates);
     }
 
-    public bool checkValidAttack() {
-        return true;
+    public bool checkValidAttack(int playerTurn, CoordinateSet currentTankCoordinates, CoordinateSet targetTankCoordinates) {
+        Tank currentTank;
+
+        if (playerTurn == (int)Players.Red) {
+            currentTank = player1.getPlayerTankByCoordinates(currentTankCoordinates);
+        }
+        else {
+            currentTank = player2.getPlayerTankByCoordinates(currentTankCoordinates);
+        }
+
+        return currentTank.getWeapon().isValidAttack(this.grid, targetTankCoordinates);
     }
 }

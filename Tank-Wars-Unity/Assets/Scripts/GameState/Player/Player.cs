@@ -29,15 +29,17 @@ public class Player
                     tanks[i] = new EmptyTankSlot();
                     break;
                 case 1:
-                    if(playerNumber == 1) {
+                    if(playerNumber == (int)Players.Red) {
                         tanks[i] = new Tank1(this, new CoordinateSet(4,0));
                     }
                     else {
                         tanks[i] = new Tank1(this, new CoordinateSet(5,9));
                     }       
                     break;
+                // If two tanks, this needs to be implemented
                 case 2:
                     break;
+                // If three tanks, this needs to be implemented
                 case 3:
                     break;
                 default:
@@ -63,6 +65,27 @@ public class Player
 
     public void setPlayerTanks(Tank[] tanks) {
         this.tanks = tanks;
+    }
+
+    public Tank getPlayerTankByCoordinates(CoordinateSet tankCoordinates) {
+
+        // Iterate over the tank array
+        for(int i=0; i < 3; i++) {
+            Tank currentTank = this.tanks[i];
+
+            // Check for empty tank slot
+            if (currentTank is EmptyTankSlot) {
+                continue;
+            }
+            else {
+                // If the coordinates match, return that tank
+                if(tankCoordinates == currentTank.getCoordinates()) {
+                    return currentTank;
+                }
+            }
+        }
+
+        return new EmptyTankSlot();
     }
 }
 

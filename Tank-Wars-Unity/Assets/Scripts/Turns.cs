@@ -24,7 +24,7 @@ public class Turns : MonoBehaviour
     	tankSet1 = new int[] {1,0,0};
     	tankSet2 = new int[] {1,0,0};
     	gs = new GameState(1,tankSet1,tankSet2);
-    	round = 1;
+    	round = (int)Rounds.Move;
     	playerTurn = 1;
     }
 
@@ -35,7 +35,8 @@ public class Turns : MonoBehaviour
         {
         	objectClicked = oc.objectClicked;
         	oc.objectClicked = null;
-        	if(round == 1)
+
+        	if(round == (int)Rounds.Move)
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -54,20 +55,23 @@ public class Turns : MonoBehaviour
                             else if(tankClicked != null)
                             {
                                 tileClicked = hit.transform.gameObject;
-                                CoordinateSet cs = new CoordinateSet((int)tileClicked.transform.position.x, (int)tileClicked.transform.position.z);
-                                if(gs.checkValidMove(playerTurn, 0, cs))
+
+                                CoordinateSet tankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
+                                CoordinateSet tileCoordinates = new CoordinateSet((int)tileClicked.transform.position.x, (int)tileClicked.transform.position.z);
+
+                                if(gs.checkValidMove(playerTurn, tankCoordinates, tileCoordinates))
                                 {
-                                    tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 1,tileClicked.transform.position.z);
+                                    tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 1, tileClicked.transform.position.z);
                                     tileClicked = null;
                                     tankClicked = null;
-                                    round++;
+                                    round = (int)Rounds.Attack;
                                 }
                             }
                         }
                     }
                 }
             }
-            else if(round == 2)
+            else if(round == (int)Rounds.Attack)
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -78,27 +82,43 @@ public class Turns : MonoBehaviour
                         Rigidbody rb;
                         if (rb = hit.transform.GetComponent<Rigidbody>())
                         {
-                            if(hit.transform.gameObject.tag == "Red Tank")
-                            {
-                                tankClicked = hit.transform.gameObject;
+                            if((hit.transform.gameObject.tag == "Red Tank"))
+                            {    
+                                if(playerTurn == (int)Players.Red) {
+                                    tankClicked = hit.transform.gameObject;
+                                }
+                                else {
+                                    tankClicked2 = hit.transform.gameObject;
+                                }
                             }
                             else if(hit.transform.gameObject.tag == "Blue Tank")
                             {
-                                tankClicked2 = hit.transform.gameObject;
+                                if (playerTurn == (int)Players.Blue) {
+                                    tankClicked = hit.transform.gameObject;
+                                }
+                                else {
+                                    tankClicked2 = hit.transform.gameObject;
+                                }
                             }
                             if(tankClicked != null && tankClicked2 != null)
                             {
-                                if(gs.checkValidAttack())
+                                CoordinateSet currentPlayerTankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
+                                CoordinateSet targetPlayerTankCoordinates = new CoordinateSet((int)tankClicked2.transform.position.x, (int)tankClicked2.transform.position.z);
+
+                                if (gs.checkValidAttack(playerTurn, currentPlayerTankCoordinates, targetPlayerTankCoordinates))
                                 {
-                                    print("Good attack");
+                                    print("Good attack!");
                                 }
                                 else
                                 {
-                                    print("Bad attack");
+                                    print("Bad attack!");
                                 }
-                                round = 1;
+
+                                round = (int)Rounds.Move;
+
                                 tankClicked = null;
                                 tankClicked2 = null;
+
                                 if(++playerTurn > 2)
                                 {
                                 	playerTurn = 1;
@@ -108,12 +128,12 @@ public class Turns : MonoBehaviour
                     }
                 }
             }
-            else if(round == 3)
+            else if(round == (int)Rounds.Gamble)
             {
                 if(gamblePressed)
                 {
                     gamblePressed = false;
-                    round = 1;
+                    round = (int)Rounds.Move;
                     if(++playerTurn > 2)
                     {
                         playerTurn = 1;
@@ -123,4 +143,10 @@ public class Turns : MonoBehaviour
         }
 
     }
+}
+
+public enum Rounds {
+    Move = 1,
+    Attack = 2,
+    Gamble = 3
 }

@@ -9448,6 +9448,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 795149211842729172, guid: 46a3fd245671a1f4eb461f63a0070803,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 795149211842729172, guid: 46a3fd245671a1f4eb461f63a0070803,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 795149211842729172, guid: 46a3fd245671a1f4eb461f63a0070803,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 795149211842729172, guid: 46a3fd245671a1f4eb461f63a0070803,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46a3fd245671a1f4eb461f63a0070803, type: 3}
 --- !u!1001 &1464001149
@@ -10988,7 +11008,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1881379757}
-  - component: {fileID: 1881379758}
   m_Layer: 0
   m_Name: 10x10 Grid Template
   m_TagString: Untagged
@@ -11110,18 +11129,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1881379758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881379756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce01e3af04e240a46ac706e6a16bea10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1884919952
 PrefabInstance:
   m_ObjectHideFlags: 0

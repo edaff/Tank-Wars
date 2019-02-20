@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3029,7 +3029,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 88375856}
-  - component: {fileID: 88375855}
   m_Layer: 0
   m_Name: 10x10 Grid Template
   m_TagString: Untagged
@@ -3037,18 +3036,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &88375855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 88375854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce01e3af04e240a46ac706e6a16bea10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &88375856
 Transform:
   m_ObjectHideFlags: 0
@@ -14082,7 +14069,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 420318619}
-  - component: {fileID: 420318618}
   m_Layer: 0
   m_Name: 10x10 Grid Template Forest (1)
   m_TagString: Untagged
@@ -14090,18 +14076,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &420318618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420318617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce01e3af04e240a46ac706e6a16bea10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &420318619
 Transform:
   m_ObjectHideFlags: 0
@@ -18151,7 +18125,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 555283632}
-  - component: {fileID: 555283631}
   m_Layer: 0
   m_Name: 10x10 Grid Template (5)
   m_TagString: Untagged
@@ -18159,18 +18132,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &555283631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555283630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce01e3af04e240a46ac706e6a16bea10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &555283632
 Transform:
   m_ObjectHideFlags: 0
@@ -29123,7 +29084,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 886003322}
-  - component: {fileID: 886003321}
   m_Layer: 0
   m_Name: 10x10 Grid Template (4)
   m_TagString: Untagged
@@ -29131,18 +29091,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &886003321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 886003320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce01e3af04e240a46ac706e6a16bea10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &886003322
 Transform:
   m_ObjectHideFlags: 0
@@ -45834,7 +45782,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1424771126}
-  - component: {fileID: 1424771125}
   m_Layer: 0
   m_Name: 10x10 Grid Template (1)
   m_TagString: Untagged
@@ -45842,18 +45789,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1424771125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424771124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce01e3af04e240a46ac706e6a16bea10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1424771126
 Transform:
   m_ObjectHideFlags: 0
@@ -64990,7 +64925,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1997609424}
-  - component: {fileID: 1997609423}
   m_Layer: 0
   m_Name: 10x10 Grid Template Forest
   m_TagString: Untagged
@@ -64998,18 +64932,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1997609423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997609422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce01e3af04e240a46ac706e6a16bea10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1997609424
 Transform:
   m_ObjectHideFlags: 0

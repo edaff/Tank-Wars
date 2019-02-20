@@ -20,6 +20,7 @@ public class ObjectClicker : MonoBehaviour {
                     if (rb = hit.transform.GetComponent<Rigidbody>())
                     {                        
                         objectClicked = hit.transform.gameObject;
+                        //print(objectClicked);
                     }
                 }
             }

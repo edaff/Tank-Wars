@@ -290,7 +290,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 881344288}
-        m_MethodName: p1DonePicking
+        m_MethodName: p2DonePicking
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2125,7 +2125,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 881344288}
-        m_MethodName: Player1RedoPick
+        m_MethodName: Player2RedoPick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

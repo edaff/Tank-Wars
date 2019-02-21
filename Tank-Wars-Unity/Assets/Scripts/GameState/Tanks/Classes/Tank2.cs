@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tank1 : Tank
+public class Tank2 : Tank
 {
     // Data Members
 
     // Constructors
-    public Tank1(Player player, CoordinateSet coordinates) {
+    public Tank2(Player player, CoordinateSet coordinates) {
         this.health = 20;
-        this.movement = 3;
+        this.movement = 1;
         this.player = player;
         this.coordinates = coordinates;
+        this.weapon = new Sniper(this);
         this.powerup = new EmptyPowerupSlot();
-        this.weapon = new Cannon(this);
     }
 
     // Member Functions
@@ -23,7 +23,7 @@ public class Tank1 : Tank
         GridNode targetNode = grid.getGridNode(targetCoordinates);
 
         // Check for valid movement
-        for(int i = 0;i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
             validMovement = movementCheck(grid, i, this.coordinates, targetNode);
             if (validMovement) { break; }
         }

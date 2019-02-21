@@ -36,8 +36,13 @@ public class Player
                         tanks[i] = new Tank1(this, new CoordinateSet(5,9));
                     }       
                     break;
-                // If two tanks, this needs to be implemented
                 case 2:
+                    if (playerNumber == (int)Players.Red) {
+                        tanks[i] = new Tank2(this, new CoordinateSet(4, 0));
+                    }
+                    else {
+                        tanks[i] = new Tank2(this, new CoordinateSet(5, 9));
+                    }
                     break;
                 // If three tanks, this needs to be implemented
                 case 3:

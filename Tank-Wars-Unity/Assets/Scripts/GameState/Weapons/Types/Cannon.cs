@@ -11,6 +11,9 @@ public class Cannon : Weapon
         this.damage = 2;
         this.distance = 3;
         this.tank = tank;
+
+        // Orientation is up by default for red and down by default for blue
+        this.orientation = (this.tank.getPlayer().getPlayerNumber() == (int)Players.Red) ? (int)Orientations.Up : (int)Orientations.Down; 
     }
 
     // Member Functions
@@ -35,6 +38,8 @@ public class Cannon : Weapon
             Debug.Log("Player " + this.tank.getPlayer().getPlayerNumber() + " attacks Player " + 
                       targetTank.getPlayer().getPlayerNumber() + " for " + this.damage + " damage!");
 
+            return true;
+
         }
         else {
             Debug.Log("Invalid Attack!");
@@ -43,7 +48,7 @@ public class Cannon : Weapon
         return false;
     }
 
-    public bool attackCheck(Grid grid, int currentIteration, 
+    private bool attackCheck(Grid grid, int currentIteration, 
                             CoordinateSet currentTankCoordinates,
                             GridNode targetNode) {
         int gridSize = grid.getGridSize();

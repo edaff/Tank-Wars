@@ -77,4 +77,22 @@ public class GameState {
 
         return currentTank.getWeapon().isValidAttack(this.grid, targetTankCoordinates);
     }
+
+    public string playerGamble(int playerTurn, CoordinateSet currentTankCoordinates) {
+        Tank currentTank = getPlayerTank(playerTurn, currentTankCoordinates);
+        Powerup powerup = Powerup.gamble();
+
+        currentTank.setPowerup(powerup);
+
+        return powerup.ToString();
+    }
+
+    private Tank getPlayerTank(int playerTurn, CoordinateSet currentTankCoordinates) {
+        if (playerTurn == (int)Players.Red) {
+            return player1.getPlayerTankByCoordinates(currentTankCoordinates);
+        }
+        else {
+            return player2.getPlayerTankByCoordinates(currentTankCoordinates);
+        }
+    }
 }

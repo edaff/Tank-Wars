@@ -26,11 +26,25 @@ public class Turns : MonoBehaviour
     	gs = new GameState(1,tankSet1,tankSet2);
     	round = (int)Rounds.Move;
     	playerTurn = 1;
+        printTurn();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Skip turn if spacebar is pressed
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            round++;
+
+            if(round > (int)Rounds.Gamble) {
+                round = (int)Rounds.Move;
+
+                playerTurn = (playerTurn >= 2) ? 1 : 2;
+            }
+
+            printTurn();
+        }
+
         if(oc.objectClicked != null)
         {
         	objectClicked = oc.objectClicked;
@@ -65,6 +79,7 @@ public class Turns : MonoBehaviour
                                     tileClicked = null;
                                     tankClicked = null;
                                     round = (int)Rounds.Attack;
+                                    printTurn();
                                 }
                             }
                         }
@@ -114,15 +129,11 @@ public class Turns : MonoBehaviour
                                     print("Bad attack!");
                                 }
 
-                                round = (int)Rounds.Move;
+                                round = (int)Rounds.Gamble;
 
+                                printTurn();
                                 tankClicked = null;
                                 tankClicked2 = null;
-
-                                if(++playerTurn > 2)
-                                {
-                                	playerTurn = 1;
-                                }
                             }
                         }
                     }
@@ -130,18 +141,47 @@ public class Turns : MonoBehaviour
             }
             else if(round == (int)Rounds.Gamble)
             {
-                if(gamblePressed)
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, 100.0f)) {
+                    if (hit.transform != null) {
+                        Rigidbody rb;
+                        if (rb = hit.transform.GetComponent<Rigidbody>()) {
+                            tankClicked = hit.transform.gameObject;
+
+                            CoordinateSet currentTankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
+                            string powerup = gs.playerGamble(playerTurn, currentTankCoordinates);
+
+                            Debug.Log("Player " + playerTurn + "'s gamble results in: " + powerup);
+
+                            gamblePressed = true;
+                        }
+                    }
+                }
+
+                if (gamblePressed)
                 {
+                    tankClicked = null;
                     gamblePressed = false;
+
                     round = (int)Rounds.Move;
-                    if(++playerTurn > 2)
+
+                    playerTurn++;
+
+                    if(playerTurn > 2)
                     {
                         playerTurn = 1;
                     }
+
+                    printTurn();
                 }
             }
         }
 
+    }
+
+    private void printTurn() {
+        Debug.Log("Player " + playerTurn + ": " + (Rounds)round);
     }
 }
 

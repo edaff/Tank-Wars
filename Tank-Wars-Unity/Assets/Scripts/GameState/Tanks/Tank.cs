@@ -44,6 +44,10 @@ public abstract class Tank
         return this.powerup;
     }
 
+    public void setPowerup(Powerup powerup) {
+        this.powerup = powerup;
+    }
+
     public Player getPlayer() {
         return this.player;
     }

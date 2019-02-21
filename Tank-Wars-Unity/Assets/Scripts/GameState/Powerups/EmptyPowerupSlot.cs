@@ -7,4 +7,8 @@ public class EmptyPowerupSlot : Powerup
     override public bool isEmptySlot() {
         return true;
     }
+
+    public override string ToString() {
+        return "Nothing! :)";
+    }
 }

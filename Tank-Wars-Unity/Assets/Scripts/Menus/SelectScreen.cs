@@ -35,6 +35,12 @@ public class SelectScreen : MonoBehaviour
 
     void Update()
     {
+        if(p1ArrayIdex == whatLevelAmI && !player1FishedPicking)
+        {
+            p1Redo.SetActive(true);
+            p1Ready.SetActive(true);
+        }
+
         if(Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Q was hit");
@@ -45,14 +51,14 @@ public class SelectScreen : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             Debug.Log("w was hit");
-            if (whatLevelAmI >= 2) { Player1Wpick(); }
-             
+            Player1Wpick();
+
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("e was hit");
-            if(whatLevelAmI >= 3) { Player1Epick(); }
+            Player1Epick();
             
         }
 
@@ -69,8 +75,7 @@ public class SelectScreen : MonoBehaviour
         }
         else
         {
-            p1Redo.SetActive(true);
-            p1Ready.SetActive(true);
+
             return;
         }
     }
@@ -85,8 +90,6 @@ public class SelectScreen : MonoBehaviour
         }
         else
         {
-            p1Redo.SetActive(true);
-            p1Ready.SetActive(true);
             return;
         }
     }
@@ -101,8 +104,6 @@ public class SelectScreen : MonoBehaviour
         }
         else
         {
-            p1Redo.SetActive(true);
-            p1Ready.SetActive(true);
             return;
         }
     }
@@ -116,8 +117,8 @@ public class SelectScreen : MonoBehaviour
 
     public void p1DonePicking()
     {
-        p1Ready.SetActive(true);
-        p1Redo.SetActive(true);
+        p1Ready.SetActive(false);
+        p1Redo.SetActive(false);
         player1FishedPicking = true;
         currentState.SetPlayer1TanksPick(player1TankPicks);
     }

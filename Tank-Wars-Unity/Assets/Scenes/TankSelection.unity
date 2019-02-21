@@ -373,64 +373,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 283064209}
   m_CullTransparentMesh: 0
---- !u!1 &643400617
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 643400620}
-  - component: {fileID: 643400619}
-  - component: {fileID: 643400618}
-  m_Layer: 0
-  m_Name: LevelDifficultyInfo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &643400618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 643400617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7bdda3f543f98341a2dcff72433577a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &643400619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 643400617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b4037bf170d21c4e9546648708b996d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentSceneIndex: 0
-  difficuity: 0
---- !u!4 &643400620
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 643400617}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &699553840
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,9 +565,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891f9655d13b77948b918a716dde348e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1FishedPicking: 0
+  player2FishedPicking: 0
+  bothPlayersReady: 0
   whatLevelAmI: 1
   player1TankPicks: 
   player2TankPicks: 
+  p1Ready: {fileID: 0}
+  p1Redo: {fileID: 0}
 --- !u!4 &754627384
 Transform:
   m_ObjectHideFlags: 0
@@ -699,14 +646,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 881344286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 157c05fc52bdb1a4a94ca9d8613c09e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 891f9655d13b77948b918a716dde348e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1Ready: {fileID: 1379471149}
-  p1Redo: {fileID: 1644969019}
   player1FishedPicking: 0
   player2FishedPicking: 0
   bothPlayersReady: 0
+  whatLevelAmI: 1
+  player1TankPicks: 
+  player2TankPicks: 
+  p1Ready: {fileID: 1379471149}
+  p1Redo: {fileID: 1644969019}
 --- !u!114 &881344289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,6 +670,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadTime: 2
+--- !u!1 &985357637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 985357641}
+  - component: {fileID: 985357640}
+  - component: {fileID: 985357639}
+  - component: {fileID: 985357638}
+  m_Layer: 0
+  m_Name: GameStatus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &985357638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985357637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7bdda3f543f98341a2dcff72433577a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &985357639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985357637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ed064eeafd25e4aaa9e43cc41baaee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadTime: 2
+--- !u!114 &985357640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985357637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0252966a683e6f448927bce8f6ff36c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficuityInfo: 0
+  player1TankPicks: 
+  player2TankPicks: 
+--- !u!4 &985357641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985357637}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1379471149
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +803,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 881344288}
-        m_MethodName: P1Ready
+        m_MethodName: p1DonePicking
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1013,7 +1036,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 881344288}
-        m_MethodName: P1Redo
+        m_MethodName: Player1RedoPick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -5,22 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class SelectScreen : MonoBehaviour
 {
+    [SerializeField] bool player1FishedPicking = false;             //if this goes true, player 1 pick phase has ended
+    [SerializeField] bool player2FishedPicking = false;             //if this goes true, player 1 pick phase has ended
+    [SerializeField] bool bothPlayersReady = false;                 //if this goes true, both players are ready and it will load next level
 
     [SerializeField] int whatLevelAmI = 1;                          //checks which diff
+
     int p1ArrayIdex = 0;                                            //keeps track of players 1 tank pick in the array
     int p2ArrayIdex = 0;                                            //keeps track of players 2 tank pick in the array
 
     [SerializeField] int[] player1TankPicks;                        //holds players 1 picks
     [SerializeField] int[] player2TankPicks;                        //holds players 1 picks
 
+    [SerializeField] GameObject p1Ready;
+    [SerializeField] GameObject p1Redo;
 
-    LevelDifficuityInfo difficuity;
+    GameStatus currentState;
 
 
     void Start()
     {
-        difficuity = FindObjectOfType<LevelDifficuityInfo>();
-        whatLevelAmI = difficuity.GetDifficuity();
+        currentState = FindObjectOfType<GameStatus>();
+        whatLevelAmI = currentState.GetDifficuity();
 
         player1TankPicks = new int[] {0, 0, 0};                     //players 1 picks, 0 = empty, 1 = normal tank, 2 = sniper tank, 3 = mortar tank
         player2TankPicks = new int[] {0, 0, 0};                     //checks which difficulty was picked, 1 = easy, 2 = medium , 3 = hard.
@@ -63,6 +69,8 @@ public class SelectScreen : MonoBehaviour
         }
         else
         {
+            p1Redo.SetActive(true);
+            p1Ready.SetActive(true);
             return;
         }
     }
@@ -77,6 +85,8 @@ public class SelectScreen : MonoBehaviour
         }
         else
         {
+            p1Redo.SetActive(true);
+            p1Ready.SetActive(true);
             return;
         }
     }
@@ -91,21 +101,28 @@ public class SelectScreen : MonoBehaviour
         }
         else
         {
+            p1Redo.SetActive(true);
+            p1Ready.SetActive(true);
             return;
         }
     }
 
     public void Player1RedoPick()
     {
+        p1Redo.SetActive(false);
+        p1Ready.SetActive(false);
         p1ArrayIdex = 0;
     }
 
-
-
-
-    public int GetWhatLevelAmI()
+    public void p1DonePicking()
     {
-        return whatLevelAmI;
+        p1Ready.SetActive(true);
+        p1Redo.SetActive(true);
+        player1FishedPicking = true;
+        currentState.SetPlayer1TanksPick(player1TankPicks);
     }
+
+
+
 
 }

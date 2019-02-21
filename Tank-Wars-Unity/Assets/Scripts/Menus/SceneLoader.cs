@@ -41,9 +41,9 @@ public class SceneLoader : MonoBehaviour
     }
 
     //function used to load 10 by 10 grind player vs player level
-    public void Load10x10Player()
+    public void Load10x10PlayerEasy()
     {
-        //fill once scene is placed in build
+        SceneManager.LoadScene(1);
     }
 
     //function used to load game over screen

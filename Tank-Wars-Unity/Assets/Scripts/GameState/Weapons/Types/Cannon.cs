@@ -21,6 +21,10 @@ public class Cannon : Weapon
         // Check for valid attack
         for(int i = 0; i < 4; i++) {
             validAttack = attackCheck(grid, i, tank.getCoordinates(), targetNode);
+
+            if (validAttack) {
+                break;
+            }
         }
 
         // If all is well, decrement targeted player health and update the game state.
@@ -28,7 +32,7 @@ public class Cannon : Weapon
             Tank targetTank = targetNode.getTank();
             targetTank.decrementHealth(this.damage);
 
-            Debug.Log("Player " + this.tank.getPlayer().getPlayerNumber() + " attacks player " + 
+            Debug.Log("Player " + this.tank.getPlayer().getPlayerNumber() + " attacks Player " + 
                       targetTank.getPlayer().getPlayerNumber() + " for " + this.damage + " damage!");
 
         }
@@ -59,12 +63,6 @@ public class Cannon : Weapon
                         return false;
                     }
 
-                    // Check if a tank is in the path or on the target node
-                    // TODO: Hit tank that is in the way
-                    if (!grid.getGridNode(currentTankX + i, currentTankY).getTank().isEmptySlot()) {
-                        return false;
-                    }
-
                     // Do final check to see if this is the target node
                     if ((currentTankX + i) == targetNodeX && currentTankY == targetNodeY) {
                         return true;
@@ -77,11 +75,6 @@ public class Cannon : Weapon
 
                     // Check for mountains
                     if (grid.getGridNode(currentTankX - i, currentTankY).getTerrain() is Mountain) {
-                        return false;
-                    }
-
-                    // Check if a tank is in the path or on the target node
-                    if (!grid.getGridNode(currentTankX - i, currentTankY).getTank().isEmptySlot()) {
                         return false;
                     }
 
@@ -100,11 +93,6 @@ public class Cannon : Weapon
                         return false;
                     }
 
-                    // Check if a tank is in the path or on the target node
-                    if (!grid.getGridNode(currentTankX, currentTankY + i).getTank().isEmptySlot()) {
-                        return false;
-                    }
-
                     // Do final check to see if this is the target node
                     if ((currentTankX) == targetNodeX && (currentTankY + i) == targetNodeY) {
                         return true;
@@ -117,11 +105,6 @@ public class Cannon : Weapon
 
                     // Check for mountains
                     if (grid.getGridNode(currentTankX, currentTankY - i).getTerrain() is Mountain) {
-                        return false;
-                    }
-
-                    // Check if a tank is in the path or on the target node
-                    if (!grid.getGridNode(currentTankX, currentTankY - i).getTank().isEmptySlot()) {
                         return false;
                     }
 

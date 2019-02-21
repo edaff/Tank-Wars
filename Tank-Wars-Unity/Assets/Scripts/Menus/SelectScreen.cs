@@ -206,12 +206,12 @@ public class SelectScreen : MonoBehaviour
     }
     //end of player 1 GUI control functions
 
-    //player 1 GUI control functions
+    //player 2 GUI control functions
     public void Player2RedoPick()
     {
         p2Redo.SetActive(false);
         p2Ready.SetActive(false);
-        p1ArrayIdex = 0;
+        p2ArrayIdex = 0;
     }
 
     public void p2DonePicking()
@@ -221,7 +221,7 @@ public class SelectScreen : MonoBehaviour
         player2FishedPicking = true;
         currentState.SetPlayer2TanksPick(player2TankPicks);
     }
-    //end of player 1 GUI control functions
+    //end of player 2 GUI control functions
 
 
 

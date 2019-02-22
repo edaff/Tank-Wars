@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Turns : MonoBehaviour
 {
+    public GameStatus gameStatus;
 	public ObjectClicker oc;
 	public GameState gs;
 	public GameObject objectClicked = null;
@@ -19,6 +20,7 @@ public class Turns : MonoBehaviour
 
     void Start()
     {
+        gameStatus = GetComponent<GameStatus>();
     	oc = GetComponent<ObjectClicker>();
     	tankSet1 = new int[] {1,0,0};
     	tankSet2 = new int[] {1,0,0};
@@ -49,107 +51,27 @@ public class Turns : MonoBehaviour
             return;
         }
 
+        // Assign variables
         objectClicked = oc.objectClicked;
         oc.objectClicked = null;
+        ClickItems items = getItemClicked();
+        RaycastHit hit = items.getRaycastHit();
 
-
-        if (round == Rounds.Move) {
-            ClickItems items = getItemClicked();
-            RaycastHit hit = items.getRaycastHit();
-
-            if (!items.isValid()) {
-                return;
-            }
-
-            //print(hit.transform.gameObject);
-            if ((hit.transform.gameObject.tag == "Red Tank" && playerTurn == PlayerColors.Red) || (hit.transform.gameObject.tag == "Blue Tank" && playerTurn == PlayerColors.Blue)) {
-                tankClicked = hit.transform.gameObject;
-            }
-            else if (tankClicked != null) {
-                tileClicked = hit.transform.gameObject;
-
-                CoordinateSet tankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
-                CoordinateSet tileCoordinates = new CoordinateSet((int)tileClicked.transform.position.x, (int)tileClicked.transform.position.z);
-
-                if (gs.checkValidMove(playerTurn, tankCoordinates, tileCoordinates)) {
-                    tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 1, tileClicked.transform.position.z);
-                    tileClicked = null;
-                    tankClicked = null;
-                    round = Rounds.Attack;
-                    printTurn();
-                }
-            }
+        if (!items.isValid()) {
+            return;
         }
-        else if (round == Rounds.Attack) {
-            ClickItems items = getItemClicked();
-            RaycastHit hit = items.getRaycastHit();
 
-            if (!items.isValid()) {
-                return;
-            }
-                
-            // Assign tanks clicked
-            if ((hit.transform.gameObject.tag == "Red Tank")) {
-                if (playerTurn == PlayerColors.Red) {
-                    tankClicked = hit.transform.gameObject;
-                }
-                else {
-                    tankClicked2 = hit.transform.gameObject;
-                }
-            }
-            else if (hit.transform.gameObject.tag == "Blue Tank") {
-                if (playerTurn == PlayerColors.Blue) {
-                    tankClicked = hit.transform.gameObject;
-                }
-                else {
-                    tankClicked2 = hit.transform.gameObject;
-                }
-            }
-
-            // If both tanks have been clicked, orchestrate the attack
-            if (tankClicked != null && tankClicked2 != null) {
-
-                // Create coordinates
-                CoordinateSet currentPlayerTankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
-                CoordinateSet targetPlayerTankCoordinates = new CoordinateSet((int)tankClicked2.transform.position.x, (int)tankClicked2.transform.position.z);
-
-                // Check if the attack is valid
-                if (gs.checkValidAttack(playerTurn, currentPlayerTankCoordinates, targetPlayerTankCoordinates)) {
-                    print("Good attack!");
-                }
-                else {
-                    print("Bad attack!");
-                }
-
-                // Update the state information
-                round = Rounds.Gamble;
-                printTurn();
-                tankClicked = null;
-                tankClicked2 = null;
-            }
-
-        }
-        else if (round == Rounds.Gamble) {
-            ClickItems items = getItemClicked();
-
-            if (!items.isValid()) {
-                return;
-            }
-
-            // Do Gamble
-            tankClicked = items.getRaycastHit().transform.gameObject;
-            CoordinateSet currentTankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
-            string powerup = gs.playerGamble(playerTurn, currentTankCoordinates);
-
-            // Print log message
-            Debug.Log("Player " + playerTurn + "'s gamble results in: " + powerup);
-                
-            // Update the state
-            tankClicked = null;
-            round = Rounds.Move;
-            changeTurns();
-            printTurn();
-                
+        switch (round) {
+            case Rounds.Move:
+                handleMove(hit);
+                break;
+            case Rounds.Attack:
+                assignTanksClicked(hit);
+                handleAttack();
+                break;
+            case Rounds.Gamble:
+                handleGamble(hit);
+                break;
         }
     }
 
@@ -183,6 +105,86 @@ public class Turns : MonoBehaviour
         items = new ClickItems(new RaycastHit(), new Rigidbody(), false);
         return items;
      }
+
+    private void handleMove(RaycastHit hit) {
+        if ((hit.transform.gameObject.tag == "Red Tank" && playerTurn == PlayerColors.Red) || (hit.transform.gameObject.tag == "Blue Tank" && playerTurn == PlayerColors.Blue)) {
+            tankClicked = hit.transform.gameObject;
+        }
+        else if (tankClicked != null) {
+            tileClicked = hit.transform.gameObject;
+
+            CoordinateSet tankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
+            CoordinateSet tileCoordinates = new CoordinateSet((int)tileClicked.transform.position.x, (int)tileClicked.transform.position.z);
+
+            if (gs.checkValidMove(playerTurn, tankCoordinates, tileCoordinates)) {
+                tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 1, tileClicked.transform.position.z);
+                tileClicked = null;
+                tankClicked = null;
+                round = Rounds.Attack;
+                printTurn();
+            }
+        }
+    }
+
+    private void assignTanksClicked(RaycastHit hit) {
+        // Assign tanks clicked
+        if ((hit.transform.gameObject.tag == "Red Tank")) {
+            if (playerTurn == PlayerColors.Red) {
+                tankClicked = hit.transform.gameObject;
+            }
+            else {
+                tankClicked2 = hit.transform.gameObject;
+            }
+        }
+        else if (hit.transform.gameObject.tag == "Blue Tank") {
+            if (playerTurn == PlayerColors.Blue) {
+                tankClicked = hit.transform.gameObject;
+            }
+            else {
+                tankClicked2 = hit.transform.gameObject;
+            }
+        }
+    }
+
+    private void handleAttack() {
+        // If both tanks have been clicked, orchestrate the attack
+        if (tankClicked != null && tankClicked2 != null) {
+
+            // Create coordinates
+            CoordinateSet currentPlayerTankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
+            CoordinateSet targetPlayerTankCoordinates = new CoordinateSet((int)tankClicked2.transform.position.x, (int)tankClicked2.transform.position.z);
+
+            // Check if the attack is valid
+            if (gs.checkValidAttack(playerTurn, currentPlayerTankCoordinates, targetPlayerTankCoordinates)) {
+                print("Good attack!");
+            }
+            else {
+                print("Bad attack!");
+            }
+
+            // Update the state information
+            round = Rounds.Gamble;
+            printTurn();
+            tankClicked = null;
+            tankClicked2 = null;
+        }
+    }
+
+    private void handleGamble(RaycastHit hit) {
+        // Do Gamble
+        tankClicked = hit.transform.gameObject;
+        CoordinateSet currentTankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
+        string powerup = gs.playerGamble(playerTurn, currentTankCoordinates);
+
+        // Print log message
+        Debug.Log("Player " + playerTurn + "'s gamble results in: " + powerup);
+
+        // Update the state
+        tankClicked = null;
+        round = Rounds.Move;
+        changeTurns();
+        printTurn();
+    }
 }
 
 public enum Rounds {

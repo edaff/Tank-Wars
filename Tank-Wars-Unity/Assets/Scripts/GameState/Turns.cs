@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Turns : MonoBehaviour
 {
-    public GameStatus gameStatus;
+    public GameObject gameStatus;
 	public ObjectClicker oc;
 	public GameState gs;
 	public GameObject objectClicked = null;
@@ -15,16 +15,31 @@ public class Turns : MonoBehaviour
 	public int[] tankSet2;
 	public Rounds round;
 	public PlayerColors playerTurn;
+    public Levels currentLevel;
 	public bool gamblePressed = false;
     ClickItems items;
 
     void Start()
     {
-        gameStatus = GetComponent<GameStatus>();
-    	oc = GetComponent<ObjectClicker>();
-    	tankSet1 = new int[] {1,0,0};
-    	tankSet2 = new int[] {1,0,0};
-    	gs = new GameState(Levels.Level1, tankSet1, tankSet2);
+        // Grab the game status object which holds information from the main menu
+        gameStatus = GameObject.Find("GameStatus");
+        currentLevel = (Levels)gameStatus.GetComponent<GameStatus>().GetDifficuity();
+
+        // Set the tanks
+        tankSet1 = gameStatus.GetComponent<GameStatus>().getPlayer1TankPicks();
+        tankSet2 = gameStatus.GetComponent<GameStatus>().getPlayer2TankPicks();
+
+        // For development purposes, if the main menu isn't used, then use
+        // a default level.
+        if(currentLevel != 0) {
+            gs = new GameState(currentLevel, tankSet1, tankSet2);
+        }
+        else {
+            gs = new GameState(Levels.Level1, new int[] {1,0,0}, new int[] {1,0,0});
+        }
+
+        // Set up the turns and start
+        oc = GetComponent<ObjectClicker>();
     	round = Rounds.Move;
     	playerTurn = PlayerColors.Red;
         printTurn();

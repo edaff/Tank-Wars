@@ -42,6 +42,14 @@ public class GameStatus : MonoBehaviour
         this.player2TankPicks = player2TankPicks;
     }
 
+    public int[] getPlayer1TankPicks() {
+        return this.player1TankPicks;
+    }
+
+    public int[] getPlayer2TankPicks() {
+        return this.player2TankPicks;
+    }
+
     public void SetPlayer1Win()
     {
         player1Wins = true;

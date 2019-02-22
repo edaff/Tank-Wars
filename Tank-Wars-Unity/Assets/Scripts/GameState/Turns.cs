@@ -12,10 +12,8 @@ public class Turns : MonoBehaviour
 	public GameObject tileClicked = null;
 	public int[] tankSet1;
 	public int[] tankSet2;
-	public int round;
-	public int playerTurn;
-	public int redPlayerTurn = 1;
-	public int bluePlayerTurn = 2;
+	public Rounds round;
+	public PlayerColors playerTurn;
 	public bool gamblePressed = false;
 	
     void Start()
@@ -24,8 +22,8 @@ public class Turns : MonoBehaviour
     	tankSet1 = new int[] {1,0,0};
     	tankSet2 = new int[] {1,0,0};
     	gs = new GameState(1,tankSet1,tankSet2);
-    	round = (int)Rounds.Move;
-    	playerTurn = 1;
+    	round = Rounds.Move;
+    	playerTurn = PlayerColors.Red;
         printTurn();
     }
 
@@ -36,10 +34,10 @@ public class Turns : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) {
             round++;
 
-            if(round > (int)Rounds.Gamble) {
-                round = (int)Rounds.Move;
+            if(round > Rounds.Gamble) {
+                round = Rounds.Move;
 
-                playerTurn = (playerTurn >= 2) ? 1 : 2;
+                changeTurns();
             }
 
             printTurn();
@@ -50,7 +48,7 @@ public class Turns : MonoBehaviour
         	objectClicked = oc.objectClicked;
         	oc.objectClicked = null;
 
-        	if(round == (int)Rounds.Move)
+        	if(round == Rounds.Move)
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -62,7 +60,7 @@ public class Turns : MonoBehaviour
                         if (rb = hit.transform.GetComponent<Rigidbody>())
                         {                        
                             //print(hit.transform.gameObject);
-                            if((hit.transform.gameObject.tag == "Red Tank" && playerTurn == redPlayerTurn) || (hit.transform.gameObject.tag == "Blue Tank" && playerTurn == bluePlayerTurn))
+                            if((hit.transform.gameObject.tag == "Red Tank" && playerTurn == PlayerColors.Red) || (hit.transform.gameObject.tag == "Blue Tank" && playerTurn == PlayerColors.Blue))
                             {
                                 tankClicked = hit.transform.gameObject;
                             }
@@ -78,7 +76,7 @@ public class Turns : MonoBehaviour
                                     tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 1, tileClicked.transform.position.z);
                                     tileClicked = null;
                                     tankClicked = null;
-                                    round = (int)Rounds.Attack;
+                                    round = Rounds.Attack;
                                     printTurn();
                                 }
                             }
@@ -86,7 +84,7 @@ public class Turns : MonoBehaviour
                     }
                 }
             }
-            else if(round == (int)Rounds.Attack)
+            else if(round == Rounds.Attack)
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -99,7 +97,7 @@ public class Turns : MonoBehaviour
                         {
                             if((hit.transform.gameObject.tag == "Red Tank"))
                             {    
-                                if(playerTurn == (int)Players.Red) {
+                                if(playerTurn == PlayerColors.Red) {
                                     tankClicked = hit.transform.gameObject;
                                 }
                                 else {
@@ -108,7 +106,7 @@ public class Turns : MonoBehaviour
                             }
                             else if(hit.transform.gameObject.tag == "Blue Tank")
                             {
-                                if (playerTurn == (int)Players.Blue) {
+                                if (playerTurn == PlayerColors.Blue) {
                                     tankClicked = hit.transform.gameObject;
                                 }
                                 else {
@@ -129,7 +127,7 @@ public class Turns : MonoBehaviour
                                     print("Bad attack!");
                                 }
 
-                                round = (int)Rounds.Gamble;
+                                round = Rounds.Gamble;
 
                                 printTurn();
                                 tankClicked = null;
@@ -139,7 +137,7 @@ public class Turns : MonoBehaviour
                     }
                 }
             }
-            else if(round == (int)Rounds.Gamble)
+            else if(round == Rounds.Gamble)
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -164,15 +162,9 @@ public class Turns : MonoBehaviour
                     tankClicked = null;
                     gamblePressed = false;
 
-                    round = (int)Rounds.Move;
+                    round = Rounds.Move;
 
-                    playerTurn++;
-
-                    if(playerTurn > 2)
-                    {
-                        playerTurn = 1;
-                    }
-
+                    changeTurns();
                     printTurn();
                 }
             }
@@ -182,6 +174,15 @@ public class Turns : MonoBehaviour
 
     private void printTurn() {
         Debug.Log("Player " + playerTurn + ": " + (Rounds)round);
+    }
+
+    private void changeTurns() {
+        if(playerTurn == PlayerColors.Red) {
+            playerTurn = PlayerColors.Blue;
+        }
+        else {
+            playerTurn = PlayerColors.Red;
+        }
     }
 }
 

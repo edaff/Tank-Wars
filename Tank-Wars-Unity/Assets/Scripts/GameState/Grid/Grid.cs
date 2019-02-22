@@ -69,7 +69,7 @@ public class Grid
             grid[currentTankX, currentTankY].setTank(currentTank);
         }
 
-        Debug.Log("Player " + player.getPlayerNumber() + "'s tanks have been assigned to the grid...");
+        Debug.Log("Player " + player.getPlayerColor() + "'s tanks have been assigned to the grid...");
     }
 
     // Code to randomly genereate terrains

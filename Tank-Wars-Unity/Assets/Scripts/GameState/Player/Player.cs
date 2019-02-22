@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class Player
 {
-    protected int number;
-    protected string color;
+    protected PlayerColors playerColor;
     protected Tank[] tanks;
 
-    public Player(int playerNumber) {
-        this.number = playerNumber;
-        this.color = (playerNumber == 1) ? "Red" : "Blue";
+    public Player(PlayerColors playerColor) {
+        this.playerColor = playerColor;
         this.tanks = new Tank[3] { new EmptyTankSlot(), new EmptyTankSlot(), new EmptyTankSlot() };
     }
 
-    public Player(int playerNumber, int[] playerTankArray) {
-        this.number = playerNumber;
-        this.color = (playerNumber == 1) ? "Red" : "Blue";
-        this.tanks = createTankArray(playerTankArray, playerNumber);
+    public Player(PlayerColors playerColor, int[] playerTankArray) {
+        this.playerColor = playerColor;
+        this.tanks = createTankArray(playerTankArray, playerColor);
     }
 
-    private Tank[] createTankArray(int [] playerTankArray, int playerNumber) {
+    private Tank[] createTankArray(int [] playerTankArray, PlayerColors playerColor) {
         Tank[] tanks = new Tank[3];
 
         for(int i = 0; i < playerTankArray.Length; i++) {
@@ -29,7 +26,7 @@ public class Player
                     tanks[i] = new EmptyTankSlot();
                     break;
                 case 1:
-                    if(playerNumber == (int)Players.Red) {
+                    if(playerColor == PlayerColors.Red) {
                         tanks[i] = new Tank1(this, new CoordinateSet(4,0));
                     }
                     else {
@@ -37,7 +34,7 @@ public class Player
                     }       
                     break;
                 case 2:
-                    if (playerNumber == (int)Players.Red) {
+                    if (playerColor == PlayerColors.Red) {
                         tanks[i] = new Tank2(this, new CoordinateSet(4, 0));
                     }
                     else {
@@ -56,12 +53,8 @@ public class Player
         return tanks;
     }
 
-    public int getPlayerNumber() {
-        return this.number;
-    }
-
-    public string getPlayerColor() {
-        return this.color;
+    public PlayerColors getPlayerColor() {
+        return this.playerColor;
     }
 
     public Tank[] getPlayerTanks() {
@@ -94,7 +87,7 @@ public class Player
     }
 }
 
-public enum Players {
+public enum PlayerColors {
     Red = 1,
     Blue = 2
 }

@@ -35,7 +35,7 @@ public class Tank2 : Tank
             grid.getGridNode(coordinates).setTank(new EmptyTankSlot());
             this.coordinates = new CoordinateSet(targetNode.getCoordinateSet().getX(), targetNode.getCoordinateSet().getY());
 
-            Debug.Log("Player " + player.getPlayerNumber() + " moves to position " +
+            Debug.Log("Player " + player.getPlayerColor() + " moves to position " +
                       targetCoordinates.getX() + ", " + targetCoordinates.getY());
 
             return true;

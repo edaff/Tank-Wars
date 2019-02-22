@@ -13,7 +13,7 @@ public class Cannon : Weapon
         this.tank = tank;
 
         // Orientation is up by default for red and down by default for blue
-        this.orientation = (this.tank.getPlayer().getPlayerNumber() == (int)Players.Red) ? (int)Orientations.Up : (int)Orientations.Down; 
+        this.orientation = (this.tank.getPlayer().getPlayerColor() == PlayerColors.Red) ? Orientations.Up : Orientations.Down; 
     }
 
     // Member Functions
@@ -35,8 +35,8 @@ public class Cannon : Weapon
             Tank targetTank = targetNode.getTank();
             targetTank.decrementHealth(this.damage);
 
-            Debug.Log("Player " + this.tank.getPlayer().getPlayerNumber() + " attacks Player " + 
-                      targetTank.getPlayer().getPlayerNumber() + " for " + this.damage + " damage!");
+            Debug.Log("Player " + this.tank.getPlayer().getPlayerColor() + " attacks Player " + 
+                      targetTank.getPlayer().getPlayerColor() + " for " + this.damage + " damage!");
 
             return true;
 
@@ -57,7 +57,7 @@ public class Cannon : Weapon
         int targetNodeX = targetNode.getCoordinateSet().getX();
         int targetNodeY = targetNode.getCoordinateSet().getY();
 
-        for(int i = 1; i < this.distance; i++) {
+        for(int i = 1; i <= this.distance; i++) {
             switch (currentIteration) {
                 case 0:
                     // Check for index out of bounds

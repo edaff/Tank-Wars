@@ -107,11 +107,11 @@ public class CameraAngles : MonoBehaviour
     // needs to follow the tank that is clicked only if its the current players tank
     void followPlayerCam()
     {
-        if (player.getPlayerNumber() == 1)
+        if (player.getPlayerColor() == PlayerColors.Red)
         {
             //  player.getPlayerTanks()[0];
         }
-        else if (player.getPlayerNumber() == 2)
+        else if (player.getPlayerColor() == PlayerColors.Blue)
         {
 
         }

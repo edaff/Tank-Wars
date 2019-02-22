@@ -5,8 +5,8 @@ public class GameState {
     Player player2;
 
     public GameState(int level, int[] player1Tanks, int[] player2Tanks) {
-        player1 = new Player(1, player1Tanks);
-        player2 = new Player(2, player2Tanks);
+        player1 = new Player(PlayerColors.Red, player1Tanks);
+        player2 = new Player(PlayerColors.Blue, player2Tanks);
 
         // Create the grid
         switch (level) {
@@ -52,10 +52,10 @@ public class GameState {
         return allTanksDead;
     }
 
-    public bool checkValidMove(int playerTurn, CoordinateSet tankCoordinates, CoordinateSet targetCoordinates) {
+    public bool checkValidMove(PlayerColors playerTurn, CoordinateSet tankCoordinates, CoordinateSet targetCoordinates) {
         Tank currentTank;
 
-        if(playerTurn == (int)Players.Red) {
+        if(playerTurn == PlayerColors.Red) {
             currentTank = player1.getPlayerTankByCoordinates(tankCoordinates);
         }
         else {
@@ -65,10 +65,10 @@ public class GameState {
         return currentTank.isValidMovement(this.grid, targetCoordinates);
     }
 
-    public bool checkValidAttack(int playerTurn, CoordinateSet currentTankCoordinates, CoordinateSet targetTankCoordinates) {
+    public bool checkValidAttack(PlayerColors playerTurn, CoordinateSet currentTankCoordinates, CoordinateSet targetTankCoordinates) {
         Tank currentTank;
 
-        if (playerTurn == (int)Players.Red) {
+        if (playerTurn == PlayerColors.Red) {
             currentTank = player1.getPlayerTankByCoordinates(currentTankCoordinates);
         }
         else {
@@ -78,7 +78,7 @@ public class GameState {
         return currentTank.getWeapon().isValidAttack(this.grid, targetTankCoordinates);
     }
 
-    public string playerGamble(int playerTurn, CoordinateSet currentTankCoordinates) {
+    public string playerGamble(PlayerColors playerTurn, CoordinateSet currentTankCoordinates) {
         Tank currentTank = getPlayerTank(playerTurn, currentTankCoordinates);
         Powerup powerup = Powerup.gamble();
 
@@ -87,8 +87,8 @@ public class GameState {
         return powerup.ToString();
     }
 
-    private Tank getPlayerTank(int playerTurn, CoordinateSet currentTankCoordinates) {
-        if (playerTurn == (int)Players.Red) {
+    private Tank getPlayerTank(PlayerColors playerTurn, CoordinateSet currentTankCoordinates) {
+        if (playerTurn == PlayerColors.Red) {
             return player1.getPlayerTankByCoordinates(currentTankCoordinates);
         }
         else {

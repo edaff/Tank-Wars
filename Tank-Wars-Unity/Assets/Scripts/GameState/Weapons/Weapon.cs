@@ -7,7 +7,7 @@ public abstract class Weapon
     // Members
     protected int distance;
     protected int damage;
-    protected int orientation;
+    protected Orientations orientation;
     protected Tank tank;
 
     // Functions
@@ -31,9 +31,14 @@ public abstract class Weapon
         this.distance = distance;
     }
 
-    public int getOrientation() {
+    public Orientations getOrientation() {
         return this.orientation;
     }
+
+    public void setOrientation(Orientations orientation ) {
+        this.orientation = orientation;
+    }
+
 }
 
 public enum Orientations {

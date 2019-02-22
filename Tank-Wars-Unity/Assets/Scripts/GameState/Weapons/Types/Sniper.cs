@@ -12,7 +12,7 @@ public class Sniper : Weapon {
         this.tank = tank;
 
         // Orientation is up by default for red and down by default for blue
-        orientation = (tank.getPlayer().getPlayerNumber() == (int)Players.Red) ? (int)Orientations.Up : (int)Orientations.Down;
+        orientation = (tank.getPlayer().getPlayerColor() == PlayerColors.Red) ? Orientations.Up : Orientations.Down;
     }
 
     // Member Functions
@@ -30,8 +30,8 @@ public class Sniper : Weapon {
             Tank targetTank = targetNode.getTank();
             targetTank.decrementHealth(this.damage);
 
-            Debug.Log("Player " + this.tank.getPlayer().getPlayerNumber() + " attacks Player " +
-                      targetTank.getPlayer().getPlayerNumber() + " for " + this.damage + " damage!");
+            Debug.Log("Player " + this.tank.getPlayer().getPlayerColor() + " attacks Player " +
+                      targetTank.getPlayer().getPlayerColor() + " for " + this.damage + " damage!");
 
             return true;
 
@@ -53,7 +53,7 @@ public class Sniper : Weapon {
         int targetNodeY = targetNode.getCoordinateSet().getY();
 
         switch (this.orientation) {
-            case 0:
+            case Orientations.Up:
                 for(int i = 0; i < this.distance; i++) {
                     // Check for index out of bounds
                     if (currentTankY + i >= gridSize) { break; }
@@ -69,9 +69,9 @@ public class Sniper : Weapon {
                     }
                 }
                 break;
-            case 90:
+            case Orientations.Right:
                 break;
-            case 180:
+            case Orientations.Down:
                 for (int i = 0; i < this.distance; i++) {
                     // Check for index out of bounds
                     if (currentTankY - i < 0) { continue; }
@@ -87,7 +87,7 @@ public class Sniper : Weapon {
                     }
                 }
                 break;
-            case 270:
+            case Orientations.Left:
                 break;
         }
 

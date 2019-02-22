@@ -52,6 +52,7 @@ public class Turns : MonoBehaviour
         objectClicked = oc.objectClicked;
         oc.objectClicked = null;
 
+
         if (round == Rounds.Move) {
             ClickItems items = getItemClicked();
             RaycastHit hit = items.getRaycastHit();

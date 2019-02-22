@@ -6,9 +6,6 @@ public class Invicibility : Powerup
 {
     public Invicibility() {
         this.duration = 1;
-    }
-
-    public override string ToString() {
-        return "Invincibility";
+        this.name = "Invincibility";
     }
 }

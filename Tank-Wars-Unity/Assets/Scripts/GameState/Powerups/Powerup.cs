@@ -6,6 +6,7 @@ public abstract class Powerup {
     private static int numberOfPowerups = 3;
     private static int emptyGambleSlots = 3;
     protected int duration;
+    protected string name = "Powerup";
 
     virtual public bool isEmptySlot() {
         return false;
@@ -42,5 +43,9 @@ public abstract class Powerup {
         else {
             return false;
         }
+    }
+
+    public override string ToString() {
+        return this.name;
     }
 }

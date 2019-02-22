@@ -41,7 +41,7 @@ public class SceneLoader : MonoBehaviour
     }
 
     //function used to load 10 by 10 grind player vs player level
-    public void Load10x10PlayerEasy()
+    public void Load10x10SelectScreen()
     {
         SceneManager.LoadScene(1);
     }

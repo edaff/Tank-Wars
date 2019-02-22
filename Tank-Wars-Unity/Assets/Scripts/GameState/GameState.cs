@@ -1,22 +1,25 @@
 ﻿
 public class GameState {
-    Grid grid;
-    Player player1;
-    Player player2;
+    protected Grid grid;
+    protected Player player1;
+    protected Player player2;
+    protected Levels level;
 
-    public GameState(int level, int[] player1Tanks, int[] player2Tanks) {
+    public GameState(Levels level, int[] player1Tanks, int[] player2Tanks) {
+        this.level = level;
+
         player1 = new Player(PlayerColors.Red, player1Tanks);
         player2 = new Player(PlayerColors.Blue, player2Tanks);
 
         // Create the grid
-        switch (level) {
-            case 1:
+        switch (this.level) {
+            case Levels.Level1:
                 grid = new Grid("10x10 Grid Template", 10, player1, player2);
                 break;
-            case 2:
+            case Levels.Level2:
                 grid = new Grid("15x15 Grid Template", 15, player1, player2);
                 break;
-            case 3:
+            case Levels.Level3:
                 grid = new Grid("20x20 Grid Template", 20, player1, player2);
                 break;
             default:
@@ -95,4 +98,10 @@ public class GameState {
             return player2.getPlayerTankByCoordinates(currentTankCoordinates);
         }
     }
+}
+
+public enum Levels {
+    Level1 = 1,
+    Level2 = 2,
+    Level3 = 3
 }

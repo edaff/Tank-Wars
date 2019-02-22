@@ -49,7 +49,8 @@ public class SceneLoader : MonoBehaviour
     //function used to load game over screen
     public void LoadGameOverScreen()
     {
-        //fill once scene is placed in build
+        SceneManager.LoadScene("Game Over");
     }
+
 
 }

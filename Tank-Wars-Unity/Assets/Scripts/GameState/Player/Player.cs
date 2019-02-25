@@ -85,6 +85,20 @@ public class Player
 
         return new EmptyTankSlot();
     }
+
+    public void updateAllTankPowerups() {
+        for(int i = 0; i < 3; i++) {
+            Tank currentTank = this.tanks[i];
+
+            // Check for empty tank slot
+            if (currentTank is EmptyTankSlot) {
+                continue;
+            }
+            else {
+                currentTank.updatePowerupState();
+            }
+        }
+    }
 }
 
 public enum PlayerColors {

@@ -177,6 +177,9 @@ public class Turns : MonoBehaviour
                 print("Bad attack!");
             }
 
+            // Update player powerup state
+            gs.updatePlayerPowerupState(playerTurn);
+
             // Update the state information
             round = Rounds.Gamble;
             printTurn();

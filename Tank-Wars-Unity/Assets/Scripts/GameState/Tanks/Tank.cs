@@ -28,12 +28,21 @@ public abstract class Tank
     public int getHealth() {
         return this.health;
     }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public void decrementHealth(int amount) {
         this.health -= amount;
     }
 
     public int getMovement() {
         return this.movement;
+    }
+
+    public void setMovement(int movement) {
+        this.movement = movement;
     }
 
     public Weapon getWeapon() {
@@ -45,7 +54,13 @@ public abstract class Tank
     }
 
     public void setPowerup(Powerup powerup) {
+        powerup.applyPowerupEffect(this);
         this.powerup = powerup;
+    }
+
+    public void removePowerup() {
+        this.powerup.removePowerupEffect(this);
+        this.powerup = new EmptyPowerupSlot();
     }
 
     public Player getPlayer() {
@@ -64,7 +79,7 @@ public abstract class Tank
         this.powerup.decrementPowerupDuration();
 
         if (this.powerup.isExpired()) {
-            this.powerup = new EmptyPowerupSlot();
+            removePowerup();
         }
     }
 

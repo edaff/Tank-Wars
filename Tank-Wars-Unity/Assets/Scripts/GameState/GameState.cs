@@ -1,4 +1,6 @@
 ﻿
+using System.Collections;
+
 public class GameState {
     protected Grid grid;
     protected Player player1;
@@ -84,6 +86,7 @@ public class GameState {
     public string playerGamble(PlayerColors playerTurn, CoordinateSet currentTankCoordinates) {
         Tank currentTank = getPlayerTank(playerTurn, currentTankCoordinates);
         Powerup powerup = Powerup.gamble();
+        currentTank.decrementHealth(1);
 
         currentTank.setPowerup(powerup);
 
@@ -96,6 +99,15 @@ public class GameState {
         }
         else {
             return player2.getPlayerTankByCoordinates(currentTankCoordinates);
+        }
+    }
+
+    public void updatePlayerPowerupState(PlayerColors player) {
+        if(player == PlayerColors.Red) {
+            player1.updateAllTankPowerups();
+        }
+        else {
+            player2.updateAllTankPowerups();
         }
     }
 }

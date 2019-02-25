@@ -6,6 +6,7 @@ public abstract class Powerup {
     private static int numberOfPowerups = 3;
     private static int emptyGambleSlots = 3;
     protected int duration;
+    protected int powerupValue;
     protected string name = "Powerup";
 
     virtual public bool isEmptySlot() {
@@ -43,6 +44,14 @@ public abstract class Powerup {
         else {
             return false;
         }
+    }
+
+    public virtual void applyPowerupEffect(Tank tank) {
+        Debug.Log("Nothing to do");
+    }
+
+    public virtual void removePowerupEffect(Tank tank) {
+        Debug.Log("Nothing to do");
     }
 
     public override string ToString() {

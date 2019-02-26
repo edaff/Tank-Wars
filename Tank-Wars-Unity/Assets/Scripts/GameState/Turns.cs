@@ -61,8 +61,8 @@ public class Turns : MonoBehaviour
         // Run if ai's turn
         if(playerTurn == PlayerColors.Blue && aiON){
             ai = new AI(redTanks, blueTanks, gs);
-            print(ai.test());
-            //print("hi");
+            ai.greedyTurn();
+            //print(ai.test());
             changeTurns();
         }
         // Skip turn if spacebar is pressed

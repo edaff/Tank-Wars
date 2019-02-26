@@ -12,6 +12,7 @@ public class HpBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         bar.transform.localScale = new Vector3(hp, 1f);
         //Transform bar = transform.Find("Bar");
         //bar.localScale = new Vector3(.75f, 1f);

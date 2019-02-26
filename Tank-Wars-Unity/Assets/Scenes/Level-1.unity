@@ -9325,10 +9325,13 @@ MonoBehaviour:
   tileClicked: {fileID: 0}
   tankSet1: 
   tankSet2: 
+  redTanks: []
+  blueTanks: []
   round: 0
   playerTurn: 0
   currentLevel: 0
   gamblePressed: 0
+  aiON: 0
 --- !u!114 &1330315670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10654,6 +10657,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e50684a84aa90064d910988befad95d0, type: 3}
+--- !u!114 &1440861266 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8092899043813042664, guid: e50684a84aa90064d910988befad95d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1440861265}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfbf59226273f844c9126dab1a754e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1443783698
 GameObject:
   m_ObjectHideFlags: 0
@@ -13293,6 +13308,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd18bf92da241b34fb1dee367f768996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1971806326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1971806328}
+  - component: {fileID: 1971806327}
+  m_Layer: 0
+  m_Name: HpController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1971806327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971806326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0dec5e587b11c245a9890655a06fe91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blueTank1Hp: {fileID: 1440861266}
+  redTank1Hp: {fileID: 4762130057703154443}
+--- !u!4 &1971806328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971806326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7232191, y: 1.161473, z: -9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2045614785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14078,3 +14138,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 844eb6ce132cdca4ba1f94edf4d9c272, type: 3}
+--- !u!114 &4762130057703154443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4522975977488071653, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
+    type: 3}
+  m_PrefabInstance: {fileID: 4762130057703154442}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfbf59226273f844c9126dab1a754e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

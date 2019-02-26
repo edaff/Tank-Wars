@@ -8,7 +8,7 @@ public class Tank1 : Tank
 
     // Constructors
     public Tank1(Player player, CoordinateSet coordinates) {
-        this.health = 20;
+        this.health = 100;
         this.movement = 3;
         this.player = player;
         this.coordinates = coordinates;

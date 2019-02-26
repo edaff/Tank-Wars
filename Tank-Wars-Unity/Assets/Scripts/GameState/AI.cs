@@ -27,6 +27,7 @@ public class AI
     public void greedyTurn()
     {
     	GameObject[] closestTanks = findClosestTanks();
+    	//findValidMoves(closestTanks[0]);
     }
 
     //Gameobject[] holds [AI gameobject, player closest gameobject]
@@ -50,6 +51,11 @@ public class AI
     		}
     	}
     	return ret;
+    }
+
+    public void findValidMoves(GameObject blue)
+    {
+
     }
 
     public string test() {

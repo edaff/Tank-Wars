@@ -23,16 +23,7 @@ public class HpBar : MonoBehaviour
     {
         if (hp >= 0f)
         {
-            bar.transform.localScale = new Vector3(hp, 1f);
-            Debug.Log(hp + " Before norm");
-            hp = hp - sizeNormalized;
-            Debug.Log(hp + " after norm");
-            hp = hp * 10;
-            Debug.Log(hp + " after mulit 10");
-            hp = Mathf.RoundToInt(hp);
-            Debug.Log(hp + " after round 10");
-            hp = hp / 10;
-            Debug.Log(hp + " after div 10");
+            bar.transform.localScale = new Vector3(sizeNormalized, 1f);
         }
     }
 

@@ -21,7 +21,7 @@ public abstract class Tank
         return false;
     }
 
-    virtual public bool isValidMovement(Grid grid, CoordinateSet coordinates) {
+    virtual public bool isValidMovement(Grid grid, CoordinateSet coordinates, bool updateState) {
         return true;
     }
 

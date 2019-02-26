@@ -62,7 +62,7 @@ public class GameState {
         return allTanksDead;
     }
 
-    public bool checkValidMove(PlayerColors playerTurn, CoordinateSet tankCoordinates, CoordinateSet targetCoordinates) {
+    public bool checkValidMove(PlayerColors playerTurn, CoordinateSet tankCoordinates, CoordinateSet targetCoordinates, bool updateState) {
         Tank currentTank;
 
         if(playerTurn == PlayerColors.Red) {
@@ -72,7 +72,7 @@ public class GameState {
             currentTank = player2.getPlayerTankByCoordinates(tankCoordinates);
         }
 
-        return currentTank.isValidMovement(this.grid, targetCoordinates);
+        return currentTank.isValidMovement(this.grid, targetCoordinates, updateState);
     }
 
     public bool checkValidAttack(PlayerColors playerTurn, CoordinateSet currentTankCoordinates, CoordinateSet targetTankCoordinates) {

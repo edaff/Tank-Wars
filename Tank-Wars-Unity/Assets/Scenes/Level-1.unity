@@ -9325,10 +9325,13 @@ MonoBehaviour:
   tileClicked: {fileID: 0}
   tankSet1: 
   tankSet2: 
+  redTanks: []
+  blueTanks: []
   round: 0
   playerTurn: 0
   currentLevel: 0
   gamblePressed: 0
+  aiON: 0
 --- !u!114 &1330315670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12737,6 +12740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1881379757}
   - component: {fileID: 1881379758}
+  - component: {fileID: 1881379759}
   m_Layer: 0
   m_Name: 10x10 Grid Template
   m_TagString: Untagged
@@ -12870,6 +12874,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd18bf92da241b34fb1dee367f768996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &1881379759
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881379756}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1001 &1884919952
 PrefabInstance:
   m_ObjectHideFlags: 0

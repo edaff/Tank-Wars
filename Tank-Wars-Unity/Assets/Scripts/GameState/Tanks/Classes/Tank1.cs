@@ -18,7 +18,7 @@ public class Tank1 : Tank
 
     // Member Functions
     // Check that the desired movement is valid
-    public override bool isValidMovement(Grid grid, CoordinateSet targetCoordinates) {
+    public override bool isValidMovement(Grid grid, CoordinateSet targetCoordinates, bool updateState) {
         bool validMovement = false;
         GridNode targetNode = grid.getGridNode(targetCoordinates);
 
@@ -31,12 +31,14 @@ public class Tank1 : Tank
         // If all is well, update the game state and move the tank to the
         // targeted location.
         if (validMovement) {
-            targetNode.setTank(grid.getGridNode(coordinates).getTank());
-            grid.getGridNode(coordinates).setTank(new EmptyTankSlot());
-            this.coordinates = new CoordinateSet(targetNode.getCoordinateSet().getX(), targetNode.getCoordinateSet().getY());
+            if(updateState){
+                targetNode.setTank(grid.getGridNode(coordinates).getTank());
+                grid.getGridNode(coordinates).setTank(new EmptyTankSlot());
+                this.coordinates = new CoordinateSet(targetNode.getCoordinateSet().getX(), targetNode.getCoordinateSet().getY());
 
-            Debug.Log("Player " + player.getPlayerColor() + " moves to position " +
-                      targetCoordinates.getX() + ", " + targetCoordinates.getY());
+                Debug.Log("Player " + player.getPlayerColor() + " moves to position " +
+                          targetCoordinates.getX() + ", " + targetCoordinates.getY());
+        }
 
             return true;
         }

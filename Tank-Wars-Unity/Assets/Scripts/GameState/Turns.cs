@@ -34,7 +34,7 @@ public class Turns : MonoBehaviour
         tankSet2 = gameStatus.GetComponent<GameStatus>().getPlayer2TankPicks();
 
         //Check if ai mode is on
-        aiON = false;
+        aiON = true;
         //Gameobjects used by ai
         redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
         blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
@@ -61,9 +61,25 @@ public class Turns : MonoBehaviour
         // Run if ai's turn
         if(playerTurn == PlayerColors.Blue && aiON){
             ai = new AI(redTanks, blueTanks, gs);
+            CoordinateSet aiLocation;
+            CoordinateSet playerLocation;
+            CoordinateSet targetLocation;
+            GameObject blue;
+            GameObject red;
+
             ai.greedyTurn();
-            //print(ai.test());
+            targetLocation = ai.getGreedyMove();
+            blue = ai.getAITank();
+            red = ai.getPlayerTank();
+            aiLocation = new CoordinateSet((int)blue.transform.position.x, (int)blue.transform.position.z);
+            playerLocation = new CoordinateSet((int)red.transform.position.x, (int)red.transform.position.z);
+
+            blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
+            gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
+            //gs.checkValidAttack(PlayerColors.Blue, aiLocation, playerLocation);
+
             changeTurns();
+            print(playerTurn);
         }
         // Skip turn if spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -148,7 +164,7 @@ public class Turns : MonoBehaviour
             CoordinateSet tankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
             CoordinateSet tileCoordinates = new CoordinateSet((int)tileClicked.transform.position.x, (int)tileClicked.transform.position.z);
 
-            if (gs.checkValidMove(playerTurn, tankCoordinates, tileCoordinates)) {
+            if (gs.checkValidMove(playerTurn, tankCoordinates, tileCoordinates, true)) {
                 tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 1, tileClicked.transform.position.z);
                 tileClicked = null;
                 tankClicked = null;

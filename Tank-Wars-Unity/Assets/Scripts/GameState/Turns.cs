@@ -13,10 +13,14 @@ public class Turns : MonoBehaviour
 	public GameObject tileClicked = null;
 	public int[] tankSet1;
 	public int[] tankSet2;
+    public GameObject[] redTanks;
+    public GameObject[] blueTanks;
 	public Rounds round;
 	public PlayerColors playerTurn;
     public Levels currentLevel;
 	public bool gamblePressed = false;
+    public bool aiON;
+    public AI ai;
     ClickItems items;
 
     void Start()
@@ -28,6 +32,12 @@ public class Turns : MonoBehaviour
         // Set the tanks
         tankSet1 = gameStatus.GetComponent<GameStatus>().getPlayer1TankPicks();
         tankSet2 = gameStatus.GetComponent<GameStatus>().getPlayer2TankPicks();
+
+        //Check if ai mode is on
+        aiON = true;
+        //Gameobjects used by ai
+        redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
+        blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
 
         // For development purposes, if the main menu isn't used, then use
         // a default level.
@@ -48,6 +58,13 @@ public class Turns : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Run if ai's turn
+        if(playerTurn == PlayerColors.Blue && aiON){
+            ai = new AI(redTanks, blueTanks, gs);
+            print(ai.test());
+            //print("hi");
+            changeTurns();
+        }
         // Skip turn if spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space)) {
             round++;

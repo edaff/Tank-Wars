@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameState {
     protected Grid grid;
+    public int gridSize;
     protected Player player1;
     protected Player player2;
     protected Levels level;
@@ -16,16 +17,20 @@ public class GameState {
         // Create the grid
         switch (this.level) {
             case Levels.Level1:
-                grid = new Grid("10x10 Grid Template", 10, player1, player2);
+                gridSize = 10;
+                grid = new Grid("10x10 Grid Template", gridSize, player1, player2);
                 break;
             case Levels.Level2:
-                grid = new Grid("15x15 Grid Template", 15, player1, player2);
+                gridSize = 15;
+                grid = new Grid("15x15 Grid Template", gridSize, player1, player2);
                 break;
             case Levels.Level3:
-                grid = new Grid("20x20 Grid Template", 20, player1, player2);
+                gridSize = 20;
+                grid = new Grid("20x20 Grid Template", gridSize, player1, player2);
                 break;
             default:
-                grid = new Grid("10x10 Grid Template", 10, player1, player2);
+                gridSize = 10;
+                grid = new Grid("10x10 Grid Template", gridSize, player1, player2);
                 break;
         }
     }

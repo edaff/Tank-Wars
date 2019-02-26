@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class AI
@@ -26,14 +27,17 @@ public class AI
     */
     public void greedyTurn()
     {
-    	GameObject[] closestTanks = findClosestTanks();
-    	//findValidMoves(closestTanks[0]);
+    	GameObject[] closestTanks;
+    	ArrayList validMoves = new ArrayList();
+
+    	closestTanks = findClosestTanks();
+    	validMoves = findValidMoves(closestTanks[0]);
     }
 
     //Gameobject[] holds [AI gameobject, player closest gameobject]
     public GameObject[] findClosestTanks()
     {
-    	double minDistance = 100000;
+    	double minDistance = 9999999;
     	double tempDis;
     	GameObject[] ret = new GameObject[2];
 
@@ -53,9 +57,26 @@ public class AI
     	return ret;
     }
 
-    public void findValidMoves(GameObject blue)
+    public ArrayList findValidMoves(GameObject blue)
     {
+    	int gridSize = gs.gridSize;
+    	CoordinateSet tankCoordinates = new CoordinateSet((int)blue.transform.position.x, (int)blue.transform.position.z);
+    	CoordinateSet tileCoordinates;
+    	ArrayList validMoves = new ArrayList();
 
+    	for(int i = 0; i < gridSize; i++)
+    	{
+    		for(int j = 0; j < gridSize; j++)
+    		{
+    			 tileCoordinates = new CoordinateSet(i, j);
+    			 if(gs.checkValidMove(PlayerColors.Blue, tankCoordinates, tileCoordinates))
+    			 {
+    			 	validMoves.Add(tileCoordinates);
+    			 }
+    		}
+    	}
+
+    	return validMoves;
     }
 
     public string test() {

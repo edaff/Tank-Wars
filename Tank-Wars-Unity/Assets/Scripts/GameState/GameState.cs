@@ -84,7 +84,6 @@ public class GameState {
         else {
             currentTank = player2.getPlayerTankByCoordinates(currentTankCoordinates);
         }
-
         return currentTank.getWeapon().isValidAttack(this.grid, targetTankCoordinates);
     }
 

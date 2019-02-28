@@ -44,6 +44,8 @@ public class Turns : MonoBehaviour
 
         // For development purposes, if the main menu isn't used, then use
         // a default level.
+        currentLevel = Levels.Level1;
+
         if(currentLevel != 0) {
             gs = new GameState(currentLevel, tankSet1, tankSet2);
         }

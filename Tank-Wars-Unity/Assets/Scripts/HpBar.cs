@@ -8,14 +8,9 @@ public class HpBar : MonoBehaviour
     [SerializeField] GameObject bar;
     float hp = 1f;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-
         bar.transform.localScale = new Vector3(hp, 1f);
-        //Transform bar = transform.Find("Bar");
-        //bar.localScale = new Vector3(.75f, 1f);
     }
 
 
@@ -23,6 +18,7 @@ public class HpBar : MonoBehaviour
     {
         if (hp >= 0f)
         {
+            Debug.Log("sizeNormalized is " + sizeNormalized);
             bar.transform.localScale = new Vector3(sizeNormalized, 1f);
         }
     }

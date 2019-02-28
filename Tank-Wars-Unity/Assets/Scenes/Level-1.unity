@@ -9332,6 +9332,7 @@ MonoBehaviour:
   currentLevel: 0
   gamblePressed: 0
   aiON: 0
+  hpController: {fileID: 1971806327}
 --- !u!114 &1330315670
 MonoBehaviour:
   m_ObjectHideFlags: 0

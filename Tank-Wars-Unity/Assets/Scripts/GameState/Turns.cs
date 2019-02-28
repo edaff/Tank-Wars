@@ -23,6 +23,8 @@ public class Turns : MonoBehaviour
     public AI ai;
     ClickItems items;
 
+    [SerializeField] HpController hpController;
+
     void Start()
     {
         // Grab the game status object which holds information from the main menu
@@ -53,6 +55,10 @@ public class Turns : MonoBehaviour
     	round = Rounds.Move;
     	playerTurn = PlayerColors.Red;
         printTurn();
+
+        hpController.BlueTank1Hp(20);           //delete this only here for testing
+        hpController.RedTank1Hp(75);            //delete this only here for testing
+
     }
 
     // Update is called once per frame

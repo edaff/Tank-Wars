@@ -40,6 +40,13 @@ public class SniperTank : Tank
                           targetCoordinates.getX() + ", " + targetCoordinates.getY());
         }
 
+            if (grid.getGridNode(coordinates).getTerrain() is Water) {
+                this.health -= 10;
+            }
+            else if (grid.getGridNode(coordinates).getTerrain() is Lava) {
+                this.health = 0;
+            }
+
             return true;
         }
         else {

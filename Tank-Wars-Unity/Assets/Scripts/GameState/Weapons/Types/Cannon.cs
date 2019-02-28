@@ -8,7 +8,7 @@ public class Cannon : Weapon
 
     // Constructors 
     public Cannon(Tank tank) {
-        this.damage = 2;
+        this.damage = 30;
         this.distance = 3;
         this.tank = tank;
 

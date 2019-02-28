@@ -27,22 +27,29 @@ public class Player
                     break;
                 case 1:
                     if(playerColor == PlayerColors.Red) {
-                        tanks[i] = new Tank1(this, new CoordinateSet(4,0));
+                        tanks[i] = new CannonTank(this, new CoordinateSet(4,0));
                     }
                     else {
-                        tanks[i] = new Tank1(this, new CoordinateSet(5,9));
+                        tanks[i] = new CannonTank(this, new CoordinateSet(5,9));
                     }       
                     break;
                 case 2:
                     if (playerColor == PlayerColors.Red) {
-                        tanks[i] = new Tank2(this, new CoordinateSet(4, 0));
+                        tanks[i] = new SniperTank(this, new CoordinateSet(4, 0));
                     }
                     else {
-                        tanks[i] = new Tank2(this, new CoordinateSet(5, 9));
+                        tanks[i] = new SniperTank(this, new CoordinateSet(5, 9));
                     }
                     break;
                 // If three tanks, this needs to be implemented
                 case 3:
+                    if (playerColor == PlayerColors.Red) {
+                        tanks[i] = new MortarTank(this, new CoordinateSet(4, 0));
+                    }
+                    else {
+                        tanks[i] = new MortarTank(this, new CoordinateSet(5, 9));
+                    }
+                    break;
                     break;
                 default:
                     tanks[i] = new EmptyTankSlot();

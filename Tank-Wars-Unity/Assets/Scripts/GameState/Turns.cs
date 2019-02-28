@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,7 +47,7 @@ public class Turns : MonoBehaviour
             gs = new GameState(currentLevel, tankSet1, tankSet2);
         }
         else {
-            gs = new GameState(Levels.Level1, new int[] {1,0,0}, new int[] {1,0,0});
+            gs = new GameState(Levels.Level1, new int[] {3,0,0}, new int[] {1,0,0});
         }
 
         // Set up the turns and start
@@ -66,26 +66,7 @@ public class Turns : MonoBehaviour
     {
         // Run if ai's turn
         if(playerTurn == PlayerColors.Blue && aiON){
-            ai = new AI(redTanks, blueTanks, gs);
-            CoordinateSet aiLocation;
-            CoordinateSet playerLocation;
-            CoordinateSet targetLocation;
-            GameObject blue;
-            GameObject red;
-
-            ai.greedyTurn();
-            targetLocation = ai.getGreedyMove();
-            blue = ai.getAITank();
-            red = ai.getPlayerTank();
-            aiLocation = new CoordinateSet((int)blue.transform.position.x, (int)blue.transform.position.z);
-            playerLocation = new CoordinateSet((int)red.transform.position.x, (int)red.transform.position.z);
-
-            blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
-            gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
-            //gs.checkValidAttack(PlayerColors.Blue, aiLocation, playerLocation);
-
-            changeTurns();
-            print(playerTurn);
+            handleGreedyAi();
         }
         // Skip turn if spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -210,10 +191,10 @@ public class Turns : MonoBehaviour
 
             // Check if the attack is valid
             if (gs.checkValidAttack(playerTurn, currentPlayerTankCoordinates, targetPlayerTankCoordinates)) {
-                print("Good attack!");
+                //print("Good attack!");
             }
             else {
-                print("Bad attack!");
+                //print("Bad attack!");
             }
 
             // Update player powerup state
@@ -241,6 +222,32 @@ public class Turns : MonoBehaviour
         round = Rounds.Move;
         changeTurns();
         printTurn();
+    }
+
+    private void handleGreedyAi() {
+        ai = new AI(redTanks, blueTanks, gs);
+        CoordinateSet aiLocation;
+        CoordinateSet playerLocation;
+        CoordinateSet targetLocation;
+        GameObject blue;
+        GameObject red;
+
+        ai.greedyTurn();
+        blue = ai.getAITank();
+        red = ai.getPlayerTank();
+        aiLocation = new CoordinateSet((int)blue.transform.position.x, (int)blue.transform.position.z);
+        targetLocation = ai.getGreedyMove();
+
+        blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
+        gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
+
+        tankClicked = blue;
+        tankClicked2 = red;
+        handleAttack();
+        //gs.checkValidAttack(PlayerColors.Blue, aiLocation, playerLocation);
+
+        changeTurns();
+        round = Rounds.Move;
     }
 }
 

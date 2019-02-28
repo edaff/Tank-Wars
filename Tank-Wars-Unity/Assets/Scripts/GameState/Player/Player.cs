@@ -106,6 +106,44 @@ public class Player
             }
         }
     }
+
+    public void updateAllTankHealthBars(HpController hpController) {
+        for (int i = 0; i < 3; i++) {
+            Tank currentTank = this.tanks[i];
+
+            if (currentTank is EmptyTankSlot) {
+                continue;
+            }
+            else {
+                switch (i) {
+                    case 0:
+                        if (this.playerColor == PlayerColors.Red) {
+                            hpController.RedTank1Hp(currentTank.getHealth());
+                        }
+                        else {
+                            hpController.BlueTank1Hp(currentTank.getHealth());
+                        }
+                        break;
+                    case 1:
+                        if (this.playerColor == PlayerColors.Red) {
+                            hpController.RedTank2Hp(currentTank.getHealth());
+                        }
+                        else {
+                            hpController.BlueTank2Hp(currentTank.getHealth());
+                        }
+                        break;
+                    case 2:
+                        if (this.playerColor == PlayerColors.Red) {
+                            hpController.RedTank3Hp(currentTank.getHealth());
+                        }
+                        else {
+                            hpController.BlueTank3Hp(currentTank.getHealth());
+                        }
+                        break;
+                }
+            }
+        }
+    }
 }
 
 public enum PlayerColors {

@@ -90,7 +90,7 @@ public class GameState {
     public string playerGamble(PlayerColors playerTurn, CoordinateSet currentTankCoordinates) {
         Tank currentTank = getPlayerTank(playerTurn, currentTankCoordinates);
         Powerup powerup = Powerup.gamble();
-        currentTank.decrementHealth(1);
+        currentTank.decrementHealth(10);
 
         currentTank.setPowerup(powerup);
 
@@ -113,6 +113,11 @@ public class GameState {
         else {
             player2.updateAllTankPowerups();
         }
+    }
+
+    public void updatePlayerHealthBars(HpController hpController) {
+        player1.updateAllTankHealthBars(hpController);
+        player2.updateAllTankHealthBars(hpController);
     }
 }
 

@@ -37,6 +37,7 @@ public class Mortar : Weapon
 
             Debug.Log("Player " + this.tank.getPlayer().getPlayerColor() + " attacks Player " +
                       targetTank.getPlayer().getPlayerColor() + " for " + this.damage + " damage!");
+            Debug.Log("Player " + targetTank.getPlayer().getPlayerColor() + "'s health is now at: " + targetTank.getHealth());
 
             return true;
 

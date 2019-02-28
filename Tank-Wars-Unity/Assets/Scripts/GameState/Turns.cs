@@ -55,10 +55,6 @@ public class Turns : MonoBehaviour
     	round = Rounds.Move;
     	playerTurn = PlayerColors.Red;
         printTurn();
-
-        hpController.BlueTank1Hp(20);           //delete this only here for testing
-        hpController.RedTank1Hp(-75);            //delete this only here for testing
-
     }
 
     // Update is called once per frame
@@ -108,6 +104,8 @@ public class Turns : MonoBehaviour
                 handleGamble(hit);
                 break;
         }
+
+        gs.updatePlayerHealthBars(hpController);
     }
 
     private void printTurn() {

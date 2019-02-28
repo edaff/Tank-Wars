@@ -57,7 +57,7 @@ public class Turns : MonoBehaviour
         printTurn();
 
         hpController.BlueTank1Hp(20);           //delete this only here for testing
-        hpController.RedTank1Hp(75);            //delete this only here for testing
+        hpController.RedTank1Hp(-75);            //delete this only here for testing
 
     }
 

@@ -16,9 +16,9 @@ public class HpBar : MonoBehaviour
 
     public void SetSize(float sizeNormalized)
     {
-        if (hp >= 0f)
+        if (sizeNormalized >= 0f)
         {
-            Debug.Log("sizeNormalized is " + sizeNormalized);
+            //Debug.Log("sizeNormalized is " + sizeNormalized);
             bar.transform.localScale = new Vector3(sizeNormalized, 1f);
         }
     }

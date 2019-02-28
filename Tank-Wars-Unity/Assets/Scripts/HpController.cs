@@ -10,10 +10,10 @@ public class HpController : MonoBehaviour
 
     public void BlueTank1Hp(int x)
     {
-        Debug.Log("Blue Tanks1hp was called and hp was passed in " + x);
+        //Debug.Log("Blue Tanks1hp was called and hp was passed in " + x);
         float y = (float)x;
         y = (x / 100f);
-        Debug.Log("after x was normalized y is " + y);
+        //Debug.Log("after x was normalized y is " + y);
         //Debug.Log("y is " + y);
         blueTank1Hp.SetSize((float)y);
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MouseHighlighter : MonoBehaviour
 {
-    Color m_MouseOverColor = Color.blue;
+    Color m_MouseOverColor = Color.yellow;
     Color m_OriginalColor;
     MeshRenderer m_Renderer;
 
@@ -16,8 +16,7 @@ public class MouseHighlighter : MonoBehaviour
         m_OriginalColor = m_Renderer.material.color;
     }
 
-    void OnMouseOver()
-    {
+    void OnMouseOver() {
         // Change the color of the GameObject when the mouse is over GameObject
         m_Renderer.material.color = m_MouseOverColor;
     }

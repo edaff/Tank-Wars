@@ -39,6 +39,10 @@ public abstract class Weapon
         this.orientation = orientation;
     }
 
+    virtual public ArrayList getValidAttacks(Grid grid) {
+        return new ArrayList();
+    }
+
 }
 
 public enum Orientations {

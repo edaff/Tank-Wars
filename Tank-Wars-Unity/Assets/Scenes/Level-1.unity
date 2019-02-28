@@ -12756,7 +12756,7 @@ GameObject:
   - component: {fileID: 1881379759}
   m_Layer: 0
   m_Name: 10x10 Grid Template
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13376,8 +13376,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0dec5e587b11c245a9890655a06fe91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueTank1Hp: {fileID: 1440861266}
   redTank1Hp: {fileID: 4762130057703154443}
+  redTank2Hp: {fileID: 0}
+  redTank3Hp: {fileID: 0}
+  blueTank1Hp: {fileID: 1440861266}
+  blueTank2Hp: {fileID: 0}
+  blueTank3Hp: {fileID: 0}
 --- !u!4 &1971806328
 Transform:
   m_ObjectHideFlags: 0

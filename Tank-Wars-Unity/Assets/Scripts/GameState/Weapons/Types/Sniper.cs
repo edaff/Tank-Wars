@@ -97,4 +97,46 @@ public class Sniper : Weapon {
         return false;
     }
 
+    public override ArrayList getValidAttacks(Grid grid) {
+        int gridSize = grid.getGridSize();
+        int currentTankX = this.tank.getCoordinates().getX();
+        int currentTankY = this.tank.getCoordinates().getY();
+        ArrayList validAttacks = new ArrayList();
+
+        switch (this.orientation) {
+            case Orientations.Up:
+                for (int i = 0; i < this.distance; i++) {
+                    // Check for index out of bounds
+                    if (currentTankY + i >= gridSize) { break; }
+
+                    // Check for mountains
+                    if (grid.getGridNode(currentTankX, currentTankY + i).getTerrain() is Mountain) {
+                        break;
+                    }
+
+                    validAttacks.Add(new CoordinateSet(currentTankX, currentTankY + i));
+                }
+                break;
+            case Orientations.Right:
+                break;
+            case Orientations.Down:
+                for (int i = 0; i < this.distance; i++) {
+                    // Check for index out of bounds
+                    if (currentTankY - i < 0) { continue; }
+
+                    // Check for mountains
+                    if (grid.getGridNode(currentTankX, currentTankY - i).getTerrain() is Mountain) {
+                        break;
+                    }
+
+                    validAttacks.Add(new CoordinateSet(currentTankX, currentTankY - i));
+                }
+                break;
+            case Orientations.Left:
+                break;
+        }
+
+        return validAttacks;
+    }
+
 }

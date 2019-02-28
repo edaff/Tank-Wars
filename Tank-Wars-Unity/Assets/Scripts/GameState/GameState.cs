@@ -97,7 +97,7 @@ public class GameState {
         return powerup.ToString();
     }
 
-    private Tank getPlayerTank(PlayerColors playerTurn, CoordinateSet currentTankCoordinates) {
+    public Tank getPlayerTank(PlayerColors playerTurn, CoordinateSet currentTankCoordinates) {
         if (playerTurn == PlayerColors.Red) {
             return player1.getPlayerTankByCoordinates(currentTankCoordinates);
         }
@@ -118,6 +118,10 @@ public class GameState {
     public void updatePlayerHealthBars(HpController hpController) {
         player1.updateAllTankHealthBars(hpController);
         player2.updateAllTankHealthBars(hpController);
+    }
+
+    public Grid getGrid() {
+        return this.grid;
     }
 }
 

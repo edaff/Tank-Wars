@@ -107,4 +107,48 @@ public class Mortar : Weapon
 
         return false;
     }
+
+    public override ArrayList getValidAttacks(Grid grid) {
+        int gridSize = grid.getGridSize();
+        int currentTankX = this.tank.getCoordinates().getX();
+        int currentTankY = this.tank.getCoordinates().getY();
+        ArrayList validAttacks = new ArrayList();
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 1; j <= this.distance; j++) {
+                switch (i) {
+                    case 0:
+                        // Check for index out of bounds
+                        if (currentTankX + j >= gridSize) { continue; }
+
+                        // Do final check to see if this is the target node
+                        validAttacks.Add(new CoordinateSet(currentTankX + j, currentTankY));
+
+                        break;
+                    case 1:
+                        // Check for index out of bounds
+                        if (currentTankX - j < 0) { continue; }
+
+                        validAttacks.Add(new CoordinateSet(currentTankX - j, currentTankY));
+
+                        break;
+                    case 2:
+                        // Check for index out of bounds
+                        if (currentTankY + j >= gridSize) { continue; }
+
+                        validAttacks.Add(new CoordinateSet(currentTankX, currentTankY + j));
+                        break;
+                    case 3:
+                        // Check for index out of bounds
+                        if (currentTankY - j < 0) { continue; }
+
+                        validAttacks.Add(new CoordinateSet(currentTankX, currentTankY - j));
+
+                        break;
+                }
+            }
+        }
+
+        return validAttacks;
+    }
 }

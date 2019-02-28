@@ -48,7 +48,7 @@ public class Turns : MonoBehaviour
             gs = new GameState(currentLevel, tankSet1, tankSet2);
         }
         else {
-            gs = new GameState(Levels.Level1, new int[] {2,0,0}, new int[] {2,0,0});
+            gs = new GameState(Levels.Level1, new int[] {1,0,0}, new int[] {1,0,0});
         }
 
         // Set up the turns and start

@@ -36,7 +36,7 @@ public class Turns : MonoBehaviour
         tankSet2 = gameStatus.GetComponent<GameStatus>().getPlayer2TankPicks();
 
         //Check if ai mode is on
-        aiON = false;
+        aiON = true;
         //Gameobjects used by ai
         redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
         blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
@@ -98,7 +98,7 @@ public class Turns : MonoBehaviour
                 break;
             case Rounds.Attack:
                 assignTanksClicked(hit);
-                handleAttack();
+                handleAttack(true);
                 break;
             case Rounds.Gamble:
                 handleGamble(hit);
@@ -179,7 +179,7 @@ public class Turns : MonoBehaviour
         }
     }
 
-    private void handleAttack() {
+    private bool handleAttack(bool updateState) {
         // If both tanks have been clicked, orchestrate the attack
         if (tankClicked != null && tankClicked2 != null) {
 
@@ -188,11 +188,15 @@ public class Turns : MonoBehaviour
             CoordinateSet targetPlayerTankCoordinates = new CoordinateSet((int)tankClicked2.transform.position.x, (int)tankClicked2.transform.position.z);
 
             // Check if the attack is valid
-            if (gs.checkValidAttack(playerTurn, currentPlayerTankCoordinates, targetPlayerTankCoordinates)) {
-                //print("Good attack!");
+            if (gs.checkValidAttack(playerTurn, currentPlayerTankCoordinates, targetPlayerTankCoordinates, updateState)) {
+                if(!updateState){
+                    return true;
+                }
             }
             else {
-                //print("Bad attack!");
+                if(!updateState){
+                    return false;
+                }
             }
 
             // Update player powerup state
@@ -204,6 +208,8 @@ public class Turns : MonoBehaviour
             tankClicked = null;
             tankClicked2 = null;
         }
+
+        return true;
     }
 
     private void handleGamble(RaycastHit hit) {
@@ -235,13 +241,25 @@ public class Turns : MonoBehaviour
         red = ai.getPlayerTank();
         aiLocation = new CoordinateSet((int)blue.transform.position.x, (int)blue.transform.position.z);
         targetLocation = ai.getGreedyMove();
-
-        blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
-        gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
-
         tankClicked = blue;
         tankClicked2 = red;
-        handleAttack();
+
+        if(!handleAttack(false))
+        {
+            blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
+            gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
+            System.Random randomNumberGenerator = new System.Random();
+            int randomNumber = randomNumberGenerator.Next(1, 4);
+            print(randomNumber);
+            if(randomNumber == 1)
+            {
+                string powerup = gs.playerGamble(playerTurn, targetLocation);
+                Debug.Log("Player " + playerTurn + "'s gamble results in: " + powerup);
+            }
+
+        }
+
+        handleAttack(true);
         //gs.checkValidAttack(PlayerColors.Blue, aiLocation, playerLocation);
 
         changeTurns();

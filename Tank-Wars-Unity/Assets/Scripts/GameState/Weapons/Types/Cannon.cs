@@ -17,7 +17,7 @@ public class Cannon : Weapon
     }
 
     // Member Functions
-    public override bool isValidAttack(Grid grid, CoordinateSet targetCoordinates) {
+    public override bool isValidAttack(Grid grid, CoordinateSet targetCoordinates, bool updateState) {
         bool validAttack = false;
         GridNode targetNode = grid.getGridNode(targetCoordinates);
 
@@ -32,13 +32,15 @@ public class Cannon : Weapon
 
         // If all is well, decrement targeted player health and update the game state.
         if (validAttack) {
-            Tank targetTank = targetNode.getTank();
-            targetTank.decrementHealth(this.damage);
+            if(updateState){
+                Tank targetTank = targetNode.getTank();
+                targetTank.decrementHealth(this.damage);
 
-            Debug.Log("Player " + this.tank.getPlayer().getPlayerColor() + " attacks Player " + 
-                      targetTank.getPlayer().getPlayerColor() + " for " + this.damage + " damage!");
-            Debug.Log("Player " + targetTank.getPlayer().getPlayerColor() + "'s health is now at: " + targetTank.getHealth());
-
+                Debug.Log("Player " + this.tank.getPlayer().getPlayerColor() + " attacks Player " + 
+                          targetTank.getPlayer().getPlayerColor() + " for " + this.damage + " damage!");
+                Debug.Log("Player " + targetTank.getPlayer().getPlayerColor() + "'s health is now at: " + targetTank.getHealth());
+            }
+            
             return true;
 
         }

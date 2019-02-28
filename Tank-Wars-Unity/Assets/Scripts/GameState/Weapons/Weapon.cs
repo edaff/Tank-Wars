@@ -11,7 +11,7 @@ public abstract class Weapon
     protected Tank tank;
 
     // Functions
-    virtual public bool isValidAttack(Grid grid, CoordinateSet targetCoordinates) {
+    virtual public bool isValidAttack(Grid grid, CoordinateSet targetCoordinates, bool updateState) {
         return true;
     }
     

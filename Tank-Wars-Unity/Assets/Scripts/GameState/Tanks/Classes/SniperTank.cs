@@ -43,7 +43,10 @@ public class SniperTank : Tank
             return true;
         }
         else {
-            Debug.Log("Invalid Movement!");
+            if(updateState)
+            {
+                Debug.Log("Invalid Movement!");
+            }
 
             return false;
         }

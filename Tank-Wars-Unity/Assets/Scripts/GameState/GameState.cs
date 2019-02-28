@@ -75,7 +75,7 @@ public class GameState {
         return currentTank.isValidMovement(this.grid, targetCoordinates, updateState);
     }
 
-    public bool checkValidAttack(PlayerColors playerTurn, CoordinateSet currentTankCoordinates, CoordinateSet targetTankCoordinates) {
+    public bool checkValidAttack(PlayerColors playerTurn, CoordinateSet currentTankCoordinates, CoordinateSet targetTankCoordinates,bool updateState) {
         Tank currentTank;
 
         if (playerTurn == PlayerColors.Red) {
@@ -84,7 +84,7 @@ public class GameState {
         else {
             currentTank = player2.getPlayerTankByCoordinates(currentTankCoordinates);
         }
-        return currentTank.getWeapon().isValidAttack(this.grid, targetTankCoordinates);
+        return currentTank.getWeapon().isValidAttack(this.grid, targetTankCoordinates, updateState);
     }
 
     public string playerGamble(PlayerColors playerTurn, CoordinateSet currentTankCoordinates) {

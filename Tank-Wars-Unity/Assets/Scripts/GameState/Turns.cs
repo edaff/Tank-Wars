@@ -42,18 +42,6 @@ public class Turns : MonoBehaviour
         redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
         blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
 
-        // For development purposes, if the main menu isn't used, then use
-        // a default level.git
-
-        // SETUP FOR LEVEL 2
-        //
-        // CHANGE THESE IF PLAYING LEVEL 1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //
-        //
-        currentLevel = Levels.Level2;
-        tankSet1 = new int[] { 1,1,0 };
-        tankSet2 = new int[] { 1,1,0 };
-
         if(currentLevel != 0) {
             gs = new GameState(currentLevel, tankSet1, tankSet2);
         }

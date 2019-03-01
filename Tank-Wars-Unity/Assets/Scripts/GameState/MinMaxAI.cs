@@ -25,10 +25,42 @@ public class MinMaxAI
     	//closestTanks = findClosestTanks();
     	//validMoves = findValidMoves(closestTanks[0]);
     	//greedyMove = findGreedyMove(closestTanks[1], validMoves);
+    	int[] max = new int[validMoves.Count + 1];
+
+    	//For each blue tank
     	for(int i = 0; i < blueTanks.Length; i++)
     	{
-    		validMoves = findValidMoves(blueTanks[i], PlayerColors.Blue);
+    		//find the valid moves
+    		CoordinateSet tempCoordinates = new CoordinateSet((int)blueTanks[i].transform.position.x, (int)blueTanks[i].transform.position.z);
+    		validMoves = findValidMoves(tempCoordinates, (PlayerColors)PlayerColors.Blue);
+
+    		//and for each valid move, find the min outcome for the player
+    		for(int j = 0; j < validMoves.Count; j++)
+    		{
+	    		max[i] = findMinForPlayers((CoordinateSet)validMoves[j]);
+    		}
     	}
+    }
+
+    public int findMinForPlayers(CoordinateSet valMoves)
+    {
+    	int min = 99999999;
+    	ArrayList validMovesPlayer = new ArrayList();
+
+    	//For each red tank
+    	for(int i = 0; i < redTanks.Length; i++)
+    	{
+    		//Find the valid moves
+    		CoordinateSet tempCoordinates = new CoordinateSet((int)redTanks[i].transform.position.x, (int)redTanks[i].transform.position.z);
+    		validMovesPlayer = findValidMoves(tempCoordinates, PlayerColors.Red);
+
+    		//and for each valid move calculate the weight and check if it's min
+    		for(int j = 0; j < validMovesPlayer.Count; j++)
+    		{
+    			int temp = 0;
+    		}
+       	}
+       	return 0;
     }
 
     //Gameobject[] holds [AI gameobject, player closest gameobject]
@@ -54,10 +86,10 @@ public class MinMaxAI
     	return ret;
     }
 
-    public ArrayList findValidMoves(GameObject tank, PlayerColors turn)
+    public ArrayList findValidMoves(CoordinateSet tankPos, PlayerColors turn)
     {
     	int gridSize = gs.gridSize;
-    	CoordinateSet tankCoordinates = new CoordinateSet((int)tank.transform.position.x, (int)tank.transform.position.z);
+    	CoordinateSet tankCoordinates = tankPos;
     	CoordinateSet tileCoordinates;
     	ArrayList validMoves = new ArrayList();
 

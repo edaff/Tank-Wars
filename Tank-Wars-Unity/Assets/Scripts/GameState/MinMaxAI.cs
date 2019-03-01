@@ -25,7 +25,7 @@ public class MinMaxAI
     	//closestTanks = findClosestTanks();
     	//validMoves = findValidMoves(closestTanks[0]);
     	//greedyMove = findGreedyMove(closestTanks[1], validMoves);
-    	int[] max = new int[validMoves.Count + 1];
+    	int[] min = new int[validMoves.Count + 1];
 
     	//For each blue tank
     	for(int i = 0; i < blueTanks.Length; i++)
@@ -37,12 +37,12 @@ public class MinMaxAI
     		//and for each valid move, find the min outcome for the player
     		for(int j = 0; j < validMoves.Count; j++)
     		{
-	    		max[i] = findMinForPlayers((CoordinateSet)validMoves[j]);
+	    		min[i] = findMinForPlayers((CoordinateSet)validMoves[j], blueTanks[i]);
     		}
     	}
     }
 
-    public int findMinForPlayers(CoordinateSet valMoves)
+    public int findMinForPlayers(CoordinateSet valMoves, GameObject aiTank)
     {
     	int min = 99999999;
     	ArrayList validMovesPlayer = new ArrayList();
@@ -58,6 +58,21 @@ public class MinMaxAI
     		for(int j = 0; j < validMovesPlayer.Count; j++)
     		{
     			int temp = 0;
+
+    			if(handleAttack(redTanks[i], aiTank, (PlayerColors)PlayerColors.Red, false))
+    			{
+    				temp--;
+    			}
+
+    			if(gs.getGrid().getGridNode((CoordinateSet)validMoves[j]).getTerrain() is Water)
+    			{
+    				temp++;
+    			}
+
+    			if(temp < min)
+    			{
+    				min = temp;
+    			}
     		}
        	}
        	return 0;
@@ -108,6 +123,23 @@ public class MinMaxAI
     	return validMoves;
     }
 
+    private bool handleAttack(GameObject tank1, GameObject tank2, PlayerColors turn, bool updateState) {
+        CoordinateSet currentPlayerTankCoordinates = new CoordinateSet((int)tank1.transform.position.x, (int)tank1.transform.position.z);
+        CoordinateSet targetPlayerTankCoordinates = new CoordinateSet((int)tank1.transform.position.x, (int)tank1.transform.position.z);
+
+        if (gs.checkValidAttack(turn, currentPlayerTankCoordinates, targetPlayerTankCoordinates, updateState)) {
+            if(!updateState){
+                return true;
+            }
+        }
+        else {
+            if(!updateState){
+                return false;
+            }
+        }
+
+        return true;
+    }
     
     public CoordinateSet findMinMaxMove(GameObject red, ArrayList validMoves)
     {

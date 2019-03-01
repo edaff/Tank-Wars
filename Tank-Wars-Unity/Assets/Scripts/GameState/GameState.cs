@@ -11,8 +11,8 @@ public class GameState {
     public GameState(Levels level, int[] player1Tanks, int[] player2Tanks) {
         this.level = level;
 
-        player1 = new Player(PlayerColors.Red, player1Tanks);
-        player2 = new Player(PlayerColors.Blue, player2Tanks);
+        player1 = new Player(PlayerColors.Red, player1Tanks, level);
+        player2 = new Player(PlayerColors.Blue, player2Tanks, level);
 
         // Create the grid
         switch (this.level) {

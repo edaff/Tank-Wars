@@ -9,7 +9,7 @@ public class Mortar : Weapon
     // Constructors
     public Mortar(Tank tank) {
         this.damage = 20;
-        this.distance = 5;
+        this.distance = 3;
         this.tank = tank;
 
         // Orientation is up by default for red and down by default for blue

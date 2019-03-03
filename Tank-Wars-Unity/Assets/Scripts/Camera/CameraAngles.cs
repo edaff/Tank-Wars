@@ -1,120 +1,64 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿// https://answers.unity.com/questions/1257281/how-to-rotate-camera-orbit-around-a-game-object-on.html
+
 using UnityEngine;
+using System.Collections;
 
 public class CameraAngles : MonoBehaviour
 {
-    public int select = 0;
-    public bool birdCam = false;
-    public bool angleCam = false;
-    public Player player;
+    public Vector3 middle;
+    public float distance = 2.0f;
+    public float xSpeed = 0.0f;
+    public float ySpeed = 0.0f;
+    public float yMinLimit = 0f;
+    public float yMaxLimit = 90f;
+    public float distanceMin = 10f;
+    public float distanceMax = 10f;
+    public float smoothTime = 2f;
+    float rotationYAxis = 0.0f;
+    float rotationXAxis = 0.0f;
+    float velocityX = 0.0f;
+    float velocityY = 0.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
-        Camera.main.transform.position = new Vector3(4.5f, 10f, 4.5f);
-        Camera.main.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+        middle = new Vector3(4.5f, 0f, 4.5f);
+        Vector3 angles = transform.eulerAngles;
+        rotationYAxis = angles.y;
+        rotationXAxis = angles.x + 15;
+
     }
-
-
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        if (select == 4)
-        {
-            select = 0;
-        }
+        velocityY += xSpeed * Input.GetAxis("Horizontal") * .01f;
+        velocityX += ySpeed * Input.GetAxis("Vertical") * .01f;
 
-        if (birdCam || angleCam)
-        {
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                select++;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1) && birdCam == false && angleCam == false)
-        {
-            birdCam = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha1) && birdCam == true)
-        {
-            birdCam = false;
-        }
+        rotationYAxis += velocityY;
+        rotationXAxis -= velocityX;
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && angleCam == false && birdCam == false)
+        if (rotationXAxis < yMinLimit)
         {
-            angleCam = true;
+            rotationXAxis = yMinLimit;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && angleCam == true)
+        if (rotationXAxis > yMaxLimit)
         {
-            angleCam = false;
+            rotationXAxis = yMaxLimit;
         }
+        Quaternion fromRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
+        Quaternion toRotation = Quaternion.Euler(rotationXAxis, rotationYAxis, 0);
+        Quaternion rotation = toRotation;
 
-        if (birdCam)
+        distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+        RaycastHit hit;
+        if (Physics.Linecast(middle, transform.position, out hit))
         {
-            if (select == 0)
-            {
-                Camera.main.transform.position = new Vector3(4.5f, 10f, 4.5f);
-                Camera.main.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-            }
-            else if (select == 1)
-            {
-                Camera.main.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
-            }
-            else if (select == 2)
-            {
-                Camera.main.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
-            }
-            else
-            {
-                Camera.main.transform.rotation = Quaternion.Euler(90f, 270f, 0f);
-            }
+            distance -= hit.distance;
         }
+        Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+        Vector3 position = rotation * negDistance + middle;
 
-        else if (angleCam)
-        {
-            if (select == 0)
-            {
-                Camera.main.transform.position = new Vector3(9.5f, 9f, -0.5f);
-                Camera.main.transform.rotation = Quaternion.Euler(60f, -45f, 0f);
-            }
-            else if (select == 1)
-            {
-                Camera.main.transform.position = new Vector3(9.5f, 9f, 9.5f);
-                Camera.main.transform.rotation = Quaternion.Euler(60f, -135f, 0f);
-            }
-            else if (select == 2)
-            {
-                Camera.main.transform.position = new Vector3(-0.5f, 9f, 9.5f);
-                Camera.main.transform.rotation = Quaternion.Euler(60f, 135f, 0f);
-            }
-            else
-            {
-                Camera.main.transform.position = new Vector3(-0.5f, 9f, -0.5f);
-                Camera.main.transform.rotation = Quaternion.Euler(60f, 45f, 0f);
-            }
-        }
-    }
-
-
-    // get the camera to rotate around the center of the map at any 
-    // camera position
-    void rotateCamAtCurrentPosition()
-    {
-        transform.Rotate(0, -Input.GetAxis("Mouse X") * 50, 0);
-    }
-
-    // needs to follow the tank that is clicked only if its the current players tank
-    void followPlayerCam()
-    {
-        if (player.getPlayerColor() == PlayerColors.Red)
-        {
-            //  player.getPlayerTanks()[0];
-        }
-        else if (player.getPlayerColor() == PlayerColors.Blue)
-        {
-
-        }
+        transform.rotation = rotation;
+        transform.position = position;
+        velocityX = Mathf.Lerp(velocityX, 0, Time.deltaTime * smoothTime);
+        velocityY = Mathf.Lerp(velocityY, 0, Time.deltaTime * smoothTime);
     }
 }
-

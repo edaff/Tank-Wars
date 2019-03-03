@@ -10,6 +10,8 @@ TagManager:
   - Mountain
   - Red Tank
   - Blue Tank
+  - Grid
+  - Lava
   layers:
   - Default
   - TransparentFX

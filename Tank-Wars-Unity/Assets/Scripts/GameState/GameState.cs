@@ -11,8 +11,8 @@ public class GameState {
     public GameState(Levels level, int[] player1Tanks, int[] player2Tanks) {
         this.level = level;
 
-        player1 = new Player(PlayerColors.Red, player1Tanks);
-        player2 = new Player(PlayerColors.Blue, player2Tanks);
+        player1 = new Player(PlayerColors.Red, player1Tanks, level);
+        player2 = new Player(PlayerColors.Blue, player2Tanks, level);
 
         // Create the grid
         switch (this.level) {
@@ -62,7 +62,7 @@ public class GameState {
         return allTanksDead;
     }
 
-    public bool checkValidMove(PlayerColors playerTurn, CoordinateSet tankCoordinates, CoordinateSet targetCoordinates) {
+    public bool checkValidMove(PlayerColors playerTurn, CoordinateSet tankCoordinates, CoordinateSet targetCoordinates, bool updateState) {
         Tank currentTank;
 
         if(playerTurn == PlayerColors.Red) {
@@ -72,10 +72,10 @@ public class GameState {
             currentTank = player2.getPlayerTankByCoordinates(tankCoordinates);
         }
 
-        return currentTank.isValidMovement(this.grid, targetCoordinates);
+        return currentTank.isValidMovement(this.grid, targetCoordinates, updateState);
     }
 
-    public bool checkValidAttack(PlayerColors playerTurn, CoordinateSet currentTankCoordinates, CoordinateSet targetTankCoordinates) {
+    public bool checkValidAttack(PlayerColors playerTurn, CoordinateSet currentTankCoordinates, CoordinateSet targetTankCoordinates,bool updateState) {
         Tank currentTank;
 
         if (playerTurn == PlayerColors.Red) {
@@ -84,21 +84,20 @@ public class GameState {
         else {
             currentTank = player2.getPlayerTankByCoordinates(currentTankCoordinates);
         }
-
-        return currentTank.getWeapon().isValidAttack(this.grid, targetTankCoordinates);
+        return currentTank.getWeapon().isValidAttack(this.grid, targetTankCoordinates, updateState);
     }
 
     public string playerGamble(PlayerColors playerTurn, CoordinateSet currentTankCoordinates) {
         Tank currentTank = getPlayerTank(playerTurn, currentTankCoordinates);
         Powerup powerup = Powerup.gamble();
-        currentTank.decrementHealth(1);
+        currentTank.decrementHealth(10);
 
         currentTank.setPowerup(powerup);
 
         return powerup.ToString();
     }
 
-    private Tank getPlayerTank(PlayerColors playerTurn, CoordinateSet currentTankCoordinates) {
+    public Tank getPlayerTank(PlayerColors playerTurn, CoordinateSet currentTankCoordinates) {
         if (playerTurn == PlayerColors.Red) {
             return player1.getPlayerTankByCoordinates(currentTankCoordinates);
         }
@@ -114,6 +113,15 @@ public class GameState {
         else {
             player2.updateAllTankPowerups();
         }
+    }
+
+    public void updatePlayerHealthBars(HpController hpController) {
+        player1.updateAllTankHealthBars(hpController);
+        player2.updateAllTankHealthBars(hpController);
+    }
+
+    public Grid getGrid() {
+        return this.grid;
     }
 }
 

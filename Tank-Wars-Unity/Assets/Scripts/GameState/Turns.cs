@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +23,9 @@ public class Turns : MonoBehaviour
     public AI ai;
     ClickItems items;
 
+
+    [SerializeField] HpController hpController;
+
     void Start()
     {
         // Grab the game status object which holds information from the main menu
@@ -39,8 +42,6 @@ public class Turns : MonoBehaviour
         redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
         blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
 
-        // For development purposes, if the main menu isn't used, then use
-        // a default level.
         if(currentLevel != 0) {
             gs = new GameState(currentLevel, tankSet1, tankSet2);
         }
@@ -60,10 +61,7 @@ public class Turns : MonoBehaviour
     {
         // Run if ai's turn
         if(playerTurn == PlayerColors.Blue && aiON){
-            ai = new AI(redTanks, blueTanks, gs);
-            ai.greedyTurn();
-            //print(ai.test());
-            changeTurns();
+            handleGreedyAi();
         }
         // Skip turn if spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -99,12 +97,14 @@ public class Turns : MonoBehaviour
                 break;
             case Rounds.Attack:
                 assignTanksClicked(hit);
-                handleAttack();
+                handleAttack(true);
                 break;
             case Rounds.Gamble:
                 handleGamble(hit);
                 break;
         }
+
+        gs.updatePlayerHealthBars(hpController);
     }
 
     private void printTurn() {
@@ -141,6 +141,9 @@ public class Turns : MonoBehaviour
     private void handleMove(RaycastHit hit) {
         if ((hit.transform.gameObject.tag == "Red Tank" && playerTurn == PlayerColors.Red) || (hit.transform.gameObject.tag == "Blue Tank" && playerTurn == PlayerColors.Blue)) {
             tankClicked = hit.transform.gameObject;
+            CoordinateSet tankCoordinates = new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z);
+            Tank currentTank = gs.getPlayerTank(playerTurn, tankCoordinates);
+            TileHighlighter.highlightValidTiles(currentTank.getValidMovements(gs.getGrid(), tankCoordinates), round);
         }
         else if (tankClicked != null) {
             tileClicked = hit.transform.gameObject;
@@ -148,7 +151,8 @@ public class Turns : MonoBehaviour
             CoordinateSet tankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
             CoordinateSet tileCoordinates = new CoordinateSet((int)tileClicked.transform.position.x, (int)tileClicked.transform.position.z);
 
-            if (gs.checkValidMove(playerTurn, tankCoordinates, tileCoordinates)) {
+            if (gs.checkValidMove(playerTurn, tankCoordinates, tileCoordinates, true)) {
+                TileHighlighter.resetTiles();
                 tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 1, tileClicked.transform.position.z);
                 tileClicked = null;
                 tankClicked = null;
@@ -163,22 +167,31 @@ public class Turns : MonoBehaviour
         if ((hit.transform.gameObject.tag == "Red Tank")) {
             if (playerTurn == PlayerColors.Red) {
                 tankClicked = hit.transform.gameObject;
+                highlightAttackTiles(new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z));
             }
             else {
                 tankClicked2 = hit.transform.gameObject;
+                TileHighlighter.resetTiles();
             }
         }
         else if (hit.transform.gameObject.tag == "Blue Tank") {
             if (playerTurn == PlayerColors.Blue) {
                 tankClicked = hit.transform.gameObject;
+                highlightAttackTiles(new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z));
             }
             else {
                 tankClicked2 = hit.transform.gameObject;
+                TileHighlighter.resetTiles();
             }
         }
     }
 
-    private void handleAttack() {
+    private void highlightAttackTiles(CoordinateSet currentTankCoordinates) {
+        Tank currentTank = gs.getPlayerTank(playerTurn, currentTankCoordinates);
+        TileHighlighter.highlightValidTiles(currentTank.getWeapon().getValidAttacks(gs.getGrid()), round);
+    }
+
+    private bool handleAttack(bool updateState) {
         // If both tanks have been clicked, orchestrate the attack
         if (tankClicked != null && tankClicked2 != null) {
 
@@ -187,11 +200,15 @@ public class Turns : MonoBehaviour
             CoordinateSet targetPlayerTankCoordinates = new CoordinateSet((int)tankClicked2.transform.position.x, (int)tankClicked2.transform.position.z);
 
             // Check if the attack is valid
-            if (gs.checkValidAttack(playerTurn, currentPlayerTankCoordinates, targetPlayerTankCoordinates)) {
-                print("Good attack!");
+            if (gs.checkValidAttack(playerTurn, currentPlayerTankCoordinates, targetPlayerTankCoordinates, updateState)) {
+                if(!updateState){
+                    return true;
+                }
             }
             else {
-                print("Bad attack!");
+                if(!updateState){
+                    return false;
+                }
             }
 
             // Update player powerup state
@@ -203,6 +220,8 @@ public class Turns : MonoBehaviour
             tankClicked = null;
             tankClicked2 = null;
         }
+
+        return true;
     }
 
     private void handleGamble(RaycastHit hit) {
@@ -219,6 +238,45 @@ public class Turns : MonoBehaviour
         round = Rounds.Move;
         changeTurns();
         printTurn();
+    }
+
+    private void handleGreedyAi() {
+        ai = new AI(redTanks, blueTanks, gs);
+        CoordinateSet aiLocation;
+        CoordinateSet playerLocation;
+        CoordinateSet targetLocation;
+        GameObject blue;
+        GameObject red;
+
+        ai.greedyTurn();
+        blue = ai.getAITank();
+        red = ai.getPlayerTank();
+        aiLocation = new CoordinateSet((int)blue.transform.position.x, (int)blue.transform.position.z);
+        targetLocation = ai.getGreedyMove();
+        tankClicked = blue;
+        tankClicked2 = red;
+
+        // The greedy AI will stay still if there is already a valid attack
+        // Otherwise, it will try and move closer to the closest player.
+        if(!handleAttack(false))
+        {
+            blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
+            gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
+
+            // AI will game 1/5 of the time if it moves
+            System.Random randomNumberGenerator = new System.Random();
+            int randomNumber = randomNumberGenerator.Next(1, 4);
+            if(randomNumber == 1)
+            {
+                string powerup = gs.playerGamble(playerTurn, targetLocation);
+                Debug.Log("Player " + playerTurn + "'s gamble results in: " + powerup);
+            }
+
+        }
+
+        handleAttack(true);
+        changeTurns();
+        round = Rounds.Move;
     }
 }
 

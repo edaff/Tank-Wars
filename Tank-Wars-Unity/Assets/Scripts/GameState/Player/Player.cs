@@ -12,37 +12,80 @@ public class Player
         this.tanks = new Tank[3] { new EmptyTankSlot(), new EmptyTankSlot(), new EmptyTankSlot() };
     }
 
-    public Player(PlayerColors playerColor, int[] playerTankArray) {
+    public Player(PlayerColors playerColor, int[] playerTankArray, Levels level) {
         this.playerColor = playerColor;
-        this.tanks = createTankArray(playerTankArray, playerColor);
+        this.tanks = createTankArray(playerTankArray, playerColor, level);
     }
 
-    private Tank[] createTankArray(int [] playerTankArray, PlayerColors playerColor) {
+    private Tank[] createTankArray(int [] playerTankArray, PlayerColors playerColor, Levels level) {
         Tank[] tanks = new Tank[3];
+        CoordinateSet[] level1Red = { new CoordinateSet(4, 0) };
+        CoordinateSet[] level1Blue = { new CoordinateSet(5, 9) };
+        CoordinateSet[] level2Red = { new CoordinateSet(3, 0), new CoordinateSet(11,0) };
+        CoordinateSet[] level2Blue = { new CoordinateSet(3, 14), new CoordinateSet(11,14) };
 
-        for(int i = 0; i < playerTankArray.Length; i++) {
+        for (int i = 0; i < playerTankArray.Length; i++) {
             switch (playerTankArray[i]) {
+                // Empty Slot
                 case 0:
                     tanks[i] = new EmptyTankSlot();
                     break;
+                // Cannon Tank
                 case 1:
                     if(playerColor == PlayerColors.Red) {
-                        tanks[i] = new Tank1(this, new CoordinateSet(4,0));
+                        if (level == Levels.Level1) {
+                            tanks[i] = new CannonTank(this, level1Red[i]);
+                        }
+                        else if (level == Levels.Level2) {
+                            tanks[i] = new CannonTank(this, level2Red[i]);
+                        }
                     }
                     else {
-                        tanks[i] = new Tank1(this, new CoordinateSet(5,9));
-                    }       
+                        if (level == Levels.Level1) {
+                            tanks[i] = new CannonTank(this, level1Blue[i]);
+                        }
+                        else if (level == Levels.Level2) {
+                            tanks[i] = new CannonTank(this, level2Blue[i]);
+                        }
+                    }
                     break;
+                // Sniper Tank
                 case 2:
                     if (playerColor == PlayerColors.Red) {
-                        tanks[i] = new Tank2(this, new CoordinateSet(4, 0));
+                        if (level == Levels.Level1) {
+                            tanks[i] = new SniperTank(this, level1Red[i]);
+                        }
+                        else if (level == Levels.Level2) {
+                            tanks[i] = new SniperTank(this, level2Red[i]);
+                        }
                     }
                     else {
-                        tanks[i] = new Tank2(this, new CoordinateSet(5, 9));
+                        if (level == Levels.Level1) {
+                            tanks[i] = new SniperTank(this, level1Blue[i]);
+                        }
+                        else if (level == Levels.Level2) {
+                            tanks[i] = new SniperTank(this, level2Blue[i]);
+                        }
                     }
                     break;
-                // If three tanks, this needs to be implemented
+                // Mortar Tank
                 case 3:
+                    if (playerColor == PlayerColors.Red) {
+                        if (level == Levels.Level1) {
+                            tanks[i] = new MortarTank(this, level1Red[i]);
+                        }
+                        else if (level == Levels.Level2) {
+                            tanks[i] = new MortarTank(this, level2Red[i]);
+                        }
+                    }
+                    else {
+                        if (level == Levels.Level1) {
+                            tanks[i] = new MortarTank(this, level1Blue[i]);
+                        }
+                        else if (level == Levels.Level2) {
+                            tanks[i] = new MortarTank(this, level2Blue[i]);
+                        }
+                    }
                     break;
                 default:
                     tanks[i] = new EmptyTankSlot();
@@ -96,6 +139,44 @@ public class Player
             }
             else {
                 currentTank.updatePowerupState();
+            }
+        }
+    }
+
+    public void updateAllTankHealthBars(HpController hpController) {
+        for (int i = 0; i < 3; i++) {
+            Tank currentTank = this.tanks[i];
+
+            if (currentTank is EmptyTankSlot) {
+                continue;
+            }
+            else {
+                switch (i) {
+                    case 0:
+                        if (this.playerColor == PlayerColors.Red) {
+                            hpController.RedTank1Hp(currentTank.getHealth());
+                        }
+                        else {
+                            hpController.BlueTank1Hp(currentTank.getHealth());
+                        }
+                        break;
+                    case 1:
+                        if (this.playerColor == PlayerColors.Red) {
+                            hpController.RedTank2Hp(currentTank.getHealth());
+                        }
+                        else {
+                            hpController.BlueTank2Hp(currentTank.getHealth());
+                        }
+                        break;
+                    case 2:
+                        if (this.playerColor == PlayerColors.Red) {
+                            hpController.RedTank3Hp(currentTank.getHealth());
+                        }
+                        else {
+                            hpController.BlueTank3Hp(currentTank.getHealth());
+                        }
+                        break;
+                }
             }
         }
     }

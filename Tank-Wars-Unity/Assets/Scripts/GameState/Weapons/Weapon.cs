@@ -11,7 +11,7 @@ public abstract class Weapon
     protected Tank tank;
 
     // Functions
-    virtual public bool isValidAttack(Grid grid, CoordinateSet targetCoordinates) {
+    virtual public bool isValidAttack(Grid grid, CoordinateSet targetCoordinates, bool updateState) {
         return true;
     }
     
@@ -37,6 +37,10 @@ public abstract class Weapon
 
     public void setOrientation(Orientations orientation ) {
         this.orientation = orientation;
+    }
+
+    virtual public ArrayList getValidAttacks(Grid grid) {
+        return new ArrayList();
     }
 
 }

@@ -47,7 +47,10 @@ public class SelectScreen : MonoBehaviour
     {
         if(player1FishedPicking && player2FishedPicking)
         {
-            SceneManager.LoadScene("Level-1");
+            if(whatLevelAmI == 1) { SceneManager.LoadScene("Level-1");}
+            if(whatLevelAmI == 2) { SceneManager.LoadScene("Level-2");}
+            if(whatLevelAmI == 3) { SceneManager.LoadScene("Level-3");}
+
         }
 
         //this will pop up redo? and ready GUI for player 1

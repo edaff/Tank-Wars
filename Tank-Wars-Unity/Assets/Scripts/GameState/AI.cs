@@ -8,6 +8,9 @@ public class AI
     public GameObject[] redTanks;
 	public GameObject[] blueTanks;
 	public GameState gs;
+	GameObject[] closestTanks;
+    ArrayList validMoves = new ArrayList();
+    CoordinateSet greedyMove;
 
     public AI(GameObject[] rt, GameObject[] bt, GameState gamestate)
     {
@@ -27,11 +30,9 @@ public class AI
     */
     public void greedyTurn()
     {
-    	GameObject[] closestTanks;
-    	ArrayList validMoves = new ArrayList();
-
     	closestTanks = findClosestTanks();
     	validMoves = findValidMoves(closestTanks[0]);
+    	greedyMove = findGreedyMove(closestTanks[1], validMoves);
     }
 
     //Gameobject[] holds [AI gameobject, player closest gameobject]
@@ -45,7 +46,7 @@ public class AI
     	{
     		for(int j = 0; j < redTanks.Length; j++)
     		{
-    			tempDis = Math.Pow((Math.Pow((redTanks[j].transform.position.x - blueTanks[i].transform.position.x),2) + Math.Pow((redTanks[j].transform.position.y - blueTanks[i].transform.position.y),2)),.5);
+    			tempDis = Math.Pow((Math.Pow((redTanks[j].transform.position.x - blueTanks[i].transform.position.x),2) + Math.Pow((redTanks[j].transform.position.z - blueTanks[i].transform.position.z),2)),.5);
     			if(tempDis < minDistance)
     			{
     				minDistance = tempDis;
@@ -69,16 +70,52 @@ public class AI
     		for(int j = 0; j < gridSize; j++)
     		{
     			 tileCoordinates = new CoordinateSet(i, j);
-    			 if(gs.checkValidMove(PlayerColors.Blue, tankCoordinates, tileCoordinates))
+    			 if(gs.checkValidMove(PlayerColors.Blue, tankCoordinates, tileCoordinates, false))
     			 {
     			 	validMoves.Add(tileCoordinates);
     			 }
     		}
     	}
-
+    	Debug.Log(validMoves.Count);
     	return validMoves;
     }
 
+    
+    public CoordinateSet findGreedyMove(GameObject red, ArrayList validMoves)
+    {
+    	double minDistance = 9999999;
+    	double tempDis;
+    	CoordinateSet ret = null;
+    	CoordinateSet temp;
+
+    	for(int i = 0; i < validMoves.Count; i++)
+    	{
+    		temp = (CoordinateSet)validMoves[i];
+    		tempDis = Math.Pow((Math.Pow((red.transform.position.x - (double)temp.getX()),2) + Math.Pow((red.transform.position.z - (double)temp.getY()),2)),.5);
+    		if(tempDis < minDistance)
+			{
+				minDistance = tempDis;
+				ret = temp;
+			}
+    	}
+    	return ret;
+    }
+
+    public GameObject getAITank()
+    {
+    	return closestTanks[0];
+    }
+
+    public GameObject getPlayerTank()
+    {
+    	return closestTanks[1];
+    }
+
+    public CoordinateSet getGreedyMove()
+    {
+    	return greedyMove;
+    }
+	
     public string test() {
         return "Hi";
     }

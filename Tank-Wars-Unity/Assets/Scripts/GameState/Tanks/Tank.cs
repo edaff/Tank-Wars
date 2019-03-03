@@ -21,7 +21,7 @@ public abstract class Tank
         return false;
     }
 
-    virtual public bool isValidMovement(Grid grid, CoordinateSet coordinates) {
+    virtual public bool isValidMovement(Grid grid, CoordinateSet coordinates, bool updateState) {
         return true;
     }
 
@@ -179,5 +179,100 @@ public abstract class Tank
         }
 
         return false;
+    }
+
+    // Iterate 4 times in all directions and check that the target node is within range
+    public ArrayList getValidMovements(Grid grid, CoordinateSet currentTankCoordinates) {
+        int gridSize = grid.getGridSize();
+        int currentTankX = currentTankCoordinates.getX();
+        int currentTankY = currentTankCoordinates.getY();
+        bool skip = false;
+        ArrayList validMoves = new ArrayList();
+
+        for (int i = 0; i < 4; i++) {
+            skip = false;
+            for (int j = 1; j <= this.movement; j++) {
+                switch (i) {
+                    case 0:
+                        // Check for index out of bounds
+                        if (currentTankX + j >= gridSize) { continue; }
+
+                        // Check for mountains
+                        if (grid.getGridNode(currentTankX + j, currentTankY).getTerrain() is Mountain) {
+                            skip = true;
+                            break;
+                        }
+
+                        // Check if a tank is in the path or on the target node
+                        if (!grid.getGridNode(currentTankX + j, currentTankY).getTank().isEmptySlot()) {
+                            skip = true;
+                            break;
+                        }
+
+                        validMoves.Add(new CoordinateSet(currentTankX + j, currentTankY));
+                        break;
+                    case 1:
+                        // Check for index out of bounds
+                        if (currentTankX - j < 0) { continue; }
+
+                        // Check for mountains
+                        if (grid.getGridNode(currentTankX - j, currentTankY).getTerrain() is Mountain) {
+                            skip = true;
+                            break;
+                        }
+
+                        // Check if a tank is in the path or on the target node
+                        if (!grid.getGridNode(currentTankX - j, currentTankY).getTank().isEmptySlot()) {
+                            skip = true;
+                            break;
+                        }
+
+                        validMoves.Add(new CoordinateSet(currentTankX - j, currentTankY));
+                        break;
+                    case 2:
+                        // Check for index out of bounds
+                        if (currentTankY + j >= gridSize) { continue; }
+
+                        // Check for mountains
+                        if (grid.getGridNode(currentTankX, currentTankY + j).getTerrain() is Mountain) {
+                            skip = true;
+                            break;
+                        }
+
+                        // Check if a tank is in the path or on the target node
+                        if (!grid.getGridNode(currentTankX, currentTankY + j).getTank().isEmptySlot()) {
+                            skip = true;
+                            break;
+                        }
+
+                        validMoves.Add(new CoordinateSet(currentTankX, currentTankY + j));
+                        break;
+                    case 3:
+                        // Check for index out of bounds
+                        if (currentTankY - i < 0) { continue; }
+
+                        // Check for mountains
+                        if (grid.getGridNode(currentTankX, currentTankY - j).getTerrain() is Mountain) {
+                            skip = true;
+                            break;
+                        }
+
+                        // Check if a tank is in the path or on the target node
+                        if (!grid.getGridNode(currentTankX, currentTankY - j).getTank().isEmptySlot()) {
+                            skip = true;
+                            break;
+                        }
+
+                        validMoves.Add(new CoordinateSet(currentTankX, currentTankY - j));
+                        break;
+                }
+
+                if (skip) {
+                    break;
+                }
+            }
+        }
+
+        return validMoves;
     }
 }

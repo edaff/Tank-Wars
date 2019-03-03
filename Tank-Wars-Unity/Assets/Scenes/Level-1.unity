@@ -3300,12 +3300,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2c22321425ac6646a0c80700a32933c, type: 3}
---- !u!1 &409002600 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1459388758, guid: 46a3fd245671a1f4eb461f63a0070803,
-    type: 3}
-  m_PrefabInstance: {fileID: 1459388757}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &411900815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9331,13 +9325,10 @@ MonoBehaviour:
   tileClicked: {fileID: 0}
   tankSet1: 
   tankSet2: 
-  redTanks: []
-  blueTanks: []
   round: 0
   playerTurn: 0
   currentLevel: 0
   gamblePressed: 0
-  aiON: 0
 --- !u!114 &1330315670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9366,16 +9357,6 @@ MonoBehaviour:
   select: 0
   birdCam: 0
   angleCam: 0
-  minZoomLimit: 0.1
-  maxZoomLimit: 10
-  distance: 100
-  target: {fileID: 409002600}
-  xRotateSpeed: 3
-  yRotateSpeed: 1.5
-  maxYRotate: 90
-  minYRotate: 0
-  xMoveSpeed: 100
-  zMoveSpeed: 100
 --- !u!1001 &1332693159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12755,6 +12736,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1881379757}
+  - component: {fileID: 1881379758}
   m_Layer: 0
   m_Name: 10x10 Grid Template
   m_TagString: Untagged
@@ -12876,6 +12858,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1881379758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881379756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd18bf92da241b34fb1dee367f768996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1884919952
 PrefabInstance:
   m_ObjectHideFlags: 0

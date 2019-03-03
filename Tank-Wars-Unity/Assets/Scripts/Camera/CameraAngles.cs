@@ -7,8 +7,8 @@ public class CameraAngles : MonoBehaviour
 {
     public Vector3 middle;
     public float distance = 2.0f;
-    public float xSpeed = 0.0f;
-    public float ySpeed = 0.0f;
+    public float xSpeed = 10.0f;
+    public float ySpeed = 10.0f;
     public float yMinLimit = 0f;
     public float yMaxLimit = 90f;
     public float distanceMin = 10f;

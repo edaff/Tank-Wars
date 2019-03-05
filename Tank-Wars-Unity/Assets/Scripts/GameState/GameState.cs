@@ -123,6 +123,15 @@ public class GameState {
     public Grid getGrid() {
         return this.grid;
     }
+
+    public void highlightPlayerTiles(PlayerColors player, Rounds round) {
+        if (player == PlayerColors.Red) {
+            TileHighlighter.highlightValidTiles(player1.getAllTankCoordinates(), round);
+        }
+        else {
+            TileHighlighter.highlightValidTiles(player2.getAllTankCoordinates(), round);
+        }
+    }
 }
 
 public enum Levels {

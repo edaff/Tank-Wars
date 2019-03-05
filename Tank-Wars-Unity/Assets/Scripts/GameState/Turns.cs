@@ -54,6 +54,7 @@ public class Turns : MonoBehaviour
     	round = Rounds.Move;
     	playerTurn = PlayerColors.Red;
         printTurn();
+        gs.highlightPlayerTiles(playerTurn, round);
     }
 
     // Update is called once per frame
@@ -112,12 +113,14 @@ public class Turns : MonoBehaviour
     }
 
     private void changeTurns() {
-        if(playerTurn == PlayerColors.Red) {
+        if (playerTurn == PlayerColors.Red) {
             playerTurn = PlayerColors.Blue;
         }
         else {
             playerTurn = PlayerColors.Red;
         }
+        TileHighlighter.resetTiles();
+        gs.highlightPlayerTiles(playerTurn, Rounds.Move);
     }
 
     private ClickItems getItemClicked() {
@@ -143,6 +146,12 @@ public class Turns : MonoBehaviour
             tankClicked = hit.transform.gameObject;
             CoordinateSet tankCoordinates = new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z);
             Tank currentTank = gs.getPlayerTank(playerTurn, tankCoordinates);
+
+            if (currentTank.isDead() || currentTank.getPlayer().getPlayerColor() != playerTurn) {
+                tankClicked = null;
+                return;
+            }
+
             TileHighlighter.highlightValidTiles(currentTank.getValidMovements(gs.getGrid(), tankCoordinates), round);
         }
         else if (tankClicked != null) {
@@ -157,6 +166,8 @@ public class Turns : MonoBehaviour
                 tileClicked = null;
                 tankClicked = null;
                 round = Rounds.Attack;
+                TileHighlighter.resetTiles();
+                gs.highlightPlayerTiles(playerTurn, Rounds.Move);
                 printTurn();
             }
         }
@@ -189,6 +200,12 @@ public class Turns : MonoBehaviour
     private void highlightAttackTiles(CoordinateSet currentTankCoordinates) {
         Tank currentTank = gs.getPlayerTank(playerTurn, currentTankCoordinates);
         TileHighlighter.highlightValidTiles(currentTank.getWeapon().getValidAttacks(gs.getGrid()), round);
+        if (playerTurn == PlayerColors.Red) {
+            gs.highlightPlayerTiles(PlayerColors.Blue, Rounds.Attack);
+        }
+        else {
+            gs.highlightPlayerTiles(PlayerColors.Red, Rounds.Attack);
+        }
     }
 
     private bool handleAttack(bool updateState) {
@@ -216,6 +233,8 @@ public class Turns : MonoBehaviour
 
             // Update the state information
             round = Rounds.Gamble;
+            TileHighlighter.resetTiles();
+            gs.highlightPlayerTiles(playerTurn, Rounds.Move);
             printTurn();
             tankClicked = null;
             tankClicked2 = null;

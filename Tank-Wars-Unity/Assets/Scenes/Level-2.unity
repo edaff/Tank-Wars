@@ -13411,9 +13411,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d9f11caa5e77d41be8e09aafd5f630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  select: 0
-  birdCam: 0
-  angleCam: 0
+  middle: {x: 7, y: 0, z: 7}
+  distance: 2
+  xSpeed: 10
+  ySpeed: 10
+  yMinLimit: 0
+  yMaxLimit: 90
+  distanceMin: 10
+  distanceMax: 10
+  smoothTime: 2
 --- !u!114 &883446085
 MonoBehaviour:
   m_ObjectHideFlags: 0

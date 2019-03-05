@@ -83,6 +83,15 @@ public abstract class Tank
         }
     }
 
+    public bool isDead() {
+        if(this.health <= 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     // Iterate 4 times in all directions and check that the target node is within range
     protected bool movementCheck(Grid grid, int currentIteration,
                                CoordinateSet currentTankCoordinates,

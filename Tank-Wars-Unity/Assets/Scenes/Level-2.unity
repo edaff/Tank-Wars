@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 4067de1a02072244798361060c5e7325, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.5444019, g: 0.5070022, b: 0.524245, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15863,7 +15863,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883446078}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2d9f11caa5e77d41be8e09aafd5f630, type: 3}
   m_Name: 
@@ -31618,13 +31618,13 @@ Transform:
   - {fileID: 1043564538}
   - {fileID: 1072636524}
   - {fileID: 1191681049}
-  - {fileID: 901317480}
   - {fileID: 112553353}
   - {fileID: 958879069}
   - {fileID: 1910296574}
   - {fileID: 612010912}
   - {fileID: 667822756}
   - {fileID: 476978177}
+  - {fileID: 901317480}
   - {fileID: 458740138}
   - {fileID: 1949245755}
   - {fileID: 299287785}
@@ -31645,9 +31645,10 @@ Transform:
   - {fileID: 1512231791}
   - {fileID: 1044090730}
   - {fileID: 1679911548}
-  - {fileID: 1901406279}
   - {fileID: 964994273}
   - {fileID: 688133810}
+  - {fileID: 977865864}
+  - {fileID: 1901406279}
   - {fileID: 2054842099}
   - {fileID: 895115653}
   - {fileID: 756488177}
@@ -31655,7 +31656,6 @@ Transform:
   - {fileID: 1367748430}
   - {fileID: 1186085082}
   - {fileID: 563417062}
-  - {fileID: 977865864}
   - {fileID: 1703733048}
   - {fileID: 1360277027}
   - {fileID: 1909350110}

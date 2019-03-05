@@ -57,7 +57,7 @@ public class Sniper : Weapon {
 
         switch (this.orientation) {
             case Orientations.Up:
-                for(int i = 0; i < this.distance; i++) {
+                for(int i = 1; i <= this.distance; i++) {
                     // Check for index out of bounds
                     if (currentTankY + i >= gridSize) { break; }
 
@@ -75,7 +75,7 @@ public class Sniper : Weapon {
             case Orientations.Right:
                 break;
             case Orientations.Down:
-                for (int i = 0; i < this.distance; i++) {
+                for (int i = 1; i <= this.distance; i++) {
                     // Check for index out of bounds
                     if (currentTankY - i < 0) { continue; }
 
@@ -105,7 +105,7 @@ public class Sniper : Weapon {
 
         switch (this.orientation) {
             case Orientations.Up:
-                for (int i = 0; i < this.distance; i++) {
+                for (int i = 1; i <= this.distance; i++) {
                     // Check for index out of bounds
                     if (currentTankY + i >= gridSize) { break; }
 
@@ -120,7 +120,7 @@ public class Sniper : Weapon {
             case Orientations.Right:
                 break;
             case Orientations.Down:
-                for (int i = 0; i < this.distance; i++) {
+                for (int i = 1; i <= this.distance; i++) {
                     // Check for index out of bounds
                     if (currentTankY - i < 0) { continue; }
 

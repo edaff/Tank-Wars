@@ -123,6 +123,39 @@ public class GameState {
     public Grid getGrid() {
         return this.grid;
     }
+
+    public void highlightPlayerTiles(PlayerColors player, Rounds round) {
+        if (player == PlayerColors.Red) {
+            TileHighlighter.highlightValidTiles(player1.getAllTankCoordinates(), round);
+        }
+        else {
+            TileHighlighter.highlightValidTiles(player2.getAllTankCoordinates(), round);
+        }
+    }
+
+    public string[] getPlayerPowerups(PlayerColors player) {
+        string[] powerups = new string[3];
+        Tank[] tanks;
+
+        if(player == PlayerColors.Red) {
+            tanks = player1.getPlayerTanks();
+        }
+        else {
+            tanks = player2.getPlayerTanks();
+        }
+
+        for(int i = 0; i < 3; i++) {
+            if(tanks[i] is EmptyTankSlot) {
+                powerups[i] = "Nothing";
+                continue;
+            }
+
+            powerups[i] = tanks[i].getPowerupAsString();
+        }
+
+        return powerups;
+
+    }
 }
 
 public enum Levels {

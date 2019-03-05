@@ -39,7 +39,7 @@ public class Turns : MonoBehaviour
         tankSet2 = gameStatus.GetComponent<GameStatus>().getPlayer2TankPicks();
 
         //Check if ai mode is on
-        aiON = false;
+        aiON = true;
         //Gameobjects used by ai
         redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
         blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
@@ -60,6 +60,7 @@ public class Turns : MonoBehaviour
         // Get main camera object for CameraAngles functions
         mainCamera = GameObject.Find("Main Camera");
         camera = mainCamera.GetComponent<CameraAngles>();
+        gs.highlightPlayerTiles(playerTurn, round);
     }
 
     // Update is called once per frame
@@ -118,7 +119,7 @@ public class Turns : MonoBehaviour
     }
 
     private void changeTurns() {
-        if(playerTurn == PlayerColors.Red) {
+        if (playerTurn == PlayerColors.Red) {
             playerTurn = PlayerColors.Blue;
             camera.translateToPlayer(PlayerColors.Blue);
         }
@@ -126,6 +127,8 @@ public class Turns : MonoBehaviour
             playerTurn = PlayerColors.Red;
             camera.translateToPlayer(PlayerColors.Red);
         }
+        TileHighlighter.resetTiles();
+        gs.highlightPlayerTiles(playerTurn, Rounds.Move);
     }
 
     private ClickItems getItemClicked() {
@@ -151,6 +154,14 @@ public class Turns : MonoBehaviour
             tankClicked = hit.transform.gameObject;
             CoordinateSet tankCoordinates = new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z);
             Tank currentTank = gs.getPlayerTank(playerTurn, tankCoordinates);
+
+            // If the player didn't choose one of their own tanks, or if that tank is dead, just ignore
+            if (currentTank.isDead() || currentTank.getPlayer().getPlayerColor() != playerTurn) {
+                tankClicked = null;
+                return;
+            }
+
+            TileHighlighter.resetTiles();
             TileHighlighter.highlightValidTiles(currentTank.getValidMovements(gs.getGrid(), tankCoordinates), round);
         }
         else if (tankClicked != null) {
@@ -165,6 +176,8 @@ public class Turns : MonoBehaviour
                 tileClicked = null;
                 tankClicked = null;
                 round = Rounds.Attack;
+                TileHighlighter.resetTiles();
+                gs.highlightPlayerTiles(playerTurn, Rounds.Move);
                 printTurn();
             }
         }
@@ -175,6 +188,7 @@ public class Turns : MonoBehaviour
         if ((hit.transform.gameObject.tag == "Red Tank")) {
             if (playerTurn == PlayerColors.Red) {
                 tankClicked = hit.transform.gameObject;
+                TileHighlighter.resetTiles();
                 highlightAttackTiles(new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z));
             }
             else {
@@ -185,6 +199,7 @@ public class Turns : MonoBehaviour
         else if (hit.transform.gameObject.tag == "Blue Tank") {
             if (playerTurn == PlayerColors.Blue) {
                 tankClicked = hit.transform.gameObject;
+                TileHighlighter.resetTiles();
                 highlightAttackTiles(new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z));
             }
             else {
@@ -197,6 +212,12 @@ public class Turns : MonoBehaviour
     private void highlightAttackTiles(CoordinateSet currentTankCoordinates) {
         Tank currentTank = gs.getPlayerTank(playerTurn, currentTankCoordinates);
         TileHighlighter.highlightValidTiles(currentTank.getWeapon().getValidAttacks(gs.getGrid()), round);
+        if (playerTurn == PlayerColors.Red) {
+            gs.highlightPlayerTiles(PlayerColors.Blue, Rounds.Attack);
+        }
+        else {
+            gs.highlightPlayerTiles(PlayerColors.Red, Rounds.Attack);
+        }
     }
 
     private bool handleAttack(bool updateState) {
@@ -224,6 +245,8 @@ public class Turns : MonoBehaviour
 
             // Update the state information
             round = Rounds.Gamble;
+            TileHighlighter.resetTiles();
+            gs.highlightPlayerTiles(playerTurn, Rounds.Move);
             printTurn();
             tankClicked = null;
             tankClicked2 = null;
@@ -236,6 +259,14 @@ public class Turns : MonoBehaviour
         // Do Gamble
         tankClicked = hit.transform.gameObject;
         CoordinateSet currentTankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
+        Tank currentTank = gs.getPlayerTank(playerTurn, currentTankCoordinates);
+
+        // If the player didn't choose one of their own tanks, or if that tank is dead, just ignore
+        if (currentTank.isDead() || currentTank.getPlayer().getPlayerColor() != playerTurn) {
+            tankClicked = null;
+            return;
+        }
+
         string powerup = gs.playerGamble(playerTurn, currentTankCoordinates);
 
         // Print log message
@@ -285,6 +316,10 @@ public class Turns : MonoBehaviour
         handleAttack(true);
         changeTurns();
         round = Rounds.Move;
+    }
+
+    public string[] getPlayerPowerups(PlayerColors player) {
+        return gs.getPlayerPowerups(player);
     }
 }
 

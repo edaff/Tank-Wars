@@ -180,6 +180,20 @@ public class Player
             }
         }
     }
+
+    public ArrayList getAllTankCoordinates() {
+        ArrayList tankCoordinates = new ArrayList();
+
+        for (int i = 0; i < 3; i++) {
+            if (this.tanks[i] is EmptyTankSlot || this.tanks[i].isDead()) {
+                continue;
+            }
+
+            tankCoordinates.Add(this.tanks[i].getCoordinates());
+        }
+
+        return tankCoordinates;
+    }
 }
 
 public enum PlayerColors {

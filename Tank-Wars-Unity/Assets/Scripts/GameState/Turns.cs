@@ -121,11 +121,17 @@ public class Turns : MonoBehaviour
     private void changeTurns() {
         if (playerTurn == PlayerColors.Red) {
             playerTurn = PlayerColors.Blue;
-            camera.translateToPlayer(PlayerColors.Blue);
+            if (aiON == false)
+            {
+                camera.translateToPlayer(PlayerColors.Blue);
+            }
         }
         else {
             playerTurn = PlayerColors.Red;
-            camera.translateToPlayer(PlayerColors.Red);
+            if (aiON == false)
+            {
+                camera.translateToPlayer(PlayerColors.Red);
+            }
         }
         TileHighlighter.resetTiles();
         gs.highlightPlayerTiles(playerTurn, Rounds.Move);

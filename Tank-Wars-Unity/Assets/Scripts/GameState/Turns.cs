@@ -37,7 +37,7 @@ public class Turns : MonoBehaviour
         tankSet2 = gameStatus.GetComponent<GameStatus>().getPlayer2TankPicks();
 
         //Check if ai mode is on
-        aiON = false;
+        aiON = true;
         //Gameobjects used by ai
         redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
         blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");

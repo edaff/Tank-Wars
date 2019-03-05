@@ -145,6 +145,11 @@ public class GameState {
         }
 
         for(int i = 0; i < 3; i++) {
+            if(tanks[i] is EmptyTankSlot) {
+                powerups[i] = "Nothing";
+                continue;
+            }
+
             powerups[i] = tanks[i].getPowerupAsString();
         }
 

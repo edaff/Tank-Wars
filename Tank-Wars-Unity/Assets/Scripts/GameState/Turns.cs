@@ -311,11 +311,7 @@ public class Turns : MonoBehaviour
     }
 
     public string[] getPlayerPowerups(PlayerColors player) {
-        string[] powerups;
-
-        powerups = gs.getPlayerPowerups(player);
-
-        return powerups;
+        return gs.getPlayerPowerups(player);
     }
 }
 

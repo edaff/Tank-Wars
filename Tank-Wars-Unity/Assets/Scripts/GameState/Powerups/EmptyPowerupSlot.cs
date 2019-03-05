@@ -9,6 +9,6 @@ public class EmptyPowerupSlot : Powerup
     }
 
     public override string ToString() {
-        return "Nothing! :)";
+        return "Nothing";
     }
 }

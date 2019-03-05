@@ -22,6 +22,8 @@ public class Turns : MonoBehaviour
     public bool aiON;
     public AI ai;
     ClickItems items;
+    public CameraAngles camera;
+    public GameObject mainCamera;
 
 
     [SerializeField] HpController hpController;
@@ -54,6 +56,10 @@ public class Turns : MonoBehaviour
     	round = Rounds.Move;
     	playerTurn = PlayerColors.Red;
         printTurn();
+
+        // Get main camera object for CameraAngles functions
+        mainCamera = GameObject.Find("Main Camera");
+        camera = mainCamera.GetComponent<CameraAngles>();
     }
 
     // Update is called once per frame
@@ -114,9 +120,11 @@ public class Turns : MonoBehaviour
     private void changeTurns() {
         if(playerTurn == PlayerColors.Red) {
             playerTurn = PlayerColors.Blue;
+            camera.translateToPlayer(PlayerColors.Blue);
         }
         else {
             playerTurn = PlayerColors.Red;
+            camera.translateToPlayer(PlayerColors.Red);
         }
     }
 

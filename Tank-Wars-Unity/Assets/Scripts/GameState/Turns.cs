@@ -147,11 +147,13 @@ public class Turns : MonoBehaviour
             CoordinateSet tankCoordinates = new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z);
             Tank currentTank = gs.getPlayerTank(playerTurn, tankCoordinates);
 
+            // If the player didn't choose one of their own tanks, or if that tank is dead, just ignore
             if (currentTank.isDead() || currentTank.getPlayer().getPlayerColor() != playerTurn) {
                 tankClicked = null;
                 return;
             }
 
+            TileHighlighter.resetTiles();
             TileHighlighter.highlightValidTiles(currentTank.getValidMovements(gs.getGrid(), tankCoordinates), round);
         }
         else if (tankClicked != null) {
@@ -178,6 +180,7 @@ public class Turns : MonoBehaviour
         if ((hit.transform.gameObject.tag == "Red Tank")) {
             if (playerTurn == PlayerColors.Red) {
                 tankClicked = hit.transform.gameObject;
+                TileHighlighter.resetTiles();
                 highlightAttackTiles(new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z));
             }
             else {
@@ -188,6 +191,7 @@ public class Turns : MonoBehaviour
         else if (hit.transform.gameObject.tag == "Blue Tank") {
             if (playerTurn == PlayerColors.Blue) {
                 tankClicked = hit.transform.gameObject;
+                TileHighlighter.resetTiles();
                 highlightAttackTiles(new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z));
             }
             else {
@@ -247,6 +251,14 @@ public class Turns : MonoBehaviour
         // Do Gamble
         tankClicked = hit.transform.gameObject;
         CoordinateSet currentTankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
+        Tank currentTank = gs.getPlayerTank(playerTurn, currentTankCoordinates);
+
+        // If the player didn't choose one of their own tanks, or if that tank is dead, just ignore
+        if (currentTank.isDead() || currentTank.getPlayer().getPlayerColor() != playerTurn) {
+            tankClicked = null;
+            return;
+        }
+
         string powerup = gs.playerGamble(playerTurn, currentTankCoordinates);
 
         // Print log message

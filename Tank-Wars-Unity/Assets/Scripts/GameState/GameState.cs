@@ -132,6 +132,25 @@ public class GameState {
             TileHighlighter.highlightValidTiles(player2.getAllTankCoordinates(), round);
         }
     }
+
+    public string[] getPlayerPowerups(PlayerColors player) {
+        string[] powerups = new string[3];
+        Tank[] tanks;
+
+        if(player == PlayerColors.Red) {
+            tanks = player1.getPlayerTanks();
+        }
+        else {
+            tanks = player2.getPlayerTanks();
+        }
+
+        for(int i = 0; i < 3; i++) {
+            powerups[i] = tanks[i].getPowerupAsString();
+        }
+
+        return powerups;
+
+    }
 }
 
 public enum Levels {

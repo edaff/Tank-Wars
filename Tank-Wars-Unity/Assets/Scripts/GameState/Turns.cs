@@ -309,6 +309,14 @@ public class Turns : MonoBehaviour
         changeTurns();
         round = Rounds.Move;
     }
+
+    public string[] getPlayerPowerups(PlayerColors player) {
+        string[] powerups;
+
+        powerups = gs.getPlayerPowerups(player);
+
+        return powerups;
+    }
 }
 
 public enum Rounds {

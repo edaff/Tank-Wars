@@ -53,6 +53,10 @@ public abstract class Tank
         return this.powerup;
     }
 
+    public string getPowerupAsString() {
+        return this.powerup.ToString();
+    }
+
     public void setPowerup(Powerup powerup) {
         powerup.applyPowerupEffect(this);
         this.powerup = powerup;

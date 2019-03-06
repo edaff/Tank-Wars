@@ -23,10 +23,14 @@ public class SelectScreen : MonoBehaviour
     [Header("GUI controller for p1")]
     [SerializeField] GameObject p1Ready;
     [SerializeField] GameObject p1Redo;
+    [SerializeField] GameObject p1PickingText;
+    [SerializeField] GameObject p1Background;
 
     [Header("GUI controller for p2")]
     [SerializeField] GameObject p2Ready;
     [SerializeField] GameObject p2Redo;
+    [SerializeField] GameObject p2PickingText;
+    [SerializeField] GameObject p2Background;
 
     GameStatus currentState;
 
@@ -40,6 +44,18 @@ public class SelectScreen : MonoBehaviour
 
         player1TankPicks = new int[] {0, 0, 0};                     //players 1 picks, 0 = empty, 1 = normal tank, 2 = sniper tank, 3 = mortar tank
         player2TankPicks = new int[] {0, 0, 0};                     //checks which difficulty was picked, 1 = easy, 2 = medium , 3 = hard.
+
+        //makes sure all the UI for p1 is turned off at start
+        p1Redo.SetActive(false);
+        p1Ready.SetActive(false);
+        p1PickingText.SetActive(false);
+        p1Background.SetActive(false);
+
+        //makes sure all the UI for p2 is turned off at start
+        p2Redo.SetActive(false);
+        p2Ready.SetActive(false);
+        p2PickingText.SetActive(false);
+        p2Background.SetActive(false);
     }
 
 
@@ -58,6 +74,8 @@ public class SelectScreen : MonoBehaviour
         {
             p1Redo.SetActive(true);
             p1Ready.SetActive(true);
+            p1PickingText.SetActive(true);
+            p1Background.SetActive(true);
         }
 
         //this will pop up redo? and ready GUI for player 2
@@ -65,6 +83,8 @@ public class SelectScreen : MonoBehaviour
         {
             p2Redo.SetActive(true);
             p2Ready.SetActive(true);
+            p2PickingText.SetActive(true);
+            p2Background.SetActive(true);
         }
 
         //player 1 keys
@@ -208,6 +228,8 @@ public class SelectScreen : MonoBehaviour
     {
         p1Redo.SetActive(false);
         p1Ready.SetActive(false);
+        p1PickingText.SetActive(false);
+        p1Background.SetActive(false);
         p1ArrayIdex = 0;
     }
 
@@ -215,6 +237,8 @@ public class SelectScreen : MonoBehaviour
     {
         p1Ready.SetActive(false);
         p1Redo.SetActive(false);
+        p1PickingText.SetActive(false);
+        p1Background.SetActive(false);
         player1FishedPicking = true;
         currentState.SetPlayer1TanksPick(player1TankPicks);
     }
@@ -225,6 +249,8 @@ public class SelectScreen : MonoBehaviour
     {
         p2Redo.SetActive(false);
         p2Ready.SetActive(false);
+        p2PickingText.SetActive(false);
+        p2Background.SetActive(false);
         p2ArrayIdex = 0;
     }
 
@@ -232,6 +258,8 @@ public class SelectScreen : MonoBehaviour
     {
         p2Ready.SetActive(false);
         p2Redo.SetActive(false);
+        p2PickingText.SetActive(false);
+        p2Background.SetActive(false);
         player2FishedPicking = true;
         currentState.SetPlayer2TanksPick(player2TankPicks);
     }

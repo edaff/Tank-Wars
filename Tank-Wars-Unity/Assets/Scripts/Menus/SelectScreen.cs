@@ -29,14 +29,6 @@ public class SelectScreen : MonoBehaviour
     [Header("p1 boxes & tanks")]
     [SerializeField] GameObject p1Box2;
     [SerializeField] GameObject p1Box3;
-    [SerializeField] GameObject p1Tank2Border;
-    [SerializeField] GameObject p1Tank2Background;
-    [SerializeField] GameObject p1Tank2;
-    [SerializeField] GameObject p1Tank2Key;
-    [SerializeField] GameObject p1Tank3Border;
-    [SerializeField] GameObject p1Tank3Background;
-    [SerializeField] GameObject p1Tank3;
-    [SerializeField] GameObject p1Tank3Key;
 
     [Header("GUI controller for p2")]
     [SerializeField] GameObject p2Ready;
@@ -47,14 +39,6 @@ public class SelectScreen : MonoBehaviour
     [Header("p2 boxes & tanks")]
     [SerializeField] GameObject p2Box2;
     [SerializeField] GameObject p2Box3;
-    [SerializeField] GameObject p2Tank2Border;
-    [SerializeField] GameObject p2Tank2Background;
-    [SerializeField] GameObject p2Tank2;
-    [SerializeField] GameObject p2Tank2Key;
-    [SerializeField] GameObject p2Tank3Border;
-    [SerializeField] GameObject p2Tank3Background;
-    [SerializeField] GameObject p2Tank3;
-    [SerializeField] GameObject p2Tank3Key;
 
     [Header("p1 boxes to change colors on pick")]
     [SerializeField] private SpriteRenderer srP1Box;
@@ -93,15 +77,6 @@ public class SelectScreen : MonoBehaviour
         //turns off all player 1 space
         p1Box2.SetActive(false);
         p1Box3.SetActive(false);
-        p1Tank2Border.SetActive(false);
-        p1Tank2Background.SetActive(false);
-        p1Tank2.SetActive(false);
-        p1Tank2Key.SetActive(false);
-        p1Tank3Border.SetActive(false);
-        p1Tank3Background.SetActive(false);
-        p1Tank3.SetActive(false);
-        p1Tank3Key.SetActive(false);
-
 
         //makes sure all the UI for p2 is turned off at start
         p2Redo.SetActive(false);
@@ -112,57 +87,26 @@ public class SelectScreen : MonoBehaviour
         //turns off all player 2 space
         p2Box2.SetActive(false);
         p2Box3.SetActive(false);
-        p2Tank2Border.SetActive(false);
-        p2Tank2Background.SetActive(false);
-        p2Tank2.SetActive(false);
-        p2Tank2Key.SetActive(false);
-        p2Tank3Border.SetActive(false);
-        p2Tank3Background.SetActive(false);
-        p2Tank3.SetActive(false);
-        p2Tank3Key.SetActive(false);
 
         //checks to see how many UI elements need to be turned on
         if(whatLevelAmI == 2)
         {
             //set actives for p1 if medium
             p1Box2.SetActive(true);
-            p1Tank2Border.SetActive(true);
-            p1Tank2Background.SetActive(true);
-            p1Tank2.SetActive(true);
-            p1Tank2Key.SetActive(true);
 
             //sets active for p2 if medium
             p2Box2.SetActive(true);
-            p2Tank2Border.SetActive(true);
-            p2Tank2Background.SetActive(true);
-            p2Tank2.SetActive(true);
-            p2Tank2Key.SetActive(true);
         }
         else if(whatLevelAmI == 3)
         {
             //set actives for p1 if medium
             p1Box2.SetActive(true);
             p1Box3.SetActive(true);
-            p1Tank2Border.SetActive(true);
-            p1Tank2Background.SetActive(true);
-            p1Tank2.SetActive(true);
-            p1Tank2Key.SetActive(true);
-            p1Tank3Border.SetActive(true);
-            p1Tank3Background.SetActive(true);
-            p1Tank3.SetActive(true);
-            p1Tank3Key.SetActive(true);
 
             //sets active for p2 if medium
             p2Box2.SetActive(true);
             p2Box3.SetActive(true);
-            p2Tank2Border.SetActive(true);
-            p2Tank2Background.SetActive(true);
-            p2Tank2.SetActive(true);
-            p2Tank2Key.SetActive(true);
-            p2Tank3Border.SetActive(true);
-            p2Tank3Background.SetActive(true);
-            p2Tank3.SetActive(true);
-            p2Tank3Key.SetActive(true);
+
         }
         else
         {
@@ -209,14 +153,14 @@ public class SelectScreen : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && whatLevelAmI >= 2)
+        if (Input.GetKeyDown(KeyCode.W))
         {
             Debug.Log("w was hit");
             Player1Wpick();
 
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && whatLevelAmI >= 3)
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("e was hit");
             Player1Epick();
@@ -231,14 +175,14 @@ public class SelectScreen : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.O) && whatLevelAmI >= 2)
+        if (Input.GetKeyDown(KeyCode.O))
         {
             Debug.Log("o was hit");
             Player2KeyPad2pick();
 
         }
 
-        if (Input.GetKeyDown(KeyCode.P) && whatLevelAmI >= 3)
+        if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("p was hit");
             Player2KeyPad3pick();

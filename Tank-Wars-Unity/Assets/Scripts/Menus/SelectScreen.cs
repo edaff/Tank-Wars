@@ -194,14 +194,14 @@ public class SelectScreen : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && whatLevelAmI >= 2)
         {
             Debug.Log("w was hit");
             Player1Wpick();
 
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && whatLevelAmI >= 3)
         {
             Debug.Log("e was hit");
             Player1Epick();
@@ -216,14 +216,14 @@ public class SelectScreen : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O) && whatLevelAmI >= 2)
         {
             Debug.Log("o was hit");
             Player2KeyPad2pick();
 
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && whatLevelAmI >= 3)
         {
             Debug.Log("p was hit");
             Player2KeyPad3pick();

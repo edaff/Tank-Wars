@@ -402,8 +402,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1468708947395964402}
   m_Layer: 0
-  m_Name: Tank_Sniper
-  m_TagString: Untagged
+  m_Name: Blue_Tank_Sniper
+  m_TagString: Blue Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

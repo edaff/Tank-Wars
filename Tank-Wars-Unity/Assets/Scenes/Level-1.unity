@@ -2659,7 +2659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 227385369, guid: 4cc575401872a8c489a90ffc08d63afc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8045766433907539764, guid: 4cc575401872a8c489a90ffc08d63afc,
         type: 3}
@@ -13532,7 +13532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1459388758, guid: 46a3fd245671a1f4eb461f63a0070803, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5067605054119739764, guid: 46a3fd245671a1f4eb461f63a0070803,
         type: 3}
@@ -17713,6 +17713,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedTeamTankSpawner(1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5403203630992796822, guid: 5ac06dfe282088a4da32817974f3b07c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5403203630992796816, guid: 5ac06dfe282088a4da32817974f3b07c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17781,6 +17786,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlueTeamTankSpawner(1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754779310427303224, guid: 1bbf8be7ae26fa9419dc37e490995d3b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6754779310427303230, guid: 1bbf8be7ae26fa9419dc37e490995d3b,
         type: 3}

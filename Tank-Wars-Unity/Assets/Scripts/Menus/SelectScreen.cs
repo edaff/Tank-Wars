@@ -56,6 +56,21 @@ public class SelectScreen : MonoBehaviour
     [SerializeField] GameObject p2Tank3;
     [SerializeField] GameObject p2Tank3Key;
 
+    [Header("p1 boxes to change colors on pick")]
+    [SerializeField] private SpriteRenderer srP1Box;
+    [SerializeField] private SpriteRenderer srP1Box2;
+    [SerializeField] private SpriteRenderer srP1Box3;
+
+    [Header("p1 boxes to change colors on pick")]
+    [SerializeField] private SpriteRenderer srP2Box;
+    [SerializeField] private SpriteRenderer srP2Box2;
+    [SerializeField] private SpriteRenderer srP2Box3;
+
+    [Header("Color of Boxes")]
+    [SerializeField] private Color pickedBoxColor;
+    [SerializeField] private Color normalBoxColor;
+
+
     GameStatus currentState;
 
 
@@ -237,6 +252,7 @@ public class SelectScreen : MonoBehaviour
     {
         if(whatLevelAmI > p1ArrayIdex) 
         {
+            P1BoxColorPick();
             player1TankPicks[p1ArrayIdex] = 1;
             p1ArrayIdex++;
             return;
@@ -252,6 +268,7 @@ public class SelectScreen : MonoBehaviour
     {
         if (whatLevelAmI > p1ArrayIdex)
         {
+            P1BoxColorPick();
             player1TankPicks[p1ArrayIdex] = 2;
             p1ArrayIdex++;
             return;
@@ -266,6 +283,7 @@ public class SelectScreen : MonoBehaviour
     {
         if (whatLevelAmI > p1ArrayIdex)
         {
+            P1BoxColorPick();
             player1TankPicks[p1ArrayIdex] = 3;
             p1ArrayIdex++;
             return;
@@ -282,6 +300,7 @@ public class SelectScreen : MonoBehaviour
     {
         if (whatLevelAmI > p2ArrayIdex)
         {
+            P2BoxColorPick();
             player2TankPicks[p2ArrayIdex] = 1;
             p2ArrayIdex++;
             return;
@@ -297,6 +316,7 @@ public class SelectScreen : MonoBehaviour
     {
         if (whatLevelAmI > p2ArrayIdex)
         {
+            P2BoxColorPick();
             player2TankPicks[p2ArrayIdex] = 2;
             p2ArrayIdex++;
             return;
@@ -311,6 +331,7 @@ public class SelectScreen : MonoBehaviour
     {
         if (whatLevelAmI > p2ArrayIdex)
         {
+            P2BoxColorPick();
             player2TankPicks[p2ArrayIdex] = 3;
             p2ArrayIdex++;
             return;
@@ -329,6 +350,9 @@ public class SelectScreen : MonoBehaviour
         p1Ready.SetActive(false);
         p1PickingText.SetActive(false);
         p1Background.SetActive(false);
+
+        ReSetColorsOnBoxesForP1();                      //reset the colors of the boxes
+
         p1ArrayIdex = 0;
     }
 
@@ -350,6 +374,9 @@ public class SelectScreen : MonoBehaviour
         p2Ready.SetActive(false);
         p2PickingText.SetActive(false);
         p2Background.SetActive(false);
+
+        ReSetColorsOnBoxesForP2();                  //reset the colors of the boxes
+
         p2ArrayIdex = 0;
     }
 
@@ -365,5 +392,77 @@ public class SelectScreen : MonoBehaviour
     //end of player 2 GUI control functions
 
 
+    //this function will reset all box colors back to its orginal color
+    private void ReSetColorsOnBoxesForP1()
+    {
+        if(whatLevelAmI == 1)
+        {
+            srP1Box.color = normalBoxColor;
+        }
+        else if(whatLevelAmI == 2)
+        {
+            srP1Box.color = normalBoxColor;
+            srP1Box2.color = normalBoxColor;
+        }
+        else
+        {
+            srP1Box.color = normalBoxColor;
+            srP1Box2.color = normalBoxColor;
+            srP1Box3.color = normalBoxColor;
+        }
+    }
 
+    //this function will reset all box colors back to its orginal color
+    private void ReSetColorsOnBoxesForP2()
+    {
+        if (whatLevelAmI == 1)
+        {
+            srP2Box.color = normalBoxColor;
+        }
+        else if (whatLevelAmI == 2)
+        {
+            srP2Box.color = normalBoxColor;
+            srP2Box2.color = normalBoxColor;
+        }
+        else
+        {
+            srP2Box.color = normalBoxColor;
+            srP2Box2.color = normalBoxColor;
+            srP2Box3.color = normalBoxColor;
+        }
+    }
+
+    //this function will changed the boxes of player 1
+    private void P1BoxColorPick()
+    {
+        if(p1ArrayIdex == 0)
+        {
+            srP1Box.color = pickedBoxColor;
+        }
+        else if(p1ArrayIdex == 1)
+        {
+            srP1Box2.color = pickedBoxColor;
+        }
+        else
+        {
+            srP1Box3.color = pickedBoxColor;
+        }
+    }
+
+    //this function will changed the boxes of player 2
+    private void P2BoxColorPick()
+    {
+        if (p2ArrayIdex == 0)
+        {
+            srP2Box.color = pickedBoxColor;
+        }
+        else if (p2ArrayIdex == 1)
+        {
+            srP2Box2.color = pickedBoxColor;
+        }
+        else
+        {
+            srP2Box3.color = pickedBoxColor;
+        }
+    }
 }

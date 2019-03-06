@@ -68,5 +68,14 @@ public class GameStatus : MonoBehaviour
         return this.difficuityInfo;
     }
 
+    public bool GetPlayer1WinLoseInfo()
+    {
+        return this.player1Wins;
+    }
+
+    public bool GetPlayer2WinLoseInfo()
+    {
+        return this.player2Wins;
+    }
 
 }

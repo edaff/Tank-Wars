@@ -231,10 +231,10 @@ public class Turns : MonoBehaviour
         Tank currentTank = gs.getPlayerTank(playerTurn, currentTankCoordinates);
         TileHighlighter.highlightValidTiles(currentTank.getWeapon().getValidAttacks(gs.getGrid()), round);
         if (playerTurn == PlayerColors.Red) {
-            gs.highlightPlayerTiles(PlayerColors.Blue, Rounds.Attack);
+            gs.highlightPlayerTiles(PlayerColors.Blue, Rounds.Gamble);
         }
         else {
-            gs.highlightPlayerTiles(PlayerColors.Red, Rounds.Attack);
+            gs.highlightPlayerTiles(PlayerColors.Red, Rounds.Gamble);
         }
     }
 
@@ -251,6 +251,9 @@ public class Turns : MonoBehaviour
                 if(!updateState){
                     return true;
                 }
+
+                // Do knockback
+                handleKnockback(currentPlayerTankCoordinates, targetPlayerTankCoordinates);
             }
             else {
                 if(!updateState){
@@ -271,6 +274,91 @@ public class Turns : MonoBehaviour
         }
 
         return true;
+    }
+
+    private void handleKnockback(CoordinateSet currentTankCoordinates, CoordinateSet targetTankCoordinates) {
+        Tank currentTank;
+        Tank targetTank;
+        ArrayList knockbackArray = new ArrayList();
+        CoordinateSet knockbackCoordinates = new CoordinateSet();
+        PlayerColors knockbackPlayer;
+        bool validKnockback = true;
+
+        if (playerTurn == PlayerColors.Red) {
+            currentTank = gs.getPlayerTank(PlayerColors.Red, currentTankCoordinates);
+            targetTank = gs.getPlayerTank(PlayerColors.Blue, targetTankCoordinates);
+            knockbackPlayer = PlayerColors.Blue;
+        }
+        else {
+            currentTank = gs.getPlayerTank(PlayerColors.Blue, currentTankCoordinates);
+            targetTank = gs.getPlayerTank(PlayerColors.Red, targetTankCoordinates);
+            knockbackPlayer = PlayerColors.Red;
+        }
+
+        int knockback = currentTank.getWeapon().getKnockback();
+        if(knockback == 0) {
+            return;
+        }
+
+        // Figure out which direction to knockback the target tank
+        if (currentTankCoordinates.getX() == targetTankCoordinates.getX()) {
+            // Left
+            if (currentTankCoordinates.getY() < targetTankCoordinates.getY()) {
+                // knockbackCoordinates = new CoordinateSet(targetTankCoordinates.getX(), targetTankCoordinates.getY() + knockback);
+                for(int i = targetTankCoordinates.getY() + 1; i <= targetTankCoordinates.getY() + knockback; i++) {
+                    knockbackArray.Add(new CoordinateSet(targetTankCoordinates.getX(), i));
+                }
+            }
+            // Right
+            else {
+                // knockbackCoordinates = new CoordinateSet(targetTankCoordinates.getX(), targetTankCoordinates.getY() - knockback);
+                for (int i = targetTankCoordinates.getY() - 1; i >= targetTankCoordinates.getY() - knockback; i--) {
+                    knockbackArray.Add(new CoordinateSet(targetTankCoordinates.getX(), i));
+                }
+            }
+        }
+        else if (currentTankCoordinates.getY() == targetTankCoordinates.getY()) {
+            // Up
+            if (currentTankCoordinates.getX() < targetTankCoordinates.getX()) {
+                //knockbackCoordinates = new CoordinateSet(targetTankCoordinates.getX() + knockback, targetTankCoordinates.getY() );
+                for (int i = targetTankCoordinates.getX() + 1; i <= targetTankCoordinates.getX() + knockback; i++) {
+                    knockbackArray.Add(new CoordinateSet(i, targetTankCoordinates.getY()));
+                }
+            }
+            // Down
+            else {
+                //knockbackCoordinates = new CoordinateSet(targetTankCoordinates.getX() - knockback, targetTankCoordinates.getY());
+                for (int i = targetTankCoordinates.getX() - 1; i >= targetTankCoordinates.getX(); i--) {
+                    knockbackArray.Add(new CoordinateSet(i, targetTankCoordinates.getY()));
+                }
+            }
+        }
+
+        for(int i = 0; i < knockbackArray.Count; i++) {
+            validKnockback = gs.checkValidMove(knockbackPlayer, targetTankCoordinates, (CoordinateSet)knockbackArray[i], false);
+
+            if (validKnockback) {
+                knockbackCoordinates = (CoordinateSet)knockbackArray[i];
+            }
+            else {
+                if(i == 0) {
+                    return;
+                }
+            }
+        }
+
+        if (gs.checkValidMove(knockbackPlayer, targetTankCoordinates, knockbackCoordinates, true)) {
+
+            if (targetTank is CannonTank) {
+                tankClicked2.transform.position = new Vector3(knockbackCoordinates.getX(), 1, knockbackCoordinates.getY());
+            }
+            else {
+                tankClicked2.transform.position = new Vector3(knockbackCoordinates.getX(), 0.8f, knockbackCoordinates.getY());
+            }
+        }
+
+        // If the move was invalid, take damage
+        targetTank.decrementHealth(10);
     }
 
     private void handleGamble(RaycastHit hit) {
@@ -295,6 +383,7 @@ public class Turns : MonoBehaviour
         round = Rounds.Move;
         changeTurns();
         printTurn();
+        gs.updatePlayerHealthBars(hpController);
     }
 
     private void handleGreedyAi() {
@@ -317,7 +406,14 @@ public class Turns : MonoBehaviour
         // Otherwise, it will try and move closer to the closest player.
         if(!handleAttack(false))
         {
-            blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
+            Tank aiTank = gs.getPlayerTank(PlayerColors.Blue, aiLocation);
+            if (aiTank is CannonTank) {
+                blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
+            }
+            else {
+                blue.transform.position = new Vector3(targetLocation.getX(), 0.8f, targetLocation.getY());
+            }
+
             gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
 
             // AI will game 1/5 of the time if it moves
@@ -334,6 +430,7 @@ public class Turns : MonoBehaviour
         handleAttack(true);
         changeTurns();
         round = Rounds.Move;
+        gs.updatePlayerHealthBars(hpController);
     }
 
     private void handleMinMaxAi(){
@@ -350,9 +447,17 @@ public class Turns : MonoBehaviour
         aiLocation = new CoordinateSet((int)blue.transform.position.x, (int)blue.transform.position.z);
         tankClicked = blue;
         tankClicked2 = red;
+
         if(!handleAttack(false))
         {
-            blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
+            Tank aiTank = gs.getPlayerTank(PlayerColors.Blue, aiLocation);
+            if (aiTank is CannonTank) {
+                blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
+            }
+            else {
+                blue.transform.position = new Vector3(targetLocation.getX(), 0.8f, targetLocation.getY());
+            }
+            
             gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
 
             // AI will game 1/5 of the time if it moves
@@ -369,6 +474,7 @@ public class Turns : MonoBehaviour
         handleAttack(true);
         changeTurns();
         round = Rounds.Move;
+        gs.updatePlayerHealthBars(hpController);
     }
 
     public string[] getPlayerPowerups(PlayerColors player) {

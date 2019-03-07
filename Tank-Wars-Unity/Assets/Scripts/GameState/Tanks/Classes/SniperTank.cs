@@ -9,7 +9,7 @@ public class SniperTank : Tank
     // Constructors
     public SniperTank(Player player, CoordinateSet coordinates) {
         this.health = 100;
-        this.movement = 1;
+        this.movement = 5;
         this.player = player;
         this.coordinates = coordinates;
         this.weapon = new Sniper(this);
@@ -21,6 +21,11 @@ public class SniperTank : Tank
     public override bool isValidMovement(Grid grid, CoordinateSet targetCoordinates, bool updateState) {
         bool validMovement = false;
         GridNode targetNode = grid.getGridNode(targetCoordinates);
+
+        // If this coordinate set is (-1,-1), the target coordinates were out of bounds.
+        if (targetNode.getCoordinateSet().getX() == -1 && targetNode.getCoordinateSet().getY() == -1) {
+            return false;
+        }
 
         // Check for valid movement
         for (int i = 0; i < 4; i++) {
@@ -38,13 +43,13 @@ public class SniperTank : Tank
 
                 Debug.Log("Player " + player.getPlayerColor() + " moves to position " +
                           targetCoordinates.getX() + ", " + targetCoordinates.getY());
-        }
 
-            if (grid.getGridNode(coordinates).getTerrain() is Water) {
-                this.health -= 10;
-            }
-            else if (grid.getGridNode(coordinates).getTerrain() is Lava) {
-                this.health = 0;
+                if (grid.getGridNode(coordinates).getTerrain() is Water) {
+                    this.health -= 10;
+                }
+                else if (grid.getGridNode(coordinates).getTerrain() is Lava) {
+                    this.health = 0;
+                }
             }
 
             return true;

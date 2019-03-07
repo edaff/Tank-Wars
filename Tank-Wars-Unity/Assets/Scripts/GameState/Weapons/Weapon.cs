@@ -9,6 +9,7 @@ public abstract class Weapon
     protected int damage;
     protected Orientations orientation;
     protected Tank tank;
+    protected int knockback;
 
     // Functions
     virtual public bool isValidAttack(Grid grid, CoordinateSet targetCoordinates, bool updateState) {
@@ -37,6 +38,14 @@ public abstract class Weapon
 
     public void setOrientation(Orientations orientation ) {
         this.orientation = orientation;
+    }
+
+    public void setKnockback(int knockback) {
+        this.knockback = knockback;
+    }
+
+    public int getKnockback() {
+        return this.knockback;
     }
 
     virtual public ArrayList getValidAttacks(Grid grid) {

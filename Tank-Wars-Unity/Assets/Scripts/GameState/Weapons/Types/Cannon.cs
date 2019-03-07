@@ -11,6 +11,7 @@ public class Cannon : Weapon
         this.damage = 30;
         this.distance = 3;
         this.tank = tank;
+        this.knockback = 1;
 
         // Orientation is up by default for red and down by default for blue
         this.orientation = (this.tank.getPlayer().getPlayerColor() == PlayerColors.Red) ? Orientations.Up : Orientations.Down; 

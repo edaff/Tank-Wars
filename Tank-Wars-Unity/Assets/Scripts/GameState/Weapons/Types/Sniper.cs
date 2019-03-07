@@ -10,6 +10,7 @@ public class Sniper : Weapon {
         this.damage = 10;
         this.distance = 10;
         this.tank = tank;
+        this.knockback = 2;
 
         // Orientation is up by default for red and down by default for blue
         orientation = (tank.getPlayer().getPlayerColor() == PlayerColors.Red) ? Orientations.Up : Orientations.Down;

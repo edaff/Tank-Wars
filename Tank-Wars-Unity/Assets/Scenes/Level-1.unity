@@ -19161,11 +19161,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedTeamTankSpawner(1)
       objectReference: {fileID: 0}
-    - target: {fileID: 5403203630992796822, guid: 5ac06dfe282088a4da32817974f3b07c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5403203630992796816, guid: 5ac06dfe282088a4da32817974f3b07c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19234,11 +19229,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlueTeamTankSpawner(1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6754779310427303224, guid: 1bbf8be7ae26fa9419dc37e490995d3b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6754779310427303230, guid: 1bbf8be7ae26fa9419dc37e490995d3b,
         type: 3}

@@ -182,7 +182,7 @@ public class Turns : MonoBehaviour
 
             if (gs.checkValidMove(playerTurn, tankCoordinates, tileCoordinates, true)) {
                 TileHighlighter.resetTiles();
-                Tank currentTank = gs.getPlayerTank(playerTurn, tankCoordinates);
+                Tank currentTank = gs.getPlayerTank(playerTurn, tileCoordinates);
 
                 if(currentTank is CannonTank) {
                     tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 1, tileClicked.transform.position.z);
@@ -228,14 +228,15 @@ public class Turns : MonoBehaviour
     }
 
     private void highlightAttackTiles(CoordinateSet currentTankCoordinates) {
-        Tank currentTank = gs.getPlayerTank(playerTurn, currentTankCoordinates);
-        TileHighlighter.highlightValidTiles(currentTank.getWeapon().getValidAttacks(gs.getGrid()), round);
         if (playerTurn == PlayerColors.Red) {
             gs.highlightPlayerTiles(PlayerColors.Blue, Rounds.Gamble);
         }
         else {
             gs.highlightPlayerTiles(PlayerColors.Red, Rounds.Gamble);
         }
+
+        Tank currentTank = gs.getPlayerTank(playerTurn, currentTankCoordinates);
+        TileHighlighter.highlightValidTiles(currentTank.getWeapon().getValidAttacks(gs.getGrid()), round);
     }
 
     private bool handleAttack(bool updateState) {

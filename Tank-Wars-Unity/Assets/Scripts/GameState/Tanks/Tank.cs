@@ -262,7 +262,7 @@ public abstract class Tank
                         break;
                     case 3:
                         // Check for index out of bounds
-                        if (currentTankY - i < 0) { continue; }
+                        if (currentTankY - j < 0) { continue; }
 
                         // Check for mountains
                         if (grid.getGridNode(currentTankX, currentTankY - j).getTerrain() is Mountain) {

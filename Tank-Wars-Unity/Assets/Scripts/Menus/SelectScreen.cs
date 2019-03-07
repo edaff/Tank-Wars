@@ -16,6 +16,9 @@ public class SelectScreen : MonoBehaviour
     int p1ArrayIdex = 0;                                            //keeps track of players 1 tank pick in the array
     int p2ArrayIdex = 0;                                            //keeps track of players 2 tank pick in the array
 
+    [Header("Was PvAI selected?")]
+    [SerializeField] bool isAiOn;
+
     [Header("Holds Player picks")]
     [SerializeField] int[] player1TankPicks;                        //holds players 1 picks
     [SerializeField] int[] player2TankPicks;                        //holds players 1 picks
@@ -62,6 +65,7 @@ public class SelectScreen : MonoBehaviour
     {
         currentState = FindObjectOfType<GameStatus>();
         whatLevelAmI = currentState.GetDifficuity();
+        isAiOn = currentState.GetAiON();
 
 
 
@@ -111,6 +115,17 @@ public class SelectScreen : MonoBehaviour
         else
         {
             //well its not easy, medium or hard, so dont do nothing.
+        }
+
+        if (isAiOn)
+        {
+            if(whatLevelAmI == 1)
+            {
+                P2BoxColorPick();
+                player2TankPicks[p2ArrayIdex] = 1;
+                p2DonePicking();
+
+            }
         }
 
 
@@ -168,24 +183,24 @@ public class SelectScreen : MonoBehaviour
         }
 
         //player 2 keys
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && !isAiOn)
         {
             Debug.Log("i was hit");
-            Player2KeyPad1pick();
+            Player2Ipick();
 
         }
 
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O) && !isAiOn)
         {
             Debug.Log("o was hit");
-            Player2KeyPad2pick();
+            Player2Opick();
 
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && !isAiOn)
         {
             Debug.Log("p was hit");
-            Player2KeyPad3pick();
+            Player2Ppick();
 
         }
 
@@ -240,7 +255,7 @@ public class SelectScreen : MonoBehaviour
     //end of player 1 functions
 
     //player 2 pick functions
-    private void Player2KeyPad1pick()
+    private void Player2Ipick()
     {
         if (whatLevelAmI > p2ArrayIdex)
         {
@@ -256,7 +271,7 @@ public class SelectScreen : MonoBehaviour
         }
     }
 
-    private void Player2KeyPad2pick()
+    private void Player2Opick()
     {
         if (whatLevelAmI > p2ArrayIdex)
         {
@@ -271,7 +286,7 @@ public class SelectScreen : MonoBehaviour
         }
     }
 
-    private void Player2KeyPad3pick()
+    private void Player2Ppick()
     {
         if (whatLevelAmI > p2ArrayIdex)
         {

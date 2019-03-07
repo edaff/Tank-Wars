@@ -15,6 +15,9 @@ public class GameStatus : MonoBehaviour
     [SerializeField] bool player1Wins = false;
     [SerializeField] bool player2Wins = false;
 
+    [Header("False = PvP : true = PvAI")]
+    [SerializeField] bool aiON = false;
+
 
     SceneLoader nextLevel;
 
@@ -24,9 +27,10 @@ public class GameStatus : MonoBehaviour
     }
 
     //sets difficuity from start screen
-    public void SetDifficuity(int difficuity)
+    public void SetDifficuity(int difficuity, bool aiON)
     {
         this.difficuityInfo = difficuity;
+        this.aiON = aiON;
         nextLevel.Load10x10SelectScreen();
     }
 
@@ -68,5 +72,18 @@ public class GameStatus : MonoBehaviour
         return this.difficuityInfo;
     }
 
+    public bool GetPlayer1WinLoseInfo()
+    {
+        return this.player1Wins;
+    }
 
+    public bool GetPlayer2WinLoseInfo()
+    {
+        return this.player2Wins;
+    }
+
+    public bool GetAiON()
+    {
+        return this.aiON;
+    }
 }

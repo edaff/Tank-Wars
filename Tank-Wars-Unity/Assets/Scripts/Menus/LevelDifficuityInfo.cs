@@ -7,6 +7,7 @@ public class LevelDifficuityInfo : MonoBehaviour
 {
    
     [SerializeField] int difficuity;                                //this will be passed in tankSelect
+    [SerializeField] bool aiON = false;
     GameStatus setDifficuity;
 
     void Start()
@@ -14,24 +15,48 @@ public class LevelDifficuityInfo : MonoBehaviour
         setDifficuity = FindObjectOfType<GameStatus>();
     }
 
-
-
+    //PvP
     public void Easy()
     {
         difficuity = 1;
-        setDifficuity.SetDifficuity(difficuity);
+        aiON = false;
+        setDifficuity.SetDifficuity(difficuity, aiON);
     }
 
     public void Medium()
     {
         difficuity = 2;
-        setDifficuity.SetDifficuity(difficuity);
+        aiON = false;
+        setDifficuity.SetDifficuity(difficuity, aiON);
     }
 
     public void Hard()
     {
         difficuity = 3;
-        setDifficuity.SetDifficuity(difficuity);
+        aiON = false;
+        setDifficuity.SetDifficuity(difficuity, aiON);
+    }
+
+    //PvAI
+    public void EasyAI()
+    {
+        difficuity = 1;
+        aiON = true;
+        setDifficuity.SetDifficuity(difficuity, aiON);
+    }
+
+    public void MediumAI()
+    {
+        difficuity = 2;
+        aiON = true;
+        setDifficuity.SetDifficuity(difficuity, aiON);
+    }
+
+    public void HardAI()
+    {
+        difficuity = 3;
+        aiON = true;
+        setDifficuity.SetDifficuity(difficuity, aiON);
     }
 
 }

@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5403203630992796816
 Transform:
   m_ObjectHideFlags: 0
@@ -46,6 +46,6 @@ MonoBehaviour:
   whatLevelAmI: 1
   redTanksPreFabs:
   - {fileID: 1459388758, guid: 46a3fd245671a1f4eb461f63a0070803, type: 3}
-  - {fileID: 8058614053703630323, guid: 9ca14cb2cd9f2f9488de8e8393b878c1, type: 3}
   - {fileID: 1739614706181739206, guid: afad7c43e74c5974a835a00c62c9936d, type: 3}
+  - {fileID: 8058614053703630323, guid: 9ca14cb2cd9f2f9488de8e8393b878c1, type: 3}
   getPicks: 

@@ -20,7 +20,7 @@ public class BlueTankSpawner : MonoBehaviour
         whatLevelAmI = currentState.GetDifficuity();
 
         getPicks = new int[] { 0, 0, 0 };
-        getPicks = currentState.getPlayer1TankPicks();
+        getPicks = currentState.getPlayer2TankPicks();
 
         if ((getPicks[0] - 1) == 0)
         { Instantiate(redTanksPreFabs[(getPicks[0] - 1)], tankSpawnLocation, Quaternion.Euler(0, 180, 0)); }

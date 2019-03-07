@@ -16,6 +16,9 @@ public class SelectScreen : MonoBehaviour
     int p1ArrayIdex = 0;                                            //keeps track of players 1 tank pick in the array
     int p2ArrayIdex = 0;                                            //keeps track of players 2 tank pick in the array
 
+    [Header("Was PvAI selected?")]
+    [SerializeField] bool isAiOn;
+
     [Header("Holds Player picks")]
     [SerializeField] int[] player1TankPicks;                        //holds players 1 picks
     [SerializeField] int[] player2TankPicks;                        //holds players 1 picks
@@ -62,57 +65,17 @@ public class SelectScreen : MonoBehaviour
     {
         currentState = FindObjectOfType<GameStatus>();
         whatLevelAmI = currentState.GetDifficuity();
-
-
+        isAiOn = currentState.GetAiON();
 
         player1TankPicks = new int[] {0, 0, 0};                     //players 1 picks, 0 = empty, 1 = normal tank, 2 = sniper tank, 3 = mortar tank
         player2TankPicks = new int[] {0, 0, 0};                     //checks which difficulty was picked, 1 = easy, 2 = medium , 3 = hard.
 
-        //makes sure all the UI for p1 is turned off at start
-        p1Redo.SetActive(false);
-        p1Ready.SetActive(false);
-        p1PickingText.SetActive(false);
-        p1Background.SetActive(false);
+        UIInit();
 
-        //turns off all player 1 space
-        p1Box2.SetActive(false);
-        p1Box3.SetActive(false);
-
-        //makes sure all the UI for p2 is turned off at start
-        p2Redo.SetActive(false);
-        p2Ready.SetActive(false);
-        p2PickingText.SetActive(false);
-        p2Background.SetActive(false);
-
-        //turns off all player 2 space
-        p2Box2.SetActive(false);
-        p2Box3.SetActive(false);
-
-        //checks to see how many UI elements need to be turned on
-        if(whatLevelAmI == 2)
+        if (isAiOn)
         {
-            //set actives for p1 if medium
-            p1Box2.SetActive(true);
-
-            //sets active for p2 if medium
-            p2Box2.SetActive(true);
+            AiIsOn();
         }
-        else if(whatLevelAmI == 3)
-        {
-            //set actives for p1 if medium
-            p1Box2.SetActive(true);
-            p1Box3.SetActive(true);
-
-            //sets active for p2 if medium
-            p2Box2.SetActive(true);
-            p2Box3.SetActive(true);
-
-        }
-        else
-        {
-            //well its not easy, medium or hard, so dont do nothing.
-        }
-
 
     }
 
@@ -148,44 +111,44 @@ public class SelectScreen : MonoBehaviour
         //player 1 keys
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("Q was hit");
+            //Debug.Log("Q was hit");
             Player1Qpick();
 
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log("w was hit");
+            //Debug.Log("w was hit");
             Player1Wpick();
 
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("e was hit");
+            //Debug.Log("e was hit");
             Player1Epick();
             
         }
 
         //player 2 keys
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && !isAiOn)
         {
-            Debug.Log("i was hit");
-            Player2KeyPad1pick();
+            //Debug.Log("i was hit");
+            Player2Ipick();
 
         }
 
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O) && !isAiOn)
         {
-            Debug.Log("o was hit");
-            Player2KeyPad2pick();
+            //Debug.Log("o was hit");
+            Player2Opick();
 
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && !isAiOn)
         {
-            Debug.Log("p was hit");
-            Player2KeyPad3pick();
+            //Debug.Log("p was hit");
+            Player2Ppick();
 
         }
 
@@ -240,7 +203,7 @@ public class SelectScreen : MonoBehaviour
     //end of player 1 functions
 
     //player 2 pick functions
-    private void Player2KeyPad1pick()
+    private void Player2Ipick()
     {
         if (whatLevelAmI > p2ArrayIdex)
         {
@@ -256,7 +219,7 @@ public class SelectScreen : MonoBehaviour
         }
     }
 
-    private void Player2KeyPad2pick()
+    private void Player2Opick()
     {
         if (whatLevelAmI > p2ArrayIdex)
         {
@@ -271,7 +234,7 @@ public class SelectScreen : MonoBehaviour
         }
     }
 
-    private void Player2KeyPad3pick()
+    private void Player2Ppick()
     {
         if (whatLevelAmI > p2ArrayIdex)
         {
@@ -409,4 +372,88 @@ public class SelectScreen : MonoBehaviour
             srP2Box3.color = pickedBoxColor;
         }
     }
+
+    private void AiIsOn()
+    {
+        if(whatLevelAmI == 1)
+        {
+            P2BoxColorPick();
+            player2TankPicks[p2ArrayIdex] = 1;
+            p2DonePicking();
+
+        }
+        else if(whatLevelAmI == 2)
+        {
+            P2BoxColorPick();
+            player2TankPicks[0] = Random.Range(1, 3);
+            p2ArrayIdex++;
+            P2BoxColorPick();
+            player2TankPicks[1] = Random.Range(1, 3);
+            p2DonePicking();
+        }
+        else if(whatLevelAmI == 3)
+        {
+            P2BoxColorPick();
+            player2TankPicks[0] = Random.Range(1, 3);
+            p2ArrayIdex++;
+            P2BoxColorPick();
+            player2TankPicks[1] = Random.Range(1, 3);
+            p2ArrayIdex++;
+            P2BoxColorPick();
+            player2TankPicks[2] = Random.Range(1, 3);
+            p2ArrayIdex++;
+            p2DonePicking();
+        }
+    }
+
+    private void UIInit()
+    {
+        //makes sure all the UI for p1 is turned off at start
+        p1Redo.SetActive(false);
+        p1Ready.SetActive(false);
+        p1PickingText.SetActive(false);
+        p1Background.SetActive(false);
+
+        //turns off all player 1 space
+        p1Box2.SetActive(false);
+        p1Box3.SetActive(false);
+
+        //makes sure all the UI for p2 is turned off at start
+        p2Redo.SetActive(false);
+        p2Ready.SetActive(false);
+        p2PickingText.SetActive(false);
+        p2Background.SetActive(false);
+
+        //turns off all player 2 space
+        p2Box2.SetActive(false);
+        p2Box3.SetActive(false);
+
+        //checks to see how many UI elements need to be turned on
+        if (whatLevelAmI == 2)
+        {
+            //set actives for p1 if medium
+            p1Box2.SetActive(true);
+
+            //sets active for p2 if medium
+            p2Box2.SetActive(true);
+        }
+        else if (whatLevelAmI == 3)
+        {
+            //set actives for p1 if medium
+            p1Box2.SetActive(true);
+            p1Box3.SetActive(true);
+
+            //sets active for p2 if medium
+            p2Box2.SetActive(true);
+            p2Box3.SetActive(true);
+
+        }
+        else
+        {
+            //well its not easy, medium or hard, so do nothing.
+        }
+
+    }
+
+
 }

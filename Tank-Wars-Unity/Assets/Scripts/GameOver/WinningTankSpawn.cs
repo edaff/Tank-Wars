@@ -25,11 +25,11 @@ public class WinningTankSpawn : MonoBehaviour
         //blueTeamWon = true;       //blue won
         if (blueTeamWon)
         {
-            Instantiate(tanksPreFabsBlue[Random.Range(0, tanksPreFabsBlue.Length)], tankSpawnLocation, Quaternion.Euler(0, 25, 0));
+            Instantiate(tanksPreFabsBlue[Random.Range(0, tanksPreFabsBlue.Length)], tankSpawnLocation, Quaternion.Euler(0, 180, 0));
         }
         else
         {
-            Instantiate(tanksPreFabsRed[Random.Range(0, tanksPreFabsRed.Length)], tankSpawnLocation, Quaternion.Euler(0, 25, 0));
+            Instantiate(tanksPreFabsRed[Random.Range(0, tanksPreFabsRed.Length)], tankSpawnLocation, Quaternion.Euler(0, 180, 0));
         }
     }
 }

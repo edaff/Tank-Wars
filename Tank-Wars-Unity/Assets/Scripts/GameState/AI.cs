@@ -70,7 +70,7 @@ public class AI
     		for(int j = 0; j < gridSize; j++)
     		{
     			 tileCoordinates = new CoordinateSet(i, j);
-    			 if(gs.checkValidMove(PlayerColors.Blue, tankCoordinates, tileCoordinates, false))
+    			 if(gs.checkValidMove(PlayerColors.Blue, tankCoordinates, tileCoordinates, false) && !(gs.getGrid().getGridNode(tileCoordinates).getTerrain() is Lava))
     			 {
     			 	validMoves.Add(tileCoordinates);
     			 }

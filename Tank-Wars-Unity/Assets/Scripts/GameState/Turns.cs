@@ -21,6 +21,7 @@ public class Turns : MonoBehaviour
 	public bool gamblePressed = false;
     public bool aiON;
     public AI ai;
+    public MinMaxAI mmai;
     ClickItems items;
     public CameraAngles camera;
     public GameObject mainCamera;
@@ -69,6 +70,7 @@ public class Turns : MonoBehaviour
         // Run if ai's turn
         if(playerTurn == PlayerColors.Blue && aiON){
             handleGreedyAi();
+            //handleMinMaxAi();
         }
         // Skip turn if spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -303,6 +305,41 @@ public class Turns : MonoBehaviour
 
         // The greedy AI will stay still if there is already a valid attack
         // Otherwise, it will try and move closer to the closest player.
+        if(!handleAttack(false))
+        {
+            blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
+            gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
+
+            // AI will game 1/5 of the time if it moves
+            System.Random randomNumberGenerator = new System.Random();
+            int randomNumber = randomNumberGenerator.Next(1, 4);
+            if(randomNumber == 1)
+            {
+                string powerup = gs.playerGamble(playerTurn, targetLocation);
+                Debug.Log("Player " + playerTurn + "'s gamble results in: " + powerup);
+            }
+
+        }
+
+        handleAttack(true);
+        changeTurns();
+        round = Rounds.Move;
+    }
+
+    private void handleMinMaxAi(){
+        mmai = new MinMaxAI(redTanks, blueTanks, gs);
+        CoordinateSet aiLocation;
+        CoordinateSet playerLocation;
+        CoordinateSet targetLocation;
+        GameObject blue;
+        GameObject red;
+
+        targetLocation = mmai.MinMaxTurn();
+        blue = mmai.getAITank();
+        red = mmai.getPlayerTank();
+        aiLocation = new CoordinateSet((int)blue.transform.position.x, (int)blue.transform.position.z);
+        tankClicked = blue;
+        tankClicked2 = red;
         if(!handleAttack(false))
         {
             blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());

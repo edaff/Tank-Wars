@@ -39,12 +39,14 @@ public class Turns : MonoBehaviour
         tankSet1 = gameStatus.GetComponent<GameStatus>().getPlayer1TankPicks();
         tankSet2 = gameStatus.GetComponent<GameStatus>().getPlayer2TankPicks();
 
-        //Check if ai mode is on
-        aiON = true;
-        //Gameobjects used by ai
+        // Check if the AI is on or off, based on what the user chose in the main menu
+        aiON = (bool)gameStatus.GetComponent<GameStatus>().GetAiON();
+
+        // Gameobjects used by ai
         redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
         blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
 
+        // Set a default level if this isn't initialized so that the game can still be played
         if(currentLevel != 0) {
             gs = new GameState(currentLevel, tankSet1, tankSet2);
         }
@@ -180,7 +182,15 @@ public class Turns : MonoBehaviour
 
             if (gs.checkValidMove(playerTurn, tankCoordinates, tileCoordinates, true)) {
                 TileHighlighter.resetTiles();
-                tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 1, tileClicked.transform.position.z);
+                Tank currentTank = gs.getPlayerTank(playerTurn, tankCoordinates);
+
+                if(currentTank is CannonTank) {
+                    tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 1, tileClicked.transform.position.z);
+                }
+                else {
+                    tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 0.8f, tileClicked.transform.position.z);
+                }
+
                 tileClicked = null;
                 tankClicked = null;
                 round = Rounds.Attack;

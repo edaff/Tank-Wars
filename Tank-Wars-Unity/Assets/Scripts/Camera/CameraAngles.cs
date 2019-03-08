@@ -13,16 +13,34 @@ public class CameraAngles : MonoBehaviour
     float yMinLimit = 0f;
     float yMaxLimit = 90f;
     float distanceMin = 10f;
-    float distanceMax = 10f;
+    float distanceMax = 100f;
     float smoothTime = 2f;
     float rotationYAxis = 0.0f;
     float rotationXAxis = 0.0f;
     float velocityX = 0.0f;
     float velocityY = 0.0f;
+    GameObject gameStatus;
 
     void Start()
     {
-        middle = new Vector3(4.5f, 0f, 4.5f);
+        gameStatus = GameObject.Find("GameStatus");
+        Levels currentLevel = (Levels)gameStatus.GetComponent<GameStatus>().GetDifficuity();
+
+        switch (currentLevel) {
+            case Levels.Level1:
+                middle = new Vector3(4.5f, 0f, 4.5f);
+                break;
+            case Levels.Level2:
+                middle = new Vector3(7f, 0f, 7f);
+                distance = 15.0f;
+                break;
+            case Levels.Level3:
+                break;
+            default:
+                middle = new Vector3(4.5f, 0f, 4.5f);
+                break;
+        }
+
         Vector3 angles = transform.eulerAngles;
         rotationYAxis = angles.y;
         rotationXAxis = angles.x + 50;

@@ -62,6 +62,7 @@ public class Turns : MonoBehaviour
         // Get main camera object for CameraAngles functions
         mainCamera = GameObject.Find("Main Camera");
         camera = mainCamera.GetComponent<CameraAngles>();
+        camera.translateToPlayer(PlayerColors.Red);
         gs.highlightPlayerTiles(playerTurn, round);
     }
 

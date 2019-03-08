@@ -21,8 +21,11 @@ public class TileHighlighter
                     if (round == Rounds.Move) {
                         meshRenderer.material.color = Color.yellow;
                     }
-                    else {
+                    else if(round == Rounds.Attack){
                         meshRenderer.material.color = Color.red;
+                    }
+                    else {
+                        meshRenderer.material.color = Color.magenta;
                     }
                 }
             }

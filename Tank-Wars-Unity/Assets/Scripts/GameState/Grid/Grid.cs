@@ -90,10 +90,24 @@ public class Grid
     }
 
     public GridNode getGridNode(int x, int y) {
+        if (x < 0 || x >= gridSize) {
+            return new GridNode(new CoordinateSet(-1, -1));
+        }
+        else if (y < 0 || y >= gridSize) {
+            return new GridNode(new CoordinateSet(-1, -1));
+        }
+
         return this.grid[x,y];
     }
 
     public GridNode getGridNode(CoordinateSet coordinates) {
+        if (coordinates.getX() < 0 || coordinates.getX() >= gridSize) {
+            return new GridNode(new CoordinateSet(-1,-1));
+        }
+        else if (coordinates.getY() < 0 || coordinates.getY() >= gridSize) {
+            return new GridNode(new CoordinateSet(-1, -1));
+        }
+
         return this.grid[coordinates.getX(), coordinates.getY()];
     }
 }

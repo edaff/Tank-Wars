@@ -10,8 +10,14 @@ public class BlueTankSpawner : MonoBehaviour
     [SerializeField] private GameObject[] redTanksPreFabs;
     [SerializeField] public int[] getPicks;
 
-    Vector3 tankSpawnLocation = new Vector3(5, 1, 9);               //this is the spawn location for the first normal tank since its heigh is not the same as the others
-    Vector3 tankSpawnLocation2 = new Vector3(5, .8f, 9);            //this spawns location for the sinper and mortar tank
+    Vector3 tankSpawnLocationLv1 = new Vector3(5, 1, 9);               //this is the spawn location for the first normal tank since its heigh is not the same as the others
+    Vector3 tankSpawnLocationDownLv1 = new Vector3(5, .8f, 9);            //this spawns location for the sinper and mortar tank
+
+    Vector3 tankSpawnLocationLv2 = new Vector3(3, 1, 14);               //this is the spawn location for the first normal tank since its heigh is not the same as the others
+    Vector3 tankSpawnLocationDownLv2 = new Vector3(3, .8f, 14);            //this spawns location for the sinper and mortar tank
+
+    Vector3 tankSpawnLocation2Lv2 = new Vector3(11, 1, 14);               //this is the spawn location for the first normal tank since its heigh is not the same as the others
+    Vector3 tankSpawnLocation2DownLv2 = new Vector3(11, .8f, 14);            //this spawns location for the sinper and mortar tank
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +28,21 @@ public class BlueTankSpawner : MonoBehaviour
         getPicks = new int[] { 0, 0, 0 };
         getPicks = currentState.getPlayer2TankPicks();
 
-        if ((getPicks[0] - 1) == 0)
-        { Instantiate(redTanksPreFabs[(getPicks[0] - 1)], tankSpawnLocation, Quaternion.Euler(0, 180, 0)); }
-        else { Instantiate(redTanksPreFabs[(getPicks[0] - 1)], tankSpawnLocation2, Quaternion.Euler(0, 180, 0)); }
+        if(whatLevelAmI == 1)
+        {
+            if ((getPicks[0] - 1) == 0)
+            { Instantiate(redTanksPreFabs[(getPicks[0] - 1)], tankSpawnLocationLv1, Quaternion.Euler(0, 180, 0)); }
+            else { Instantiate(redTanksPreFabs[(getPicks[0] - 1)], tankSpawnLocationDownLv1, Quaternion.Euler(0, 180, 0)); }
+        }
+        else if(whatLevelAmI == 2)
+        {
+            if ((getPicks[0] - 1) == 0)
+            { Instantiate(redTanksPreFabs[(getPicks[0] - 1)], tankSpawnLocationLv2, Quaternion.Euler(0, 180, 0)); }
+            else { Instantiate(redTanksPreFabs[(getPicks[0] - 1)], tankSpawnLocationDownLv2, Quaternion.Euler(0, 180, 0)); }
 
+            if ((getPicks[1] - 1) == 0)
+            { Instantiate(redTanksPreFabs[(getPicks[1] - 1)], tankSpawnLocation2Lv2, Quaternion.Euler(0, 180, 0)); }
+            else { Instantiate(redTanksPreFabs[(getPicks[1] - 1)], tankSpawnLocation2DownLv2, Quaternion.Euler(0, 180, 0)); }
+        }
     }
 }

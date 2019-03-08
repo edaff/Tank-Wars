@@ -38,6 +38,7 @@ public class MinMaxAI
             // If the player didn't choose one of their own tanks, or if that tank is dead, just ignore
             if (currentTank.isDead()) {
                 GameObject[] tempTanks = new GameObject[redTanks.Length - 1];
+                Tank[] tempTunks = new Tank[redTunks.Length - 1];
                 int count = 0;
 
                 for(int j = 0; j < redTanks.Length; j++)
@@ -47,6 +48,7 @@ public class MinMaxAI
                 		continue;
                 	}
                 	tempTanks[count] = redTanks[j];
+                	tempTunks[count] = redTunks[j];
                 	count++;
                 }
                 redTanks = tempTanks;
@@ -61,6 +63,7 @@ public class MinMaxAI
             // If the player didn't choose one of their own tanks, or if that tank is dead, just ignore
             if (currentTank.isDead()) {
                 GameObject[] tempTanks = new GameObject[blueTanks.Length - 1];
+                Tank[] tempTunks = new Tank[blueTunks.Length - 1];
                 int count = 0;
 
                 for(int j = 0; j < blueTanks.Length; j++)
@@ -70,6 +73,7 @@ public class MinMaxAI
                 		continue;
                 	}
                 	tempTanks[count] = blueTanks[j];
+                	tempTunks[count] = blueTunks[j];
                 	count++;
                 }
                 blueTanks = tempTanks;

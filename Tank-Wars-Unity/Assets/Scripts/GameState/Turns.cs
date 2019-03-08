@@ -71,8 +71,8 @@ public class Turns : MonoBehaviour
     {
         // Run if ai's turn
         if(playerTurn == PlayerColors.Blue && aiON){
-            handleGreedyAi();
-            //handleMinMaxAi();
+            //handleGreedyAi();
+            handleMinMaxAi();
         }
         // Skip turn if spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -350,6 +350,7 @@ public class Turns : MonoBehaviour
         aiLocation = new CoordinateSet((int)blue.transform.position.x, (int)blue.transform.position.z);
         tankClicked = blue;
         tankClicked2 = red;
+
         if(!handleAttack(false))
         {
             blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
@@ -370,7 +371,7 @@ public class Turns : MonoBehaviour
         changeTurns();
         round = Rounds.Move;
     }
-
+    
     public string[] getPlayerPowerups(PlayerColors player) {
         return gs.getPlayerPowerups(player);
     }

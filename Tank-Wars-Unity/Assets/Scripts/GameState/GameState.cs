@@ -6,7 +6,7 @@ public class GameState {
     public int gridSize;
     protected Player player1;
     protected Player player2;
-    protected Levels level;
+    public Levels level;
 
     public GameState(Levels level, int[] player1Tanks, int[] player2Tanks) {
         this.level = level;

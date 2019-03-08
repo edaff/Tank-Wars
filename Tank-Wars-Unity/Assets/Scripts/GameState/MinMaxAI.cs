@@ -13,12 +13,18 @@ public class MinMaxAI
     CoordinateSet minMaxMove;
     GameObject closestTank;
  	GameObject aiTank;
+ 	Tank[] redTunks;
+ 	Tank[] blueTunks;
 
-    public MinMaxAI(GameObject[] rt, GameObject[] bt, GameState gamestate)
+    public MinMaxAI(GameObject[] rt, GameObject[] bt, GameState gamestate, int[] player1Tanks, int[] player2Tanks)
     {
     	redTanks = rt;
     	blueTanks = bt;
     	gs = gamestate;
+    	Player player = new Player(PlayerColors.Red, player1Tanks, gs.level);
+        redTunks = player.createTankArray(player1Tanks, PlayerColors.Red, gs.level);
+        player = new Player(PlayerColors.Blue, player2Tanks, gs.level);
+        blueTunks = player.createTankArray(player2Tanks, PlayerColors.Red, gs.level);
     }
 
     //Remove dead tanks
@@ -276,7 +282,7 @@ public class MinMaxAI
     		{
     			int temp = 0;
 
-    			if(handleAttack((CoordinateSet)validMovesPlayer[j], valMoves, (PlayerColors)PlayerColors.Red, false))
+    			if(handleAttack(i,(CoordinateSet)validMovesPlayer[j], valMoves, (PlayerColors)PlayerColors.Red, false))
     			{
     				temp--;
     			}
@@ -305,9 +311,9 @@ public class MinMaxAI
     		int temp = 0;
     		CoordinateSet tempCoordinates = new CoordinateSet((int)redTanks[i].transform.position.x, (int)redTanks[i].transform.position.z);
 
-    		if(handleAttack(tempCoordinates, valMoves, (PlayerColors)PlayerColors.Blue, false))
+    		if(handleAttack(i,tempCoordinates, valMoves, (PlayerColors)PlayerColors.Blue, false))
     		{
-    			temp++;
+    			temp += 2;
     		}
     		if(gs.getGrid().getGridNode(valMoves).getTerrain() is Water)
     		{
@@ -363,22 +369,21 @@ public class MinMaxAI
     	return validMoves;
     }
 
-    private bool handleAttack(CoordinateSet tank1, CoordinateSet tank2, PlayerColors turn, bool updateState) {
+    private bool handleAttack(int index, CoordinateSet attackingTankCoordinates, CoordinateSet targetTankCoordinates, PlayerColors turn, bool updateState) {
         //CoordinateSet currentPlayerTankCoordinates = new CoordinateSet((int)tank1.transform.position.x, (int)tank1.transform.position.z);
         //CoordinateSet targetPlayerTankCoordinates = new CoordinateSet((int)tank1.transform.position.x, (int)tank1.transform.position.z);
-    	return true;
-        if (gs.checkValidAttack(turn, tank1, tank2, updateState)) {
-            if(!updateState){
-                return true;
-            }
-        }
-        else {
-            if(!updateState){
-                return false;
-            }
-        }
+        if(turn == (PlayerColors)PlayerColors.Red)
+        {
+        	redTunks[index].coordinates = attackingTankCoordinates;
+    		return redTunks[index].getWeapon().isValidAttack(gs.getGrid(), targetTankCoordinates, updateState);
+    	}
 
-        return true;
+    	if(turn == (PlayerColors)PlayerColors.Blue)
+        {
+        	blueTunks[index].coordinates = attackingTankCoordinates;
+    		return blueTunks[index].getWeapon().isValidAttack(gs.getGrid(), targetTankCoordinates, updateState);
+    	}
+    	return true;
     }
 
     public GameObject getAITank()

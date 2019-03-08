@@ -12,7 +12,7 @@ public abstract class Tank
     protected Weapon weapon;
     protected Powerup powerup;
     protected Player player;
-    protected CoordinateSet coordinates;
+    public CoordinateSet coordinates;
 
     // ************************
     //      Member Functons

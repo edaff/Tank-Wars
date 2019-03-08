@@ -74,8 +74,8 @@ public class Turns : MonoBehaviour
 
         // Run if ai's turn
         if(playerTurn == PlayerColors.Blue && aiON){
-            handleGreedyAi();
-            //handleMinMaxAi();
+            //handleGreedyAi();
+            handleMinMaxAi();
         }
         // Skip turn if spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -443,7 +443,7 @@ public class Turns : MonoBehaviour
     }
 
     private void handleMinMaxAi(){
-        mmai = new MinMaxAI(redTanks, blueTanks, gs);
+        mmai = new MinMaxAI(redTanks, blueTanks, gs, tankSet1, tankSet2);
         CoordinateSet aiLocation;
         CoordinateSet playerLocation;
         CoordinateSet targetLocation;

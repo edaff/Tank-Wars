@@ -17,7 +17,7 @@ public class Player
         this.tanks = createTankArray(playerTankArray, playerColor, level);
     }
 
-    private Tank[] createTankArray(int [] playerTankArray, PlayerColors playerColor, Levels level) {
+    public Tank[] createTankArray(int [] playerTankArray, PlayerColors playerColor, Levels level) {
         Tank[] tanks = new Tank[3];
         CoordinateSet[] level1Red = { new CoordinateSet(4, 0) };
         CoordinateSet[] level1Blue = { new CoordinateSet(5, 9) };

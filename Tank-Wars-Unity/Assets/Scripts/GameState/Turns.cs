@@ -26,7 +26,6 @@ public class Turns : MonoBehaviour
     public CameraAngles camera;
     public GameObject mainCamera;
 
-
     [SerializeField] HpController hpController;
 
     void Start()
@@ -203,24 +202,29 @@ public class Turns : MonoBehaviour
 
     private void assignTanksClicked(RaycastHit hit) {
         // Assign tanks clicked
-        if ((hit.transform.gameObject.tag == "Red Tank")) {
-            if (playerTurn == PlayerColors.Red) {
+        Tank currentTank;
+        if (hit.transform.gameObject.tag == "Red Tank") {
+            currentTank = gs.getPlayerTank(PlayerColors.Red, new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z));
+
+            if (playerTurn == PlayerColors.Red && !currentTank.isDead()) {
                 tankClicked = hit.transform.gameObject;
                 TileHighlighter.resetTiles();
                 highlightAttackTiles(new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z));
             }
-            else {
+            else if(!currentTank.isDead()) {
                 tankClicked2 = hit.transform.gameObject;
                 TileHighlighter.resetTiles();
             }
         }
-        else if (hit.transform.gameObject.tag == "Blue Tank") {
-            if (playerTurn == PlayerColors.Blue) {
+        else if ((hit.transform.gameObject.tag == "Blue Tank")) {
+            currentTank = gs.getPlayerTank(PlayerColors.Blue, new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z));
+
+            if (playerTurn == PlayerColors.Blue && !currentTank.isDead()) {
                 tankClicked = hit.transform.gameObject;
                 TileHighlighter.resetTiles();
                 highlightAttackTiles(new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z));
             }
-            else {
+            else if(!currentTank.isDead()) {
                 tankClicked2 = hit.transform.gameObject;
                 TileHighlighter.resetTiles();
             }

@@ -17144,6 +17144,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6918082218561118677, guid: 67511dd76f0f690458c3ab9fe98122fd,
+        type: 3}
+      propertyPath: m_Name
+      value: Bonus Movement Red (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918082218066446250, guid: 67511dd76f0f690458c3ab9fe98122fd,
+        type: 3}
+      propertyPath: m_Name
+      value: Bonus Movement Blue (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67511dd76f0f690458c3ab9fe98122fd, type: 3}
 --- !u!114 &2456585029948675710 stripped

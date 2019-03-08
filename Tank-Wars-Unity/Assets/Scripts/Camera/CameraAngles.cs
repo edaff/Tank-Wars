@@ -26,24 +26,28 @@ public class CameraAngles : MonoBehaviour
         gameStatus = GameObject.Find("GameStatus");
         Levels currentLevel = (Levels)gameStatus.GetComponent<GameStatus>().GetDifficuity();
 
+        Vector3 angles = transform.eulerAngles;
+
         switch (currentLevel) {
             case Levels.Level1:
                 middle = new Vector3(4.5f, 0f, 4.5f);
+                rotationYAxis = angles.y;
+                rotationXAxis = angles.x + 50;
                 break;
             case Levels.Level2:
                 middle = new Vector3(7f, 0f, 7f);
+                rotationYAxis = angles.y;
+                rotationXAxis = angles.x - 20;
                 distance = 15.0f;
                 break;
             case Levels.Level3:
                 break;
             default:
                 middle = new Vector3(4.5f, 0f, 4.5f);
+                rotationYAxis = angles.y;
+                rotationXAxis = angles.x + 50;
                 break;
         }
-
-        Vector3 angles = transform.eulerAngles;
-        rotationYAxis = angles.y;
-        rotationXAxis = angles.x + 50;
     }
 
     void LateUpdate()

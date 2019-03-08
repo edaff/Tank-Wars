@@ -25,7 +25,7 @@ public class CameraAngles : MonoBehaviour
         middle = new Vector3(4.5f, 0f, 4.5f);
         Vector3 angles = transform.eulerAngles;
         rotationYAxis = angles.y;
-        rotationXAxis = angles.x + 15;
+        rotationXAxis = angles.x + 50;
     }
 
     void LateUpdate()
@@ -62,12 +62,12 @@ public class CameraAngles : MonoBehaviour
     {
         if (playerTurn == PlayerColors.Red)
         {
-            rotationXAxis = 15f;
+            rotationXAxis = 50f;
             rotationYAxis = 0f;
         }
         else if(playerTurn == PlayerColors.Blue)
         {
-            rotationXAxis = 15f;
+            rotationXAxis = 50f;
             rotationYAxis = 180f;
         }
     }

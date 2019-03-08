@@ -70,8 +70,8 @@ public class Turns : MonoBehaviour
     {
         // Run if ai's turn
         if(playerTurn == PlayerColors.Blue && aiON){
-            handleGreedyAi();
-            //handleMinMaxAi();
+            //handleGreedyAi();
+            handleMinMaxAi();
         }
         // Skip turn if spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -481,7 +481,7 @@ public class Turns : MonoBehaviour
         round = Rounds.Move;
         gs.updatePlayerHealthBars(hpController);
     }
-
+    
     public string[] getPlayerPowerups(PlayerColors player) {
         return gs.getPlayerPowerups(player);
     }

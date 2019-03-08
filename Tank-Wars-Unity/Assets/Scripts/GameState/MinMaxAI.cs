@@ -27,29 +27,31 @@ public class MinMaxAI
  		ArrayList val = new ArrayList();
  		CoordinateSet aiCoordinates;
     	int highestWeight = -99999;
-    	int minDis = 99999;
-    	int row = validMoves.Count;
+    	double minDis = 99999;
+    	int row = 20;
     	int column = blueTanks.Length;
-    	int[,] min = new int[row,column];
-    	int[,] max = new int[row,column];
-    	int[,] net = new int[row,column];
-    	double[,] zero = new double[row,column];
+    	int[,] min = new int[column,row];
+    	int[,] max = new int[column,row];
+    	int[,] net = new int[column,row];
+    	double[,] zero = new double[column,row];
 
+    	Debug.Log("Row: " + row);
+    	Debug.Log("Column: " + column);
     	//For each blue tank
     	for(int i = 0; i < column; i++)
     	{
     		//find the valid moves
     		CoordinateSet tempCoordinates = new CoordinateSet((int)blueTanks[i].transform.position.x, (int)blueTanks[i].transform.position.z);
     		validMoves = findValidMoves(tempCoordinates, (PlayerColors)PlayerColors.Blue);
-
+    		Debug.Log("validMoves.Count: " + validMoves.Count);
     		//and for each valid move, find the min outcome for the player
-    		for(int j = 0; j < row; j++)
+    		for(int j = 0; j < validMoves.Count; j++)
     		{
 	    		min[i,j] = findMinForPlayers((CoordinateSet)validMoves[j]);
     		}
 
     		//and for each valid move, find the max outcome for the AI
-    		for(int j = 0; j < row; j++)
+    		for(int j = 0; j < validMoves.Count; j++)
     		{
 	    		max[i,j] = findMaxForAI((CoordinateSet)validMoves[j]);
     		}
@@ -65,7 +67,6 @@ public class MinMaxAI
     		}
     	}
 
-
     	//Create matrix that shows the possible valid moves
     	for(int i = 0; i < column; i++)
     	{
@@ -73,15 +74,64 @@ public class MinMaxAI
     		{
     			if(net[i,j] > highestWeight)
     			{
-    				zero = new double[row,column];
+    				zero = new double[column,row];
+    				highestWeight = net[i,j];
     				zero[i,j] = 1;
     			}
-    			if(net[i,j] == highestWeight)
+    			else if(net[i,j] == highestWeight)
     			{
     				zero[i,j] = 1;
     			}
     		}
     	}
+
+    	/*
+		DEBUG STUFF---------------------------------------------------------------------------
+    	*/
+    	string tempS;
+
+    	for(int i = 0; i < column; i++)
+    	{
+    		tempS = "";
+    		for(int j = 0; j < row; j++)
+    		{
+    			tempS = string.Concat(tempS, min[i,j]);
+    		}
+    		Debug.Log(tempS);
+    	}
+
+    	for(int i = 0; i < column; i++)
+    	{
+    		tempS = "";
+    		for(int j = 0; j < row; j++)
+    		{
+    			tempS = string.Concat(tempS, max[i,j]);
+    		}
+    		Debug.Log(tempS);
+    	}
+
+    	for(int i = 0; i < column; i++)
+    	{
+    		tempS = "";
+    		for(int j = 0; j < row; j++)
+    		{
+    			tempS = string.Concat(tempS, net[i,j]);
+    		}
+    		Debug.Log(tempS);
+    	}
+
+    	for(int i = 0; i < column; i++)
+    	{
+    		tempS = "";
+    		for(int j = 0; j < row; j++)
+    		{
+    			tempS = string.Concat(tempS, zero[i,j]);
+    		}
+    		Debug.Log(tempS);
+    	}
+    	/*
+		DEBUG STUFF---------------------------------------------------------------------------
+    	*/
 
     	//Find Which valid move is closer to the player
     	for(int i = 0; i < column; i++)
@@ -92,7 +142,9 @@ public class MinMaxAI
     			{
     				aiCoordinates = new CoordinateSet((int)blueTanks[i].transform.position.x, (int)blueTanks[i].transform.position.z);
     				validMoves = findValidMoves(aiCoordinates, (PlayerColors)PlayerColors.Blue);
+    				//Debug.Log("# of val moves: " + validMoves.Count);
     				zero[i,j] = findDisToPlayer((CoordinateSet)validMoves[j]);
+    				//Debug.Log(findDisToPlayer((CoordinateSet)validMoves[j]));
     			}
     		}
     	}
@@ -108,10 +160,30 @@ public class MinMaxAI
     				{
     					i_ = i;
     					j_ = j;
+    					minDis = zero[i,j];
     				}
     			}
     		}
     	}
+
+    	/*
+		DEBUG STUFF---------------------------------------------------------------------------
+    	*/
+
+		for(int i = 0; i < column; i++)
+    	{
+    		tempS = "";
+    		for(int j = 0; j < row; j++)
+    		{
+    			tempS = string.Concat(tempS, zero[i,j]);
+    		}
+    		Debug.Log(tempS);
+    	}
+
+    	Debug.Log("i_: " + i_ + "\nj_: " + j_);
+    	/*
+		DEBUG STUFF---------------------------------------------------------------------------
+    	*/
 
     	//Now return the best move
     	aiCoordinates = new CoordinateSet((int)blueTanks[i_].transform.position.x, (int)blueTanks[i_].transform.position.z);
@@ -166,7 +238,7 @@ public class MinMaxAI
 
     			if(temp < min)
     			{
-    				min = temp;
+    				min = temp + 10;
     			}
     		}
        	}
@@ -193,7 +265,7 @@ public class MinMaxAI
     		}
     		if(temp > max)
     		{
-    			max = temp;
+    			max = temp + 10;
     		}
     	}
        	return max;
@@ -244,7 +316,7 @@ public class MinMaxAI
     private bool handleAttack(CoordinateSet tank1, CoordinateSet tank2, PlayerColors turn, bool updateState) {
         //CoordinateSet currentPlayerTankCoordinates = new CoordinateSet((int)tank1.transform.position.x, (int)tank1.transform.position.z);
         //CoordinateSet targetPlayerTankCoordinates = new CoordinateSet((int)tank1.transform.position.x, (int)tank1.transform.position.z);
-
+    	return true;
         if (gs.checkValidAttack(turn, tank1, tank2, updateState)) {
             if(!updateState){
                 return true;

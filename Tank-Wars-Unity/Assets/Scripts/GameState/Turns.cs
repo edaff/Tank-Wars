@@ -69,6 +69,9 @@ public class Turns : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if gameover
+        gameOver();
+
         // Run if ai's turn
         if(playerTurn == PlayerColors.Blue && aiON){
             //handleGreedyAi();
@@ -485,6 +488,21 @@ public class Turns : MonoBehaviour
     
     public string[] getPlayerPowerups(PlayerColors player) {
         return gs.getPlayerPowerups(player);
+    }
+
+    private void gameOver() {
+        PlayerColors player = gs.isGameOver();
+
+        if(player == PlayerColors.Red) {
+            Debug.Log("DEAD!!");
+            gameStatus.GetComponent<GameStatus>().SetPlayer2Win();
+        }
+        else if(player == PlayerColors.Blue){
+            gameStatus.GetComponent<GameStatus>().SetPlayer1Win();
+        }
+        else {
+            // Game's not over fool!
+        }
     }
 }
 

@@ -198,5 +198,6 @@ public class Player
 
 public enum PlayerColors {
     Red = 1,
-    Blue = 2
+    Blue = 2,
+    None = 3
 }

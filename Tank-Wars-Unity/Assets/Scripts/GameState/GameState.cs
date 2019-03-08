@@ -35,26 +35,26 @@ public class GameState {
         }
     }
 
-    public bool isGameOver() {
-        Tank[] player1Tanks = player1.getPlayerTanks();
-        Tank[] player2Tanks = player2.getPlayerTanks();
-
-        if (areAllPlayerTanksAreDead(player1.getPlayerTanks()) || areAllPlayerTanksAreDead(player2.getPlayerTanks())) {
-            return true;
+    public PlayerColors isGameOver() {
+        if (areAllPlayerTanksDead(player1.getPlayerTanks())) {
+            return PlayerColors.Red;
+        }
+        else if (areAllPlayerTanksDead(player2.getPlayerTanks())){
+            return PlayerColors.Blue;
         }
         else {
-            return false;
+            return PlayerColors.None;
         }
     }
 
-    private bool areAllPlayerTanksAreDead(Tank[] tanks) {
+    private bool areAllPlayerTanksDead(Tank[] tanks) {
         bool allTanksDead = true;
         for (int i = 0; i < tanks.Length; i++) {
             if (tanks[i] is EmptyTankSlot) {
                 continue;
             }
 
-            if (tanks[i].getHealth() >= 0) {
+            if (tanks[i].getHealth() > 0) {
                 allTanksDead = false;
             }
         }

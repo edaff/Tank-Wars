@@ -21,9 +21,59 @@ public class MinMaxAI
     	gs = gamestate;
     }
 
-    
+    //Remove dead tanks
+    void removeDeadTanks()
+    {
+    	for(int i = 0; i < redTanks.Length; i++)
+    	{
+    		CoordinateSet tankCoordinates = new CoordinateSet((int)redTanks[i].transform.position.x, (int)redTanks[i].transform.position.z);
+            Tank currentTank = gs.getPlayerTank(PlayerColors.Red, tankCoordinates);
+
+            // If the player didn't choose one of their own tanks, or if that tank is dead, just ignore
+            if (currentTank.isDead()) {
+                GameObject[] tempTanks = new GameObject[redTanks.Length - 1];
+                int count = 0;
+
+                for(int j = 0; j < redTanks.Length; j++)
+                {
+                	if(j == i)
+                	{
+                		continue;
+                	}
+                	tempTanks[count] = redTanks[j];
+                	count++;
+                }
+                redTanks = tempTanks;
+            }
+    	}
+
+    	for(int i = 0; i < blueTanks.Length; i++)
+    	{
+    		CoordinateSet tankCoordinates = new CoordinateSet((int)blueTanks[i].transform.position.x, (int)blueTanks[i].transform.position.z);
+            Tank currentTank = gs.getPlayerTank(PlayerColors.Blue, tankCoordinates);
+
+            // If the player didn't choose one of their own tanks, or if that tank is dead, just ignore
+            if (currentTank.isDead()) {
+                GameObject[] tempTanks = new GameObject[blueTanks.Length - 1];
+                int count = 0;
+
+                for(int j = 0; j < blueTanks.Length; j++)
+                {
+                	if(j == i)
+                	{
+                		continue;
+                	}
+                	tempTanks[count] = blueTanks[j];
+                	count++;
+                }
+                blueTanks = tempTanks;
+            }
+    	}
+    }
+
     public CoordinateSet MinMaxTurn()
     {
+    	removeDeadTanks();
  		ArrayList val = new ArrayList();
  		CoordinateSet aiCoordinates;
     	int highestWeight = -99999;

@@ -21,7 +21,6 @@ public class Cannon : Weapon
     public override bool isValidAttack(Grid grid, CoordinateSet targetCoordinates, bool updateState) {
         bool validAttack = false;
         GridNode targetNode = grid.getGridNode(targetCoordinates);
-
         // Check for valid attack
         for(int i = 0; i < 4; i++) {
             validAttack = attackCheck(grid, i, tank.getCoordinates(), targetNode);

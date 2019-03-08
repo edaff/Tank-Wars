@@ -74,8 +74,8 @@ public class Turns : MonoBehaviour
 
         // Run if ai's turn
         if(playerTurn == PlayerColors.Blue && aiON){
-            //handleGreedyAi();
-            handleMinMaxAi();
+            handleGreedyAi();
+            //handleMinMaxAi();
         }
         // Skip turn if spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space)) {

@@ -5,6 +5,10 @@ using UnityEngine;
 public class Cannon : Weapon
 {
     // Data Members
+    public GameObject[] redTanks;
+    public GameObject[] blueTanks;
+    public GameObject rotateTank;
+    public CannonProjectile gunRotation;
 
     // Constructors 
     public Cannon(Tank tank) {
@@ -36,6 +40,8 @@ public class Cannon : Weapon
                 Tank targetTank = targetNode.getTank();
                 targetTank.decrementHealth(this.damage);
 
+                gunRotation.rotateGun(orientation);
+
                 Debug.Log("Player " + this.tank.getPlayer().getPlayerColor() + " attacks Player " + 
                           targetTank.getPlayer().getPlayerColor() + " for " + this.damage + " damage!");
                 Debug.Log("Player " + targetTank.getPlayer().getPlayerColor() + "'s health is now at: " + targetTank.getHealth());
@@ -60,6 +66,32 @@ public class Cannon : Weapon
         int targetNodeX = targetNode.getCoordinateSet().getX();
         int targetNodeY = targetNode.getCoordinateSet().getY();
 
+        redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
+        blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
+
+        for(int i = 0; i < redTanks.Length; i++)
+        {
+            if(redTanks[i].transform.position == new Vector3(currentTankCoordinates.getX(), 1f, currentTankCoordinates.getY()))
+            {
+                rotateTank = redTanks[i];
+            }
+        }
+
+        for(int i = 0; i < blueTanks.Length; i++)
+        {
+            if (blueTanks[i].transform.position == new Vector3(currentTankCoordinates.getX(), 1f, currentTankCoordinates.getY()))
+            {
+                rotateTank = blueTanks[i];
+            }
+        }
+
+        gunRotation = rotateTank.GetComponent<CannonProjectile>();
+        
+        if(gunRotation == null)
+        {
+            Debug.Log("CannonProjectile Script is null");
+        }
+
         for(int i = 1; i <= this.distance; i++) {
             switch (currentIteration) {
                 case 0:
@@ -73,6 +105,7 @@ public class Cannon : Weapon
 
                     // Do final check to see if this is the target node
                     if ((currentTankX + i) == targetNodeX && currentTankY == targetNodeY) {
+                        orientation = Orientations.Right;
                         return true;
                     }
 
@@ -88,6 +121,7 @@ public class Cannon : Weapon
 
                     // Do final check to see if this is the target node
                     if ((currentTankX - i) == targetNodeX && currentTankY == targetNodeY) {
+                        orientation = Orientations.Left;
                         return true;
                     }
 
@@ -103,6 +137,7 @@ public class Cannon : Weapon
 
                     // Do final check to see if this is the target node
                     if ((currentTankX) == targetNodeX && (currentTankY + i) == targetNodeY) {
+                        orientation = Orientations.Up;
                         return true;
                     }
 
@@ -118,6 +153,7 @@ public class Cannon : Weapon
 
                     // Do final check to see if this is the target node
                     if ((currentTankX) == targetNodeX && (currentTankY - i) == targetNodeY) {
+                        orientation = Orientations.Down;
                         return true;
                     }
 
@@ -197,5 +233,10 @@ public class Cannon : Weapon
         }
 
         return validAttacks;
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(30000);
     }
 }

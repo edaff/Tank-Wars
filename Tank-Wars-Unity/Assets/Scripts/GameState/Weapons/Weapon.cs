@@ -7,7 +7,7 @@ public abstract class Weapon
     // Members
     protected int distance;
     protected int damage;
-    protected Orientations orientation;
+    public Orientations orientation;
     protected Tank tank;
     protected int knockback;
 

@@ -1,22 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//rotating the normal cannon tank: pCylinder105
+
 
 public class CannonProjectile : MonoBehaviour
 { 
     public GameObject projectile;
+    public GameObject clone;
     public Transform spawnpoint;
+    public Transform gun;
+    public Quaternion startRotation;
+    public Quaternion endRotation;
+    public float rotationProgress = -1;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (rotationProgress < 1 && rotationProgress >= 0)
         {
-            GameObject clone;
-            clone = Instantiate(projectile, spawnpoint.position, Quaternion.identity);
-            clone.transform.Translate(Vector3.forward * Time.deltaTime * 20);
-            AudioSource sound = gameObject.GetComponent<AudioSource>();
-            sound.Play();
+            rotationProgress += Time.deltaTime * 5;
+            gun.rotation = Quaternion.Lerp(startRotation, endRotation, rotationProgress);
         }
+
+        if (clone != null)
+        {
+            clone.transform.Translate(spawnpoint.transform.forward * Time.deltaTime * 10);
+        }
+    }
+
+    public void rotateGun(Orientations orientation)
+    {
+        startRotation = gun.rotation;
+        endRotation = Quaternion.Euler(0f, (float)orientation, 0f);
+        rotationProgress = 0;
+        StartCoroutine(Wait());
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(.25f);
+        AudioSource sound = gameObject.GetComponent<AudioSource>();
+        sound.Play();
+        clone = Instantiate(projectile, spawnpoint.position, Quaternion.identity);
     }
 }

@@ -292,6 +292,7 @@ public class Turns : MonoBehaviour
         CoordinateSet knockbackCoordinates = new CoordinateSet();
         PlayerColors knockbackPlayer;
         bool validKnockback = true;
+        int validKnockbackIndex = 0;
 
         if (playerTurn == PlayerColors.Red) {
             currentTank = gs.getPlayerTank(PlayerColors.Red, currentTankCoordinates);
@@ -345,9 +346,11 @@ public class Turns : MonoBehaviour
 
             if (validKnockback) {
                 knockbackCoordinates = (CoordinateSet)knockbackArray[i];
+                validKnockbackIndex = i;
             }
             else {
                 if(i == 0) {
+                    targetTank.decrementHealth(10);
                     return;
                 }
             }
@@ -361,10 +364,17 @@ public class Turns : MonoBehaviour
             else {
                 tankClicked2.transform.position = new Vector3(knockbackCoordinates.getX(), 0.8f, knockbackCoordinates.getY());
             }
-        }
 
-        // If the move was invalid, take damage
-        targetTank.decrementHealth(10);
+            // If the knockback was less than the number of tiles, the target tank must have hit an obstacle along the way.
+            // Take damage.
+            if (validKnockbackIndex < knockbackArray.Count - 1) {
+                targetTank.decrementHealth(10);
+            }
+        }
+        else {
+            // If the move was invalid, take damage
+            targetTank.decrementHealth(10);
+        }
     }
 
     private void handleGamble(RaycastHit hit) {

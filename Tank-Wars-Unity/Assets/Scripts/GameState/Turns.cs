@@ -81,6 +81,10 @@ public class Turns : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) {
             round++;
 
+            if(round == Rounds.Gamble) {
+                gs.updatePlayerPowerupState(playerTurn);
+            }
+
             if(round > Rounds.Gamble) {
                 round = Rounds.Move;
 

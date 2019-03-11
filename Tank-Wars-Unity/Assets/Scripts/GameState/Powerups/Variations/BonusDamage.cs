@@ -6,7 +6,7 @@ public class BonusDamage : Powerup
 {
     public BonusDamage() {
         this.duration = 1;
-        this.powerupValue = 1;
+        this.powerupValue = 10;
         this.name = "Bonus Damage";
     }
 

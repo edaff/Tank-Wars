@@ -9,7 +9,7 @@ public class MortarTank : Tank
     // Constructors
     public MortarTank(Player player, CoordinateSet coordinates) {
         this.health = 100;
-        this.movement = 2;
+        this.movement = 3;
         this.player = player;
         this.coordinates = coordinates;
         this.powerup = new EmptyPowerupSlot();

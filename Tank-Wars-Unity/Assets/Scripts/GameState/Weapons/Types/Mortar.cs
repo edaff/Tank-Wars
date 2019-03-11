@@ -13,7 +13,7 @@ public class Mortar : Weapon
     // Constructors
     public Mortar(Tank tank) {
         this.damage = 20;
-        this.distance = 3;
+        this.distance = 4;
         this.tank = tank;
         this.knockback = 0;
 

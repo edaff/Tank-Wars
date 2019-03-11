@@ -485,8 +485,8 @@ public class Turns : MonoBehaviour
             int randomNumber = randomNumberGenerator.Next(1, 4);
             if(randomNumber == 1)
             {
-                string powerup = gs.playerGamble(playerTurn, targetLocation);
-                Debug.Log("Player " + playerTurn + "'s gamble results in: " + powerup);
+                //string powerup = gs.playerGamble(playerTurn, targetLocation);
+                //Debug.Log("Player " + playerTurn + "'s gamble results in: " + powerup);
             }
 
         }

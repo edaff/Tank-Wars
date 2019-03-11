@@ -12,6 +12,7 @@ public class CannonProjectile : MonoBehaviour
     private Quaternion endRotation;
     private float startProgress = -1;
     private float endProgress = -1;
+    [SerializeField] float speed = 10;
 
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class CannonProjectile : MonoBehaviour
 
         if (clone != null)
         {
-            clone.transform.Translate(spawnpoint.transform.forward * Time.deltaTime * 10);
+            clone.transform.Translate(spawnpoint.transform.forward * Time.deltaTime * speed);
             endProgress = 0;
         }
 

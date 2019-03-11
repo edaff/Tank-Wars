@@ -8,22 +8,31 @@ public class CannonProjectile : MonoBehaviour
     private GameObject clone;
     public Transform spawnpoint;
     public Transform gun;
-    public Quaternion startRotation;
-    public Quaternion endRotation;
-    public float rotationProgress = -1;
+    private Quaternion startRotation;
+    private Quaternion endRotation;
+    private float startProgress = -1;
+    private float endProgress = -1;
+
 
     // Update is called once per frame
     void Update()
     {
-        if (rotationProgress < 1 && rotationProgress >= 0)
+        if (startProgress < 1 && startProgress >= 0)
         {
-            rotationProgress += Time.deltaTime * 5;
-            gun.rotation = Quaternion.Lerp(startRotation, endRotation, rotationProgress);
+            startProgress += Time.deltaTime * 5;
+            gun.rotation = Quaternion.Lerp(startRotation, endRotation, startProgress);
         }
 
         if (clone != null)
         {
             clone.transform.Translate(spawnpoint.transform.forward * Time.deltaTime * 10);
+            endProgress = 0;
+        }
+
+        if(endProgress < 1 && endProgress >= 0)
+        {
+            endProgress += Time.deltaTime * 5;
+            gun.rotation = Quaternion.Lerp(endRotation, startRotation, endProgress);
         }
     }
 
@@ -31,7 +40,7 @@ public class CannonProjectile : MonoBehaviour
     {
         startRotation = gun.rotation;
         endRotation = Quaternion.Euler(0f, (float)orientation, 0f);
-        rotationProgress = 0;
+        startProgress = 0;
         StartCoroutine(Wait());
     }
 

@@ -17,15 +17,16 @@ public class MortarProjectile : MonoBehaviour
     private Vector3 nextPos;
     private float height = 3;
     private float speed = 3;
-    private float rotationProgress = -1;
+    private float startProgress = -1;
+    private float endProgress = -1;
 
     // Update is called once per frame
     void Update()
     {
-        if (rotationProgress < 1 && rotationProgress >= 0)
+        if (startProgress < 1 && startProgress >= 0)
         {
-            rotationProgress += Time.deltaTime * 5;
-            gun.rotation = Quaternion.Lerp(startRotation, endRotation, rotationProgress);
+            startProgress += Time.deltaTime * 5;
+            gun.rotation = Quaternion.Lerp(startRotation, endRotation, startProgress);
         }
 
         if (clone != null)
@@ -46,8 +47,9 @@ public class MortarProjectile : MonoBehaviour
                 Vector2 forward = nextPos - clone.transform.position;
                 //clone.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg);
                 clone.transform.position = nextPos;
-                
+                endProgress = 0;
             }
+
             else if(y1 - y0 != 0)
             {
                 float dist = y1 - y0;
@@ -59,7 +61,14 @@ public class MortarProjectile : MonoBehaviour
                 Vector2 forward = nextPos - clone.transform.position;
                 //clone.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg);
                 clone.transform.position = nextPos;
+                endProgress = 0;
             }
+        }
+
+        if(endProgress < 1 && endProgress >= 0)
+        {
+            endProgress += Time.deltaTime * 5;
+            gun.rotation = Quaternion.Lerp(endRotation, startRotation, endProgress);
         }
     }
 
@@ -67,7 +76,7 @@ public class MortarProjectile : MonoBehaviour
     {
         startRotation = gun.rotation;
         endRotation = Quaternion.Euler(0f, (float)orientation, 0f);
-        rotationProgress = 0;
+        startProgress = 0;
         StartCoroutine(Wait());
     }
 

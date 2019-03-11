@@ -1500,23 +1500,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 133503483034376298, guid: 2e9ef54d00e3087409f48e09d646bce3,
     type: 3}
-  pivot: {fileID: 8668978827916277212}
   spawnpoint: {fileID: 8668978827916277212}
   gun: {fileID: 7725379478826404386}
-  startRotation: {x: 0, y: 0, z: 0, w: 0}
-  endRotation: {x: 0, y: 0, z: 0, w: 0}
-  rotationProgress: -1
-  curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  start: {x: 0, y: 0, z: 0}
-  end: {x: 0, y: 0, z: 0}
-  height: 1
-  speed: 10
-  nextPos: {x: 0, y: 0, z: 0}
+  height: 3
+  speed: 3
 --- !u!82 &8871345265363980944
 AudioSource:
   m_ObjectHideFlags: 0

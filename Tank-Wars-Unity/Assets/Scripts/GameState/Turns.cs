@@ -305,39 +305,36 @@ public class Turns : MonoBehaviour
         }
 
         int knockback = currentTank.getWeapon().getKnockback();
+
         if(knockback == 0) {
             return;
         }
 
         // Figure out which direction to knockback the target tank
         if (currentTankCoordinates.getX() == targetTankCoordinates.getX()) {
-            // Left
+            // Up
             if (currentTankCoordinates.getY() < targetTankCoordinates.getY()) {
-                // knockbackCoordinates = new CoordinateSet(targetTankCoordinates.getX(), targetTankCoordinates.getY() + knockback);
                 for(int i = targetTankCoordinates.getY() + 1; i <= targetTankCoordinates.getY() + knockback; i++) {
                     knockbackArray.Add(new CoordinateSet(targetTankCoordinates.getX(), i));
                 }
             }
-            // Right
+            // Down
             else {
-                // knockbackCoordinates = new CoordinateSet(targetTankCoordinates.getX(), targetTankCoordinates.getY() - knockback);
                 for (int i = targetTankCoordinates.getY() - 1; i >= targetTankCoordinates.getY() - knockback; i--) {
                     knockbackArray.Add(new CoordinateSet(targetTankCoordinates.getX(), i));
                 }
             }
         }
         else if (currentTankCoordinates.getY() == targetTankCoordinates.getY()) {
-            // Up
+            // Right
             if (currentTankCoordinates.getX() < targetTankCoordinates.getX()) {
-                //knockbackCoordinates = new CoordinateSet(targetTankCoordinates.getX() + knockback, targetTankCoordinates.getY() );
                 for (int i = targetTankCoordinates.getX() + 1; i <= targetTankCoordinates.getX() + knockback; i++) {
                     knockbackArray.Add(new CoordinateSet(i, targetTankCoordinates.getY()));
                 }
             }
-            // Down
+            // Left
             else {
-                //knockbackCoordinates = new CoordinateSet(targetTankCoordinates.getX() - knockback, targetTankCoordinates.getY());
-                for (int i = targetTankCoordinates.getX() - 1; i >= targetTankCoordinates.getX(); i--) {
+                for (int i = targetTankCoordinates.getX() - 1; i >= targetTankCoordinates.getX() - knockback; i--) {
                     knockbackArray.Add(new CoordinateSet(i, targetTankCoordinates.getY()));
                 }
             }

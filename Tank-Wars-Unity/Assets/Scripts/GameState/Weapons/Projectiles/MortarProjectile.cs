@@ -15,8 +15,8 @@ public class MortarProjectile : MonoBehaviour
     private Vector3 start;
     private Vector3 end;
     private Vector3 nextPos;
-    private float height = 3;
-    private float speed = 3;
+    [SerializeField] float height = 3;
+    [SerializeField] float speed = 3;
     private float startProgress = -1;
     private float endProgress = -1;
 

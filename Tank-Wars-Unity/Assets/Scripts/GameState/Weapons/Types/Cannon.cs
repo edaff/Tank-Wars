@@ -27,7 +27,7 @@ public class Cannon : Weapon
         GridNode targetNode = grid.getGridNode(targetCoordinates);
         // Check for valid attack
         for(int i = 0; i < 4; i++) {
-            validAttack = attackCheck(grid, i, tank.getCoordinates(), targetNode);
+            validAttack = attackCheck(grid, i, tank.getCoordinates(), targetNode, updateState);
 
             if (validAttack) {
                 break;
@@ -59,37 +59,41 @@ public class Cannon : Weapon
 
     private bool attackCheck(Grid grid, int currentIteration, 
                             CoordinateSet currentTankCoordinates,
-                            GridNode targetNode) {
+                            GridNode targetNode,
+                            bool updateState) {
         int gridSize = grid.getGridSize();
         int currentTankX = currentTankCoordinates.getX();
         int currentTankY = currentTankCoordinates.getY();
         int targetNodeX = targetNode.getCoordinateSet().getX();
         int targetNodeY = targetNode.getCoordinateSet().getY();
 
-        redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
-        blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
-
-        for(int i = 0; i < redTanks.Length; i++)
+        if (updateState)
         {
-            if(redTanks[i].transform.position == new Vector3(currentTankCoordinates.getX(), 1f, currentTankCoordinates.getY()))
+            redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
+            blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
+
+            for (int i = 0; i < redTanks.Length; i++)
             {
-                cannonFire = redTanks[i];
+                if (redTanks[i].transform.position == new Vector3(currentTankCoordinates.getX(), 1f, currentTankCoordinates.getY()))
+                {
+                    cannonFire = redTanks[i];
+                }
             }
-        }
 
-        for(int i = 0; i < blueTanks.Length; i++)
-        {
-            if (blueTanks[i].transform.position == new Vector3(currentTankCoordinates.getX(), 1f, currentTankCoordinates.getY()))
+            for (int i = 0; i < blueTanks.Length; i++)
             {
-                cannonFire = blueTanks[i];
+                if (blueTanks[i].transform.position == new Vector3(currentTankCoordinates.getX(), 1f, currentTankCoordinates.getY()))
+                {
+                    cannonFire = blueTanks[i];
+                }
             }
-        }
 
-        cannonScript = cannonFire.GetComponent<CannonProjectile>();
-        
-        if(cannonScript == null)
-        {
-            Debug.Log("CannonProjectile Script is null");
+            cannonScript = cannonFire.GetComponent<CannonProjectile>();
+
+            if (cannonScript == null)
+            {
+                Debug.Log("CannonProjectile Script is null");
+            }
         }
 
         for(int i = 1; i <= this.distance; i++) {

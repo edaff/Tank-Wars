@@ -28,7 +28,7 @@ public class Mortar : Weapon
 
         // Check for valid attack
         for (int i = 0; i < 4; i++) {
-            validAttack = attackCheck(grid, i, tank.getCoordinates(), targetNode);
+            validAttack = attackCheck(grid, i, tank.getCoordinates(), targetNode, updateState);
 
             if (validAttack) {
                 break;
@@ -60,41 +60,45 @@ public class Mortar : Weapon
 
     private bool attackCheck(Grid grid, int currentIteration,
                             CoordinateSet currentTankCoordinates,
-                            GridNode targetNode) {
+                            GridNode targetNode,
+                            bool updateState) {
         int gridSize = grid.getGridSize();
         int currentTankX = currentTankCoordinates.getX();
         int currentTankY = currentTankCoordinates.getY();
         int targetNodeX = targetNode.getCoordinateSet().getX();
         int targetNodeY = targetNode.getCoordinateSet().getY();
 
-        redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
-        blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
-
-        for (int i = 0; i < redTanks.Length; i++)
+        if (updateState)
         {
-            if (redTanks[i].transform.position == new Vector3(currentTankX, .8f, currentTankY))
+            redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
+            blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
+
+            for (int i = 0; i < redTanks.Length; i++)
             {
-                mortarFire = redTanks[i];
+                if (redTanks[i].transform.position == new Vector3(currentTankX, .8f, currentTankY))
+                {
+                    mortarFire = redTanks[i];
+                }
             }
-        }
 
-        for (int i = 0; i < blueTanks.Length; i++)
-        {
-            if (blueTanks[i].transform.position == new Vector3(currentTankX, .8f, currentTankY))
+            for (int i = 0; i < blueTanks.Length; i++)
             {
-                mortarFire = blueTanks[i];
+                if (blueTanks[i].transform.position == new Vector3(currentTankX, .8f, currentTankY))
+                {
+                    mortarFire = blueTanks[i];
+                }
             }
+
+            mortarScript = mortarFire.GetComponent<MortarProjectile>();
+
+            if (mortarScript == null)
+            {
+                Debug.Log("MortarProjectile Script is null");
+            }
+
+            mortarScript.setStart(currentTankX, currentTankY);
+            mortarScript.setEnd(targetNodeX, targetNodeY);
         }
-
-        mortarScript = mortarFire.GetComponent<MortarProjectile>();
-
-        if (mortarScript == null)
-        {
-            Debug.Log("MortarProjectile Script is null");
-        }
-
-        mortarScript.setStart(currentTankX, currentTankY);
-        mortarScript.setEnd(targetNodeX, targetNodeY);
 
         for (int i = 1; i <= this.distance; i++) {
             switch (currentIteration) {

@@ -28,7 +28,7 @@ public class Sniper : Weapon {
         GridNode targetNode = grid.getGridNode(targetCoordinates);
 
         // Check for valid attack
-        validAttack = attackCheck(grid, tank.getCoordinates(), targetNode);
+        validAttack = attackCheck(grid, tank.getCoordinates(), targetNode, updateState);
 
         // If all is well, decrement targeted player health and update the game state.
         if (validAttack) {
@@ -55,37 +55,41 @@ public class Sniper : Weapon {
 
     public bool attackCheck(Grid grid,
                             CoordinateSet currentTankCoordinates,
-                            GridNode targetNode) {
+                            GridNode targetNode,
+                            bool updateState) {
         int gridSize = grid.getGridSize();
         int currentTankX = currentTankCoordinates.getX();
         int currentTankY = currentTankCoordinates.getY();
         int targetNodeX = targetNode.getCoordinateSet().getX();
         int targetNodeY = targetNode.getCoordinateSet().getY();
 
-        redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
-        blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
-
-        for (int i = 0; i < redTanks.Length; i++)
+        if (updateState)
         {
-            if (redTanks[i].transform.position == new Vector3(currentTankX, .8f, currentTankY))
+            redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
+            blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
+
+            for (int i = 0; i < redTanks.Length; i++)
             {
-                sniperFire = redTanks[i];
+                if (redTanks[i].transform.position == new Vector3(currentTankX, .8f, currentTankY))
+                {
+                    sniperFire = redTanks[i];
+                }
             }
-        }
 
-        for (int i = 0; i < blueTanks.Length; i++)
-        {
-            if (blueTanks[i].transform.position == new Vector3(currentTankX, .8f, currentTankY))
+            for (int i = 0; i < blueTanks.Length; i++)
             {
-                sniperFire = blueTanks[i];
+                if (blueTanks[i].transform.position == new Vector3(currentTankX, .8f, currentTankY))
+                {
+                    sniperFire = blueTanks[i];
+                }
             }
-        }
 
-        sniperScript = sniperFire.GetComponent<SniperProjectile>();
+            sniperScript = sniperFire.GetComponent<SniperProjectile>();
 
-        if (sniperScript == null)
-        {
-            Debug.Log("SniperProjectile Script is null");
+            if (sniperScript == null)
+            {
+                Debug.Log("SniperProjectile Script is null");
+            }
         }
 
         switch (this.orientation) {

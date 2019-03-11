@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Sniper : Weapon {
     // Data Members
+    private GameObject[] redTanks;
+    private GameObject[] blueTanks;
+    private GameObject sniperFire;
+    private SniperProjectile sniperScript;
 
     // Constructors
     public Sniper(Tank tank) {
@@ -33,6 +37,8 @@ public class Sniper : Weapon {
                 Tank targetTank = targetNode.getTank();
                 targetTank.decrementHealth(this.damage);
 
+                sniperScript.fire();
+
                 Debug.Log("Player " + this.tank.getPlayer().getPlayerColor() + " attacks Player " +
                           targetTank.getPlayer().getPlayerColor() + " for " + this.damage + " damage!");
                 Debug.Log("Player " + targetTank.getPlayer().getPlayerColor() + "'s health is now at: " + targetTank.getHealth());
@@ -55,6 +61,32 @@ public class Sniper : Weapon {
         int currentTankY = currentTankCoordinates.getY();
         int targetNodeX = targetNode.getCoordinateSet().getX();
         int targetNodeY = targetNode.getCoordinateSet().getY();
+
+        redTanks = GameObject.FindGameObjectsWithTag("Red Tank");
+        blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
+
+        for (int i = 0; i < redTanks.Length; i++)
+        {
+            if (redTanks[i].transform.position == new Vector3(currentTankX, .8f, currentTankY))
+            {
+                sniperFire = redTanks[i];
+            }
+        }
+
+        for (int i = 0; i < blueTanks.Length; i++)
+        {
+            if (blueTanks[i].transform.position == new Vector3(currentTankX, .8f, currentTankY))
+            {
+                sniperFire = blueTanks[i];
+            }
+        }
+
+        sniperScript = sniperFire.GetComponent<SniperProjectile>();
+
+        if (sniperScript == null)
+        {
+            Debug.Log("SniperProjectile Script is null");
+        }
 
         switch (this.orientation) {
             case Orientations.Up:

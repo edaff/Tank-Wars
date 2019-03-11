@@ -99,8 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a118ada0f977d4eac2e47201a1e1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 3789571842434903970, guid: b47d856898805d046b4b573759142d1e,
+  projectile: {fileID: 133503483034376298, guid: 2e9ef54d00e3087409f48e09d646bce3,
     type: 3}
+  clone: {fileID: 0}
   spawnpoint: {fileID: 2336087397532175053}
   gun: {fileID: 795149211842729172}
   startRotation: {x: 0, y: 0, z: 0, w: 0}

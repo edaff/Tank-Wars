@@ -1,13 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//rotating the normal cannon tank: pCylinder105
-
 
 public class CannonProjectile : MonoBehaviour
 { 
     public GameObject projectile;
-    public GameObject clone;
+    private GameObject clone;
     public Transform spawnpoint;
     public Transform gun;
     public Quaternion startRotation;
@@ -29,7 +27,7 @@ public class CannonProjectile : MonoBehaviour
         }
     }
 
-    public void rotateGun(Orientations orientation)
+    public void fire(Orientations orientation)
     {
         startRotation = gun.rotation;
         endRotation = Quaternion.Euler(0f, (float)orientation, 0f);

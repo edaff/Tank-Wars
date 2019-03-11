@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a118ada0f977d4eac2e47201a1e1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 3789571842434903970, guid: b47d856898805d046b4b573759142d1e,
+  projectile: {fileID: 133503483034376298, guid: 2f872ab0803a00e4d924f7f4d827c87b,
     type: 3}
   spawnpoint: {fileID: 3286159680529601839}
   gun: {fileID: 2355566034094685464}

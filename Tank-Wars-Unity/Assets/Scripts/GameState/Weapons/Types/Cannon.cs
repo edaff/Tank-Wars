@@ -7,8 +7,8 @@ public class Cannon : Weapon
     // Data Members
     public GameObject[] redTanks;
     public GameObject[] blueTanks;
-    public GameObject rotateTank;
-    public CannonProjectile gunRotation;
+    public GameObject cannonFire;
+    public CannonProjectile cannonScript;
 
     // Constructors 
     public Cannon(Tank tank) {
@@ -40,7 +40,7 @@ public class Cannon : Weapon
                 Tank targetTank = targetNode.getTank();
                 targetTank.decrementHealth(this.damage);
 
-                gunRotation.rotateGun(orientation);
+                cannonScript.fire(orientation);
 
                 Debug.Log("Player " + this.tank.getPlayer().getPlayerColor() + " attacks Player " + 
                           targetTank.getPlayer().getPlayerColor() + " for " + this.damage + " damage!");
@@ -73,7 +73,7 @@ public class Cannon : Weapon
         {
             if(redTanks[i].transform.position == new Vector3(currentTankCoordinates.getX(), 1f, currentTankCoordinates.getY()))
             {
-                rotateTank = redTanks[i];
+                cannonFire = redTanks[i];
             }
         }
 
@@ -81,13 +81,13 @@ public class Cannon : Weapon
         {
             if (blueTanks[i].transform.position == new Vector3(currentTankCoordinates.getX(), 1f, currentTankCoordinates.getY()))
             {
-                rotateTank = blueTanks[i];
+                cannonFire = blueTanks[i];
             }
         }
 
-        gunRotation = rotateTank.GetComponent<CannonProjectile>();
+        cannonScript = cannonFire.GetComponent<CannonProjectile>();
         
-        if(gunRotation == null)
+        if(cannonScript == null)
         {
             Debug.Log("CannonProjectile Script is null");
         }
@@ -233,10 +233,5 @@ public class Cannon : Weapon
         }
 
         return validAttacks;
-    }
-
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(30000);
     }
 }

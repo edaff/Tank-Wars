@@ -8,3 +8,7 @@ website found : https://freesound.org/people/OwlStorm/sounds/404754/
 Citiation for Game Over song
 song in folder named : 172306__klankbeeld__carmina-burana-final
 website found: https://freesound.org/people/klankbeeld/sounds/172306/
+
+Cititation for SelectScreen
+Soung in folder name : 02 - BMUS_Menu_001_WaveDataSns_1
+website found: https://downloads.khinsider.com/game-soundtracks/album/battlefield-1943/02%2520-%2520BMUS_Menu_001_WaveDataSns_1.mp3

@@ -12992,7 +12992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -151.01, y: 108.400024}
+  m_AnchoredPosition: {x: -151.01001, y: 108.400024}
   m_SizeDelta: {x: 301.74, y: 217.29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &370792979
@@ -54537,7 +54537,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "Mortar Tank\nHealth: 100, Move Distance:\r\nWeapon: Sniper, Attack Distance:
+  m_text: "Mortar Tank\nHealth: 100, Move Distance:\r\nWeapon: Mortar, Attack Distance:
     4, Attack Damage: 20, Knockback: 0\r\nDescription: Moderate tank with ability
     to shoot over trees & mountains\r"
   m_isRightToLeft: 0
@@ -54617,11 +54617,11 @@ MonoBehaviour:
     lineCount: 4
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

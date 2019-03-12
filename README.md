@@ -25,7 +25,7 @@
 - **Gamble** - 	How - Click the tank you wish to gamble with to roll for a powerup. Takes 10 damage from that tank.
 	Possible powerups: Invincibility, Bonus Movement (1 space), Bonus Damage (10 weapon damage). All powerups last 1 turn
   
-  **Tank Information**
+**Tank Information**
   - **Cannon Tank** - 
 	Health: 100, Move Distance: 3
 	Weapon: Cannon, Attack Distance: 3, Attack Damage: 30, Knockback: 1
@@ -39,6 +39,6 @@
 	Weapon: Mortar, Attack Distance: 4, Attack Damage: 20, Knockback: 0
 	Description: Moderate tank with ability to shoot over trees & mountains
   
-  **Controls**
+**Controls**
 	- WASD - Control Camera
 	- Space Bar - Skip a phase of your turn (such as Move, Attack, or Gamble)

@@ -86,4 +86,10 @@ public class GameStatus : MonoBehaviour
     {
         return this.aiON;
     }
+
+    public void Reset()
+    {
+        player1Wins = false;
+        player2Wins = false;
+    }
 }

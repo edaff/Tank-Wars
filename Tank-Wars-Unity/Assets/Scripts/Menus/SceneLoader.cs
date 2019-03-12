@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     [SerializeField] int loadTime = 2;             //this var will handle load time if needed
+    GameStatus currentState;
 
     int currentSceneIndex;
 
@@ -13,7 +14,7 @@ public class SceneLoader : MonoBehaviour
     void Start()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
+        currentState = FindObjectOfType<GameStatus>();
     }
 
     //function used for waiting x ammount of seconds where x = int load time
@@ -37,6 +38,7 @@ public class SceneLoader : MonoBehaviour
     //function used to pladed main menu
     public void LoadMainMenu()
     {
+        currentState.Reset();
         SceneManager.LoadScene(0);
     }
 
@@ -51,6 +53,5 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("Game Over");
     }
-
 
 }

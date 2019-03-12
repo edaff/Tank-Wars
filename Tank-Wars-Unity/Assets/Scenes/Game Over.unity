@@ -16124,6 +16124,7 @@ MonoBehaviour:
   player2TankPicks: 
   player1Wins: 0
   player2Wins: 0
+  aiON: 0
 --- !u!4 &473722266
 Transform:
   m_ObjectHideFlags: 0
@@ -69735,6 +69736,10 @@ PrefabInstance:
     - target: {fileID: 1612051820, guid: 1f4df7184b6cfcf418a5da8d438cb99f, type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 233860621, guid: 1f4df7184b6cfcf418a5da8d438cb99f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMainMenu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f4df7184b6cfcf418a5da8d438cb99f, type: 3}

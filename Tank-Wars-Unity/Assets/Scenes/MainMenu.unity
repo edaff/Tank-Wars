@@ -54797,7 +54797,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "Mortar Tank\nHealth: 100, Move Distance:\r 3\nWeapon: Mortar, Attack Distance:
+  m_text: "Mortar Tank:\nHealth: 100, Move Distance: 3\nWeapon: Mortar, Attack Distance:
     4, Attack Damage: 20, Knockback: 0\r\nDescription: Moderate tank with ability
     to shoot over trees & mountains\r"
   m_isRightToLeft: 0

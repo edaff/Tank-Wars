@@ -19,12 +19,11 @@
 
 **Play Information**
 - **Move** - Click your tank you'd like to move, then click a valid highlighted tile to move there.
-- **Attack** - 	Click the tank you wish to attack with, then click the tank you wish to attack.
+- **Attack** - Click the tank you wish to attack with, then click the tank you wish to attack.
 	Can Cause Knockback: Moves the target tank back x number of spaces in the shooting direction from the current player.
 	Knockback will do damage if the player hits any obstacle, or the edge of the map.
 - **Gamble** - 	How - Click the tank you wish to gamble with to roll for a powerup. Takes 10 damage from that tank.
-	Possible powerups: Invincibility, Bonus Movement (1 space), Bonus Damage (10 weapon damage)
-	All powerups last 1 turn
+	Possible powerups: Invincibility, Bonus Movement (1 space), Bonus Damage (10 weapon damage). All powerups last 1 turn
   
   **Tank Information**
   - **Cannon Tank** - 

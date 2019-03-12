@@ -40,5 +40,5 @@
 	Description: Moderate tank with ability to shoot over trees & mountains
   
 **Controls**
-	- WASD - Control Camera
-	- Space Bar - Skip a phase of your turn (such as Move, Attack, or Gamble)
+- **WASD** - Control Camera
+- **Space Bar** - Skip a phase of your turn (such as Move, Attack, or Gamble)

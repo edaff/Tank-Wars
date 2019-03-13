@@ -53,9 +53,13 @@ public class SelectScreen : MonoBehaviour
     [SerializeField] private SpriteRenderer srP2Box2;
     [SerializeField] private SpriteRenderer srP2Box3;
 
-    [Header("Color of Boxes")]
+    [Header("Color of P1 Boxes")]
     [SerializeField] private Color pickedBoxColor;
     [SerializeField] private Color normalBoxColor;
+
+    [Header("Color of P2 Boxes")]
+    [SerializeField] private Color pickedBoxColorP2;
+    [SerializeField] private Color normalBoxColorP2;
 
 
     GameStatus currentState;
@@ -324,18 +328,18 @@ public class SelectScreen : MonoBehaviour
     {
         if (whatLevelAmI == 1)
         {
-            srP2Box.color = normalBoxColor;
+            srP2Box.color = normalBoxColorP2;
         }
         else if (whatLevelAmI == 2)
         {
-            srP2Box.color = normalBoxColor;
-            srP2Box2.color = normalBoxColor;
+            srP2Box.color = normalBoxColorP2;
+            srP2Box2.color = normalBoxColorP2;
         }
         else
         {
-            srP2Box.color = normalBoxColor;
-            srP2Box2.color = normalBoxColor;
-            srP2Box3.color = normalBoxColor;
+            srP2Box.color = normalBoxColorP2;
+            srP2Box2.color = normalBoxColorP2;
+            srP2Box3.color = normalBoxColorP2;
         }
     }
 
@@ -361,15 +365,15 @@ public class SelectScreen : MonoBehaviour
     {
         if (p2ArrayIdex == 0)
         {
-            srP2Box.color = pickedBoxColor;
+            srP2Box.color = pickedBoxColorP2;
         }
         else if (p2ArrayIdex == 1)
         {
-            srP2Box2.color = pickedBoxColor;
+            srP2Box2.color = pickedBoxColorP2;
         }
         else
         {
-            srP2Box3.color = pickedBoxColor;
+            srP2Box3.color = pickedBoxColorP2;
         }
     }
 

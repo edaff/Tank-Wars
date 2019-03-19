@@ -90,7 +90,10 @@ public class GameState {
     public string playerGamble(PlayerColors playerTurn, CoordinateSet currentTankCoordinates) {
         Tank currentTank = getPlayerTank(playerTurn, currentTankCoordinates);
         Powerup powerup = Powerup.gamble();
-        currentTank.decrementHealth(10);
+
+        if (powerup.ToString() == "Nothing") {
+            currentTank.decrementHealth(10);
+        }
 
         currentTank.setPowerup(powerup);
 

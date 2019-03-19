@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Powerup {
-    private static int numberOfPowerups = 3;
-    private static int emptyGambleSlots = 3;
+    private static int numberOfPowerups = 4;
+    private static int emptyGambleSlots = 4;
     protected int duration;
     protected int powerupValue;
     protected string name = "Powerup";
@@ -24,6 +24,8 @@ public abstract class Powerup {
                 return new BonusDamage();
             case 3:
                 return new BonusMovement();
+            case 4:
+                return new Healing();
             default:
                 return new EmptyPowerupSlot();
         }

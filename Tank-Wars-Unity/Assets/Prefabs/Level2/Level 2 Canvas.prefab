@@ -1402,7 +1402,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.4
+  m_Value: 0.35
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5220,6 +5220,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1883554759}
     m_Modifications:
+    - target: {fileID: 2995934054574527085, guid: deae3aa84e981a844991f2fbd7838b52,
+        type: 3}
+      propertyPath: m_Name
+      value: Blue TankPowerUpGUI (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 2995934054574527086, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5325,37 +5330,52 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2995934054574527085, guid: deae3aa84e981a844991f2fbd7838b52,
+    - target: {fileID: 2995934053846551384, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
-      propertyPath: m_Name
-      value: Blue TankPowerUpGUI (2)
+      propertyPath: m_LocalPosition.y
+      value: -4.2
       objectReference: {fileID: 0}
-    - target: {fileID: 2995934054673530827, guid: deae3aa84e981a844991f2fbd7838b52,
+    - target: {fileID: 2995934053846551384, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
       propertyPath: m_LocalScale.x
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 2995934054673530827, guid: deae3aa84e981a844991f2fbd7838b52,
+    - target: {fileID: 2995934053846551384, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
       propertyPath: m_LocalScale.y
       value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 2995934053846551384, guid: deae3aa84e981a844991f2fbd7838b52,
+    - target: {fileID: 2995934054890168082, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
       propertyPath: m_LocalScale.x
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 2995934053846551384, guid: deae3aa84e981a844991f2fbd7838b52,
+    - target: {fileID: 2995934054890168082, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 12
+      value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 2995934054890168082, guid: deae3aa84e981a844991f2fbd7838b52,
+    - target: {fileID: 2995934054673530827, guid: deae3aa84e981a844991f2fbd7838b52,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995934054673530827, guid: deae3aa84e981a844991f2fbd7838b52,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995934054673530827, guid: deae3aa84e981a844991f2fbd7838b52,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995934054673530827, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
       propertyPath: m_LocalScale.x
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 2995934054890168082, guid: deae3aa84e981a844991f2fbd7838b52,
+    - target: {fileID: 2995934054673530827, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
       propertyPath: m_LocalScale.y
       value: 17
@@ -5365,16 +5385,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bonus Movement Blue (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 2995934054673530826, guid: deae3aa84e981a844991f2fbd7838b52,
-        type: 3}
-      propertyPath: m_Name
-      value: Bonus Damage Blue (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 2995934054890168081, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
       propertyPath: m_Name
       value: Bonus Invincibilityt Blue (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2995934054673530826, guid: deae3aa84e981a844991f2fbd7838b52,
+        type: 3}
+      propertyPath: m_Name
+      value: Bonus Damage Blue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995934053846551385, guid: deae3aa84e981a844991f2fbd7838b52,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1600c394aea46d748b070ca3570be052,
+        type: 3}
+    - target: {fileID: 2995934054673530820, guid: deae3aa84e981a844991f2fbd7838b52,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c00f4c13db12e544a909351c334d81f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deae3aa84e981a844991f2fbd7838b52, type: 3}
 --- !u!1 &2995934054879863210 stripped
@@ -5523,66 +5555,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7766390790674240721, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7766390790674240721, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
-        type: 3}
-      propertyPath: m_Name
-      value: Hp Bar Red(2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7025981587520539954, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6526852378085658653, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6526852378085658653, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
-        type: 3}
-      propertyPath: m_Name
-      value: Tank_01_RED (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6359244553813918610, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 570658801786998601, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2582140661481349973, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4106422722967835715, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6523870684930815388, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4522975977488071653, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
-        type: 3}
-      propertyPath: bar
-      value: 
-      objectReference: {fileID: 7025981587866289128}
-    - target: {fileID: 4522975977488071653, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
-        type: 3}
-      propertyPath: sr
-      value: 
-      objectReference: {fileID: 8823503514123833848}
     - target: {fileID: 4624307818827031165, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -5607,6 +5579,66 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 570658801786998601, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6359244553813918610, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6526852378085658653, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6526852378085658653, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
+        type: 3}
+      propertyPath: m_Name
+      value: Tank_01_RED (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766390790674240721, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766390790674240721, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
+        type: 3}
+      propertyPath: m_Name
+      value: Hp Bar Red(2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106422722967835715, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522975977488071653, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
+        type: 3}
+      propertyPath: bar
+      value: 
+      objectReference: {fileID: 7025981587866289128}
+    - target: {fileID: 4522975977488071653, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
+        type: 3}
+      propertyPath: sr
+      value: 
+      objectReference: {fileID: 8823503514123833848}
+    - target: {fileID: 6523870684930815388, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025981587520539954, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2582140661481349973, guid: 844eb6ce132cdca4ba1f94edf4d9c272,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 844eb6ce132cdca4ba1f94edf4d9c272, type: 3}
@@ -5641,6 +5673,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1883554759}
     m_Modifications:
+    - target: {fileID: 8964714805933388750, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_Name
+      value: RedTankPowerUpGUI (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 8964714805933388751, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5746,10 +5783,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8964714805933388750, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
-      propertyPath: m_Name
-      value: RedTankPowerUpGUI (2)
+      propertyPath: m_LocalPosition.y
+      value: -3.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
@@ -5761,16 +5803,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 8964714805998146181, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805998146181, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 8964714805391201547, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -5781,21 +5813,53 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 8964714805391201546, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+    - target: {fileID: 8964714805998146181, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
-      propertyPath: m_Name
-      value: Bonus Invincibility Red (2)
+      propertyPath: m_LocalPosition.y
+      value: -3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805998146181, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805998146181, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805998146181, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8964714805512479207, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
       propertyPath: m_Name
       value: Bonus Damage Red (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8964714805391201546, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_Name
+      value: Bonus Invincibility Red (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 8964714805998146180, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
       propertyPath: m_Name
       value: Bonus Movement Red (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479225, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c00f4c13db12e544a909351c334d81f,
+        type: 3}
+    - target: {fileID: 8964714805998146182, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1600c394aea46d748b070ca3570be052,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73fbd8259c7f85c4bae71d7fae76434d, type: 3}
 --- !u!1 &8964714805157558697 stripped
@@ -5921,62 +5985,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8092899043813042665, guid: e50684a84aa90064d910988befad95d0,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8092899043813042665, guid: e50684a84aa90064d910988befad95d0,
-        type: 3}
-      propertyPath: m_Name
-      value: Hp Bar Blue(2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8092899043956296030, guid: e50684a84aa90064d910988befad95d0,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1020967334, guid: e50684a84aa90064d910988befad95d0, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1020967334, guid: e50684a84aa90064d910988befad95d0, type: 3}
-      propertyPath: m_Name
-      value: Tank_01_BLUE (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1134674469, guid: e50684a84aa90064d910988befad95d0, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581536554, guid: e50684a84aa90064d910988befad95d0, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8092899042335423273, guid: e50684a84aa90064d910988befad95d0,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8092899042538595320, guid: e50684a84aa90064d910988befad95d0,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8092899043854375798, guid: e50684a84aa90064d910988befad95d0,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8092899043813042664, guid: e50684a84aa90064d910988befad95d0,
-        type: 3}
-      propertyPath: bar
-      value: 
-      objectReference: {fileID: 8092899043594122736}
-    - target: {fileID: 8092899043813042664, guid: e50684a84aa90064d910988befad95d0,
-        type: 3}
-      propertyPath: sr
-      value: 
-      objectReference: {fileID: 8092899043100575621}
     - target: {fileID: 1020967335, guid: e50684a84aa90064d910988befad95d0, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
@@ -5996,6 +6004,62 @@ PrefabInstance:
     - target: {fileID: 1020967335, guid: e50684a84aa90064d910988befad95d0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020967334, guid: e50684a84aa90064d910988befad95d0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020967334, guid: e50684a84aa90064d910988befad95d0, type: 3}
+      propertyPath: m_Name
+      value: Tank_01_BLUE (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581536554, guid: e50684a84aa90064d910988befad95d0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1134674469, guid: e50684a84aa90064d910988befad95d0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092899043813042665, guid: e50684a84aa90064d910988befad95d0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092899043813042665, guid: e50684a84aa90064d910988befad95d0,
+        type: 3}
+      propertyPath: m_Name
+      value: Hp Bar Blue(2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092899042538595320, guid: e50684a84aa90064d910988befad95d0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092899043813042664, guid: e50684a84aa90064d910988befad95d0,
+        type: 3}
+      propertyPath: bar
+      value: 
+      objectReference: {fileID: 8092899043594122736}
+    - target: {fileID: 8092899043813042664, guid: e50684a84aa90064d910988befad95d0,
+        type: 3}
+      propertyPath: sr
+      value: 
+      objectReference: {fileID: 8092899043100575621}
+    - target: {fileID: 8092899043956296030, guid: e50684a84aa90064d910988befad95d0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092899043854375798, guid: e50684a84aa90064d910988befad95d0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092899042335423273, guid: e50684a84aa90064d910988befad95d0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e50684a84aa90064d910988befad95d0, type: 3}
@@ -6030,6 +6094,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1883554759}
     m_Modifications:
+    - target: {fileID: 8964714805933388750, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_Name
+      value: RedTankPowerUpGUI (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 8964714805933388751, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6135,10 +6204,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8964714805933388750, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
-      propertyPath: m_Name
-      value: RedTankPowerUpGUI (1)
+      propertyPath: m_LocalPosition.y
+      value: -3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
@@ -6149,16 +6223,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805998146181, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805998146181, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8964714805391201547, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
@@ -6180,16 +6244,48 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 8964714805391201546, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+    - target: {fileID: 8964714805998146181, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
-      propertyPath: m_Name
-      value: Bonus Invincibility Red (1)
+      propertyPath: m_LocalPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805998146181, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805998146181, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805998146181, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8964714805512479207, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
       propertyPath: m_Name
       value: Bonus Damage Red (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8964714805391201546, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_Name
+      value: Bonus Invincibility Red (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479225, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c00f4c13db12e544a909351c334d81f,
+        type: 3}
+    - target: {fileID: 8964714805998146182, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1600c394aea46d748b070ca3570be052,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73fbd8259c7f85c4bae71d7fae76434d, type: 3}
 --- !u!1 &8964714805023695668 stripped
@@ -6223,6 +6319,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1883554759}
     m_Modifications:
+    - target: {fileID: 2995934054574527085, guid: deae3aa84e981a844991f2fbd7838b52,
+        type: 3}
+      propertyPath: m_Name
+      value: Blue TankPowerUpGUI (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 2995934054574527086, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6328,30 +6429,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2995934054574527085, guid: deae3aa84e981a844991f2fbd7838b52,
+    - target: {fileID: 2995934053846551384, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
-      propertyPath: m_Name
-      value: Blue TankPowerUpGUI (1)
+      propertyPath: m_LocalPosition.y
+      value: -4.3
       objectReference: {fileID: 0}
-    - target: {fileID: 2995934054673530827, guid: deae3aa84e981a844991f2fbd7838b52,
+    - target: {fileID: 2995934053846551384, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
       propertyPath: m_LocalScale.x
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 2995934054673530827, guid: deae3aa84e981a844991f2fbd7838b52,
+    - target: {fileID: 2995934053846551384, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
       propertyPath: m_LocalScale.y
       value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 2995934053846551384, guid: deae3aa84e981a844991f2fbd7838b52,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2995934053846551384, guid: deae3aa84e981a844991f2fbd7838b52,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2995934054890168082, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
@@ -6363,16 +6454,43 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 2995934054673530826, guid: deae3aa84e981a844991f2fbd7838b52,
+    - target: {fileID: 2995934054673530827, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
-      propertyPath: m_Name
-      value: Bonus Damage Blue (1)
+      propertyPath: m_LocalPosition.y
+      value: -3.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995934054673530827, guid: deae3aa84e981a844991f2fbd7838b52,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995934054673530827, guid: deae3aa84e981a844991f2fbd7838b52,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 2995934054890168081, guid: deae3aa84e981a844991f2fbd7838b52,
         type: 3}
       propertyPath: m_Name
       value: Bonus Invincibilityt Blue (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2995934054673530826, guid: deae3aa84e981a844991f2fbd7838b52,
+        type: 3}
+      propertyPath: m_Name
+      value: Bonus Damage Blue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995934053846551385, guid: deae3aa84e981a844991f2fbd7838b52,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1600c394aea46d748b070ca3570be052,
+        type: 3}
+    - target: {fileID: 2995934054673530820, guid: deae3aa84e981a844991f2fbd7838b52,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c00f4c13db12e544a909351c334d81f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deae3aa84e981a844991f2fbd7838b52, type: 3}
 --- !u!224 &2995934054366326592 stripped

@@ -34960,14 +34960,6 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 762022649}
-    - target: {fileID: 872126634, guid: 40a3e3c63573f07478e29e50739306c8, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_volume
-      objectReference: {fileID: 0}
-    - target: {fileID: 872126634, guid: 40a3e3c63573f07478e29e50739306c8, type: 3}
-      propertyPath: m_Value
-      value: 0.35
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40a3e3c63573f07478e29e50739306c8, type: 3}
 --- !u!224 &1883554759 stripped

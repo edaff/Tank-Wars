@@ -1647,16 +1647,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.33333334
       objectReference: {fileID: 0}
-    - target: {fileID: 2216786181035122805, guid: 23c17a82c37341e4c9a2e26b53c04e4b,
-        type: 3}
-      propertyPath: SizeModule.curve.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2216786181035122805, guid: 23c17a82c37341e4c9a2e26b53c04e4b,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6681988487376707761, guid: 23c17a82c37341e4c9a2e26b53c04e4b,
         type: 3}
       propertyPath: SizeModule.curve.scalar
@@ -1671,6 +1661,16 @@ PrefabInstance:
         type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].time
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2216786181035122805, guid: 23c17a82c37341e4c9a2e26b53c04e4b,
+        type: 3}
+      propertyPath: SizeModule.curve.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2216786181035122805, guid: 23c17a82c37341e4c9a2e26b53c04e4b,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23c17a82c37341e4c9a2e26b53c04e4b, type: 3}
@@ -1762,16 +1762,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.33333334
       objectReference: {fileID: 0}
-    - target: {fileID: 2216786181035122805, guid: 23c17a82c37341e4c9a2e26b53c04e4b,
-        type: 3}
-      propertyPath: SizeModule.curve.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2216786181035122805, guid: 23c17a82c37341e4c9a2e26b53c04e4b,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6681988487376707761, guid: 23c17a82c37341e4c9a2e26b53c04e4b,
         type: 3}
       propertyPath: SizeModule.curve.scalar
@@ -1786,6 +1776,16 @@ PrefabInstance:
         type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].time
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2216786181035122805, guid: 23c17a82c37341e4c9a2e26b53c04e4b,
+        type: 3}
+      propertyPath: SizeModule.curve.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2216786181035122805, guid: 23c17a82c37341e4c9a2e26b53c04e4b,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23c17a82c37341e4c9a2e26b53c04e4b, type: 3}

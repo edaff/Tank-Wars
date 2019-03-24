@@ -28,6 +28,7 @@ public class SelectScreen : MonoBehaviour
     [SerializeField] GameObject p1Redo;
     [SerializeField] GameObject p1PickingText;
     [SerializeField] GameObject p1Background;
+    [SerializeField] GameObject p1Confir;
 
     [Header("p1 boxes & tanks")]
     [SerializeField] GameObject p1Box2;
@@ -38,6 +39,7 @@ public class SelectScreen : MonoBehaviour
     [SerializeField] GameObject p2Redo;
     [SerializeField] GameObject p2PickingText;
     [SerializeField] GameObject p2Background;
+    [SerializeField] GameObject p2Confir;
 
     [Header("p2 boxes & tanks")]
     [SerializeField] GameObject p2Box2;
@@ -100,7 +102,7 @@ public class SelectScreen : MonoBehaviour
             p1Redo.SetActive(true);
             p1Ready.SetActive(true);
             p1PickingText.SetActive(true);
-            p1Background.SetActive(true);
+            //p1Background.SetActive(true);
         }
 
         //this will pop up redo? and ready GUI for player 2
@@ -109,7 +111,7 @@ public class SelectScreen : MonoBehaviour
             p2Redo.SetActive(true);
             p2Ready.SetActive(true);
             p2PickingText.SetActive(true);
-            p2Background.SetActive(true);
+            //p2Background.SetActive(true);
         }
 
         //player 1 keys
@@ -260,7 +262,7 @@ public class SelectScreen : MonoBehaviour
         p1Redo.SetActive(false);
         p1Ready.SetActive(false);
         p1PickingText.SetActive(false);
-        p1Background.SetActive(false);
+        //p1Background.SetActive(false);
 
         ReSetColorsOnBoxesForP1();                      //reset the colors of the boxes
 
@@ -272,8 +274,9 @@ public class SelectScreen : MonoBehaviour
         p1Ready.SetActive(false);
         p1Redo.SetActive(false);
         p1PickingText.SetActive(false);
-        p1Background.SetActive(false);
+        //p1Background.SetActive(false);
         player1FishedPicking = true;
+        p1Confir.SetActive(true);
         currentState.SetPlayer1TanksPick(player1TankPicks);
     }
     //end of player 1 GUI control functions
@@ -284,7 +287,7 @@ public class SelectScreen : MonoBehaviour
         p2Redo.SetActive(false);
         p2Ready.SetActive(false);
         p2PickingText.SetActive(false);
-        p2Background.SetActive(false);
+        //p2Background.SetActive(false);
 
         ReSetColorsOnBoxesForP2();                  //reset the colors of the boxes
 
@@ -296,8 +299,9 @@ public class SelectScreen : MonoBehaviour
         p2Ready.SetActive(false);
         p2Redo.SetActive(false);
         p2PickingText.SetActive(false);
-        p2Background.SetActive(false);
+        //p2Background.SetActive(false);
         player2FishedPicking = true;
+        p2Confir.SetActive(true);
         currentState.SetPlayer2TanksPick(player2TankPicks);
     }
     //end of player 2 GUI control functions
@@ -416,7 +420,7 @@ public class SelectScreen : MonoBehaviour
         p1Redo.SetActive(false);
         p1Ready.SetActive(false);
         p1PickingText.SetActive(false);
-        p1Background.SetActive(false);
+        //p1Background.SetActive(false);
 
         //turns off all player 1 space
         p1Box2.SetActive(false);
@@ -426,11 +430,15 @@ public class SelectScreen : MonoBehaviour
         p2Redo.SetActive(false);
         p2Ready.SetActive(false);
         p2PickingText.SetActive(false);
-        p2Background.SetActive(false);
+        //p2Background.SetActive(false);
 
         //turns off all player 2 space
         p2Box2.SetActive(false);
         p2Box3.SetActive(false);
+
+        //turns off all green check Marks
+        p1Confir.SetActive(false);
+        p2Confir.SetActive(false);
 
         //checks to see how many UI elements need to be turned on
         if (whatLevelAmI == 2)

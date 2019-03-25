@@ -515,6 +515,10 @@ public class Turns : MonoBehaviour
             // Game's not over fool!
         }
     }
+
+    public GameState getGameState() {
+        return this.gs;
+    }
 }
 
 public enum Rounds {

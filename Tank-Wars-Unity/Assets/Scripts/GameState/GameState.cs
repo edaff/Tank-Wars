@@ -159,6 +159,33 @@ public class GameState {
         return powerups;
 
     }
+
+    // Returns an array of size 3. Each index corresponds to a tank
+    // and holds an integer for it's health. If that index is an 
+    // empty tank slot, the health will be -9999.
+    public int[] getHealthForPlayerTanks(PlayerColors player) {
+        int[] health = new int[3];
+        Tank[] tanks;
+        const int emptyTankSlotHealth = -9999;
+
+        if(player == PlayerColors.Red) {
+            tanks = player1.getPlayerTanks();
+        }
+        else {
+            tanks = player2.getPlayerTanks();
+        }
+
+        for(int i = 0; i < 3; i++) {
+            if(tanks[i] is EmptyTankSlot) {
+                health[i] = emptyTankSlotHealth;
+            }
+            else {
+                health[i] = tanks[i].getHealth();
+            }
+        }
+
+        return health;
+    }
 }
 
 public enum Levels {

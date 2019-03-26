@@ -148,54 +148,6 @@ public class MinMaxAI
             }
         }
 
-        /*
-		DEBUG STUFF---------------------------------------------------------------------------
-    	*/
-        string tempS;
-
-        for (int i = 0; i < column; i++)
-        {
-            tempS = "";
-            for (int j = 0; j < row; j++)
-            {
-                tempS = string.Concat(tempS, min[i, j]);
-            }
-            Debug.Log(tempS);
-        }
-
-        for (int i = 0; i < column; i++)
-        {
-            tempS = "";
-            for (int j = 0; j < row; j++)
-            {
-                tempS = string.Concat(tempS, max[i, j]);
-            }
-            Debug.Log(tempS);
-        }
-
-        for (int i = 0; i < column; i++)
-        {
-            tempS = "";
-            for (int j = 0; j < row; j++)
-            {
-                tempS = string.Concat(tempS, net[i, j]);
-            }
-            Debug.Log(tempS);
-        }
-
-        for (int i = 0; i < column; i++)
-        {
-            tempS = "";
-            for (int j = 0; j < row; j++)
-            {
-                tempS = string.Concat(tempS, zero[i, j]);
-            }
-            Debug.Log(tempS);
-        }
-        /*
-		DEBUG STUFF---------------------------------------------------------------------------
-    	*/
-
         //Find Which valid move is closer to the player
         for (int i = 0; i < column; i++)
         {
@@ -229,25 +181,6 @@ public class MinMaxAI
             }
         }
 
-        /*
-		DEBUG STUFF---------------------------------------------------------------------------
-    	*/
-
-        for (int i = 0; i < column; i++)
-        {
-            tempS = "";
-            for (int j = 0; j < row; j++)
-            {
-                tempS = string.Concat(tempS, zero[i, j]);
-            }
-            Debug.Log(tempS);
-        }
-
-        Debug.Log("i_: " + i_ + "\nj_: " + j_);
-        /*
-		DEBUG STUFF---------------------------------------------------------------------------
-    	*/
-
         //Now return the best move
         aiCoordinates = new CoordinateSet((int)blueTanks[i_].transform.position.x, (int)blueTanks[i_].transform.position.z);
         validMoves = findValidMoves(aiCoordinates, (PlayerColors)PlayerColors.Blue);
@@ -255,7 +188,6 @@ public class MinMaxAI
         closestTank = findClosestTanks((CoordinateSet)validMoves[j_]);
         if (j_ == 0)
         {
-            Debug.Log("Penis: " + j_);
             move = false;
         }
         return (CoordinateSet)validMoves[j_];

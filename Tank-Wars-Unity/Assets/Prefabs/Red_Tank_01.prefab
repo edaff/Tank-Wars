@@ -2110,7 +2110,7 @@ GameObject:
   - component: {fileID: 5986965663093029826}
   - component: {fileID: 1379659222606911876}
   m_Layer: 0
-  m_Name: pCylinder105
+  m_Name: normalTankHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2502,7 +2502,7 @@ PrefabInstance:
     - target: {fileID: 6143769724747557253, guid: 95d335a94294b924b9bd465f12f1dd2a,
         type: 3}
       propertyPath: m_Name
-      value: Particle_FIRE_Light_10%
+      value: normalTankFire10
       objectReference: {fileID: 0}
     - target: {fileID: 6143769724747557253, guid: 95d335a94294b924b9bd465f12f1dd2a,
         type: 3}
@@ -2582,7 +2582,7 @@ PrefabInstance:
     - target: {fileID: 325906669176093806, guid: baef7e9eead72da4a956bdb938682ffb,
         type: 3}
       propertyPath: m_Name
-      value: Particle_FIRE_Light_40%
+      value: normalTankFire40
       objectReference: {fileID: 0}
     - target: {fileID: 325906669176093806, guid: baef7e9eead72da4a956bdb938682ffb,
         type: 3}
@@ -2662,7 +2662,7 @@ PrefabInstance:
     - target: {fileID: 1672703830732729174, guid: 23c17a82c37341e4c9a2e26b53c04e4b,
         type: 3}
       propertyPath: m_Name
-      value: Particle_FIRE_Light
+      value: normalTankFire100
       objectReference: {fileID: 0}
     - target: {fileID: 1672703830732729174, guid: 23c17a82c37341e4c9a2e26b53c04e4b,
         type: 3}

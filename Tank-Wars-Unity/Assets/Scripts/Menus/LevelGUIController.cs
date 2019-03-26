@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelGUIController : MonoBehaviour
 {
-    Turns getTurnsInfo;
+    
     string whatRoundAmi;
     string whoesTurnisIt;
 
@@ -26,6 +26,15 @@ public class LevelGUIController : MonoBehaviour
 
     [Header("Game State info")]
     [SerializeField] GameStatus currentState;
+    Turns getTurnsInfo;
+    GameState getCurrentHp;
+    RedTankSpawner1 redTankInfo;
+    BlueTankSpawner blueTankInfo;
+
+
+    //holds tank childern arrays ************
+    int[] redTanksHp = new int[3];
+    [SerializeField] Transform[] redTankChildern = new Transform[7];
 
 
     // Start is called before the first frame update
@@ -35,11 +44,28 @@ public class LevelGUIController : MonoBehaviour
 
         currentState = FindObjectOfType<GameStatus>();
         aIOn = currentState.GetAiON();
+
+        redTankInfo = FindObjectOfType<RedTankSpawner1>();
+        redTankChildern = redTankInfo.getRedTank1Childern();
     }
 
     // Update is called once per frame
     void Update()
     {
+        getCurrentHp = getTurnsInfo.getGameState();
+        redTanksHp = getCurrentHp.getHealthForPlayerTanks(PlayerColors.Red);
+
+        Debug.Log("Red Tanks 1 hp is " + redTanksHp[0]);
+        Debug.Log("Red Tanks 1 hp is " + redTanksHp[1]);
+
+        Debug.Log(redTankChildern[4]);
+        //redTankChildern[6].gameObject.SetActive(true);
+
+        if (redTanksHp[0] <= 90)
+        {
+            redTankChildern[6].gameObject.SetActive(true);
+        }
+
         //Debug.Log("AI is " + aIOn);
         whatRoundAmi = getTurnsInfo.round.ToString();
         whoesTurnisIt = getTurnsInfo.playerTurn.ToString();
@@ -50,7 +76,8 @@ public class LevelGUIController : MonoBehaviour
 
         RedTankGUIController();
         BlueTankGUIController();
-
+        
+        
     }
 
     //moves control for red tanks/player

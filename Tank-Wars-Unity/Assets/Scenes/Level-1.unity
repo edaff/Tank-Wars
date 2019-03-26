@@ -14087,6 +14087,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8412270587990433087, guid: 46a3fd245671a1f4eb461f63a0070803,
+        type: 3}
+      propertyPath: m_Name
+      value: normalTankFire101
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46a3fd245671a1f4eb461f63a0070803, type: 3}
 --- !u!1001 &1464001149
@@ -17991,6 +17996,22 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 275353832}
+    - target: {fileID: 1204965018, guid: 67511dd76f0f690458c3ab9fe98122fd, type: 3}
+      propertyPath: redTanksNomrmalFire10Per
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1204965018, guid: 67511dd76f0f690458c3ab9fe98122fd, type: 3}
+      propertyPath: redTanksNormalFire40Per
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1204965018, guid: 67511dd76f0f690458c3ab9fe98122fd, type: 3}
+      propertyPath: redTanksNormalFire100Per
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1204965018, guid: 67511dd76f0f690458c3ab9fe98122fd, type: 3}
+      propertyPath: redTankNormalHead
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67511dd76f0f690458c3ab9fe98122fd, type: 3}
 --- !u!114 &2456585029948675710 stripped

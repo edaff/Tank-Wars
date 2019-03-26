@@ -11785,13 +11785,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217054992}
-  m_LocalRotation: {x: -0.06553618, y: 0.07228954, z: -0.004760349, w: 0.9952169}
-  m_LocalPosition: {x: 31.99, y: -0.4, z: -18.61}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 2.24, y: 1.03, z: -9.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -7.4560003, y: 8.38, z: -1.095}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &217054996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24152,6 +24152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red_Tank_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1459388758, guid: 46a3fd245671a1f4eb461f63a0070803, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5067605054119739764, guid: 46a3fd245671a1f4eb461f63a0070803,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25798,6 +25802,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Red_Tank_Mortar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058614053703630323, guid: 9ca14cb2cd9f2f9488de8e8393b878c1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6125772696268194169, guid: 9ca14cb2cd9f2f9488de8e8393b878c1,
         type: 3}

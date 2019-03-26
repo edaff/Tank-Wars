@@ -23,6 +23,8 @@ public class Player
         CoordinateSet[] level1Blue = { new CoordinateSet(5, 9) };
         CoordinateSet[] level2Red = { new CoordinateSet(3, 0), new CoordinateSet(11,0) };
         CoordinateSet[] level2Blue = { new CoordinateSet(3, 14), new CoordinateSet(11,14) };
+        CoordinateSet[] level3Red = { new CoordinateSet(1,3), new CoordinateSet(1, 10), new CoordinateSet(1, 16) };
+        CoordinateSet[] level3Blue = { new CoordinateSet(18, 3), new CoordinateSet(18, 10), new CoordinateSet(18, 16) };
 
         for (int i = 0; i < playerTankArray.Length; i++) {
             switch (playerTankArray[i]) {
@@ -39,6 +41,9 @@ public class Player
                         else if (level == Levels.Level2) {
                             tanks[i] = new CannonTank(this, level2Red[i]);
                         }
+                        else if(level == Levels.Level3) {
+                            tanks[i] = new CannonTank(this, level3Red[i]);
+                        }
                     }
                     else {
                         if (level == Levels.Level1) {
@@ -46,6 +51,9 @@ public class Player
                         }
                         else if (level == Levels.Level2) {
                             tanks[i] = new CannonTank(this, level2Blue[i]);
+                        }
+                        else if (level == Levels.Level3) {
+                            tanks[i] = new CannonTank(this, level3Blue[i]);
                         }
                     }
                     break;
@@ -58,6 +66,9 @@ public class Player
                         else if (level == Levels.Level2) {
                             tanks[i] = new SniperTank(this, level2Red[i]);
                         }
+                        else if(level == Levels.Level3) {
+                            tanks[i] = new SniperTank(this, level3Red[i]);
+                        }
                     }
                     else {
                         if (level == Levels.Level1) {
@@ -65,6 +76,9 @@ public class Player
                         }
                         else if (level == Levels.Level2) {
                             tanks[i] = new SniperTank(this, level2Blue[i]);
+                        }
+                        else if (level == Levels.Level3) {
+                            tanks[i] = new SniperTank(this, level3Blue[i]);
                         }
                     }
                     break;
@@ -77,6 +91,9 @@ public class Player
                         else if (level == Levels.Level2) {
                             tanks[i] = new MortarTank(this, level2Red[i]);
                         }
+                        else if (level == Levels.Level3) {
+                            tanks[i] = new MortarTank(this, level3Red[i]);
+                        }
                     }
                     else {
                         if (level == Levels.Level1) {
@@ -84,6 +101,9 @@ public class Player
                         }
                         else if (level == Levels.Level2) {
                             tanks[i] = new MortarTank(this, level2Blue[i]);
+                        }
+                        else if (level == Levels.Level3) {
+                            tanks[i] = new MortarTank(this, level3Blue[i]);
                         }
                     }
                     break;

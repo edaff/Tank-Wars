@@ -12,6 +12,8 @@ public class LevelGUIController : MonoBehaviour
     bool bluePhase = true;
     bool aIOn = false;
 
+    int whatLevelIsThis = 1;
+
     [Header("Red Player's GUI Controller")]
     [SerializeField] GameObject redTankMoveGUI;
     [SerializeField] GameObject redTankAttackGUI;
@@ -32,9 +34,16 @@ public class LevelGUIController : MonoBehaviour
     BlueTankSpawner blueTankInfo;
 
 
-    //holds tank childern arrays ************
+    //holds tank childern arrays for red tanks ************
     int[] redTanksHp = new int[3];
-    [SerializeField] Transform[] redTankChildern = new Transform[7];
+    [SerializeField] Transform[] redTank1Childern = new Transform[7];
+    [SerializeField] Transform[] redTank2Childern = new Transform[7];
+    //[SerializeField] Transform[] redTank3Childern = new Transform[7];
+
+    int[] blueTanksHp = new int[3];
+    [SerializeField] Transform[] blueTank1Childern = new Transform[7];
+    [SerializeField] Transform[] blueTank2Childern = new Transform[7];
+    //[SerializeField] Transform[] blueTank3Childern = new Transform[7];
 
 
     // Start is called before the first frame update
@@ -44,9 +53,10 @@ public class LevelGUIController : MonoBehaviour
 
         currentState = FindObjectOfType<GameStatus>();
         aIOn = currentState.GetAiON();
+        whatLevelIsThis = currentState.GetDifficuity();
 
-        redTankInfo = FindObjectOfType<RedTankSpawner1>();
-        redTankChildern = redTankInfo.getRedTank1Childern();
+
+        CreateChildArray();
     }
 
     // Update is called once per frame
@@ -54,17 +64,28 @@ public class LevelGUIController : MonoBehaviour
     {
         getCurrentHp = getTurnsInfo.getGameState();
         redTanksHp = getCurrentHp.getHealthForPlayerTanks(PlayerColors.Red);
+        blueTanksHp = getCurrentHp.getHealthForPlayerTanks(PlayerColors.Blue);
 
-        Debug.Log("Red Tanks 1 hp is " + redTanksHp[0]);
-        Debug.Log("Red Tanks 1 hp is " + redTanksHp[1]);
+        //Debug.Log("Red Tanks 1 hp is " + redTanksHp[0]);                        //hp of red tank 1
+        //Debug.Log("Red Tanks 2 hp is " + redTanksHp[1]);                        //hp og red tank 2
+        //Debug.Log("blue Tanks 1 hp is " + blueTanksHp[0]);                        //hp of blue tank 1
+        //Debug.Log("blue Tanks 2 hp is " + blueTanksHp[1]);                        //hp og blue tank 2
 
-        Debug.Log(redTankChildern[4]);
-        //redTankChildern[6].gameObject.SetActive(true);
+        //Debug.Log(redTank1Childern[4]);                                         //reads back the 4th child object of red tank 1, it should be fire10
+        //redTankChildern[6].gameObject.SetActive(true);                        //turns on child 6 of red tank 1, it should be the normal fire pre fab
 
-        if (redTanksHp[0] <= 90)
+        /*if (redTanksHp[0] <= 90)
         {
-            redTankChildern[6].gameObject.SetActive(true);
+            redTank1Childern[6].gameObject.SetActive(true);
         }
+        if (blueTanksHp[0] <= 90)
+        {
+            blueTank1Childern[6].gameObject.SetActive(true);
+        }
+        */
+
+        UpdateRedTanksLook();
+        UpdateBlueTanksLook();
 
         //Debug.Log("AI is " + aIOn);
         whatRoundAmi = getTurnsInfo.round.ToString();
@@ -142,6 +163,269 @@ public class LevelGUIController : MonoBehaviour
         else { blueTankGambleGUI.SetActive(false); }
     }
 
+    private void CreateChildArray()
+    {
+        redTankInfo = FindObjectOfType<RedTankSpawner1>();
+        blueTankInfo = FindObjectOfType<BlueTankSpawner>();
+
+        if (whatLevelIsThis == 1)
+        {
+            redTank1Childern = redTankInfo.getRedTank1Childern();
+            blueTank1Childern = blueTankInfo.getBlueTank1Childern();
+        }
+        else if(whatLevelIsThis == 2)
+        {
+            redTank1Childern = redTankInfo.getRedTank1Childern();
+            redTank2Childern = redTankInfo.getRedTank2Childern();
+            blueTank1Childern = blueTankInfo.getBlueTank1Childern();
+            blueTank2Childern = blueTankInfo.getBlueTank2Childern();
+        }
+        else if (whatLevelIsThis == 3)
+        {
+            redTank1Childern = redTankInfo.getRedTank1Childern();
+            redTank2Childern = redTankInfo.getRedTank2Childern();
+            blueTank1Childern = blueTankInfo.getBlueTank1Childern();
+            blueTank2Childern = blueTankInfo.getBlueTank2Childern();
+            //redTank3Childern = redTankInfo.getRedTank3Childern();
+            //blueTank3Childern = blueTankInfo.getBlueTank3Childern();
+        }
+    }
+
+    private void UpdateRedTanksLook()
+    {
+        if (whatLevelIsThis == 1)                                                   //level 1 so it updates 1 tanks
+        {
+            if (redTanksHp[0] <= 90 && redTanksHp[0] > 0)
+            {
+                redTank1Childern[4].gameObject.SetActive(true);
+
+                if (redTanksHp[0] <= 50)
+                {
+                    redTank1Childern[5].gameObject.SetActive(true);
+                }
+            }
+            else if (redTanksHp[0] <= 0)
+            {
+                redTank1Childern[4].gameObject.SetActive(false);
+                redTank1Childern[5].gameObject.SetActive(false);
+
+                redTank1Childern[3].gameObject.SetActive(false);
+                redTank1Childern[6].gameObject.SetActive(true);
+            }
+        }
+        else if (whatLevelIsThis == 2)                                              //level 2 so it updates 2 tanks
+        {
+            if (redTanksHp[0] <= 90 && redTanksHp[0] > 0)
+            {
+                redTank1Childern[4].gameObject.SetActive(true);
+
+                if (redTanksHp[0] <= 50)
+                {
+                    redTank1Childern[5].gameObject.SetActive(true);
+                }
+            }
+            else if (redTanksHp[0] <= 0)
+            {
+                redTank1Childern[4].gameObject.SetActive(false);
+                redTank1Childern[5].gameObject.SetActive(false);
+
+                redTank1Childern[3].gameObject.SetActive(false);
+                redTank1Childern[6].gameObject.SetActive(true);
+            }
+
+            if (redTanksHp[1] <= 90 && redTanksHp[1] > 0)
+            {
+                redTank2Childern[4].gameObject.SetActive(true);
+
+                if (redTanksHp[1] <= 50)
+                {
+                    redTank2Childern[5].gameObject.SetActive(true);
+                }
+            }
+            else if (redTanksHp[1] <= 0)
+            {
+                redTank2Childern[4].gameObject.SetActive(false);
+                redTank2Childern[5].gameObject.SetActive(false);
+
+                redTank2Childern[3].gameObject.SetActive(false);
+                redTank2Childern[6].gameObject.SetActive(true);
+            }
+        }
+        /*else if (whatLevelIsThis == 3)                                              //level 3 so it updates 3 tanks
+        {
+            if (redTanksHp[0] <= 90 && redTanksHp[0] > 0)
+            {
+                redTank1Childern[4].gameObject.SetActive(true);
+
+                if (redTanksHp[0] <= 50)
+                {
+                    redTank1Childern[5].gameObject.SetActive(true);
+                }
+            }
+            else if (redTanksHp[0] <= 0)
+            {
+                redTank1Childern[4].gameObject.SetActive(false);
+                redTank1Childern[5].gameObject.SetActive(false);
+
+                redTank1Childern[3].gameObject.SetActive(false);
+                redTank1Childern[6].gameObject.SetActive(true);
+            }
+
+            if (redTanksHp[1] <= 90 && redTanksHp[1] > 0)
+            {
+                redTank2Childern[4].gameObject.SetActive(true);
+
+                if (redTanksHp[1] <= 50)
+                {
+                    redTank2Childern[5].gameObject.SetActive(true);
+                }
+            }
+            else if (redTanksHp[1] <= 0)
+            {
+                redTank2Childern[4].gameObject.SetActive(false);
+                redTank2Childern[5].gameObject.SetActive(false);
+
+                redTank2Childern[3].gameObject.SetActive(false);
+                redTank2Childern[6].gameObject.SetActive(true);
+            }
+            if (redTanksHp[2] <= 90 && redTanksHp[2] > 0)
+            {
+                redTank3Childern[4].gameObject.SetActive(true);
+
+                if (redTanksHp[2] <= 50)
+                {
+                    redTank3Childern[5].gameObject.SetActive(true);
+                }
+            }
+            else if (redTanksHp[2] <= 0)
+            {
+                redTank3Childern[4].gameObject.SetActive(false);
+                redTank3Childern[5].gameObject.SetActive(false);
+
+                redTank3Childern[3].gameObject.SetActive(false);
+                redTank3Childern[6].gameObject.SetActive(true);
+            }
+        }
+        */
+    }
+
+    private void UpdateBlueTanksLook()
+    {
+        if (whatLevelIsThis == 1)                                                   //level 1 so it updates 1 tanks
+        {
+            if (blueTanksHp[0] <= 90 && blueTanksHp[0] > 0)
+            {
+                blueTank1Childern[4].gameObject.SetActive(true);
+
+                if (blueTanksHp[0] <= 50)
+                {
+                    blueTank1Childern[5].gameObject.SetActive(true);
+                }
+            }
+            else if (blueTanksHp[0] <= 0)
+            {
+                blueTank1Childern[4].gameObject.SetActive(false);
+                blueTank1Childern[5].gameObject.SetActive(false);
+
+                blueTank1Childern[3].gameObject.SetActive(false);
+                blueTank1Childern[6].gameObject.SetActive(true);
+            }
+        }
+        else if (whatLevelIsThis == 2)                                              //level 2 so it updates 2 tanks
+        {
+            if (blueTanksHp[0] <= 90 && blueTanksHp[0] > 0)
+            {
+                blueTank1Childern[4].gameObject.SetActive(true);
+
+                if (blueTanksHp[0] <= 50)
+                {
+                    blueTank1Childern[5].gameObject.SetActive(true);
+                }
+            }
+            else if (blueTanksHp[0] <= 0)
+            {
+                blueTank1Childern[4].gameObject.SetActive(false);
+                blueTank1Childern[5].gameObject.SetActive(false);
+
+                blueTank1Childern[3].gameObject.SetActive(false);
+                blueTank1Childern[6].gameObject.SetActive(true);
+            }
+
+            if (blueTanksHp[1] <= 90 && blueTanksHp[1] > 0)
+            {
+                blueTank2Childern[4].gameObject.SetActive(true);
+
+                if (blueTanksHp[1] <= 50)
+                {
+                    blueTank2Childern[5].gameObject.SetActive(true);
+                }
+            }
+            else if (blueTanksHp[1] <= 0)
+            {
+                blueTank2Childern[4].gameObject.SetActive(false);
+                blueTank2Childern[5].gameObject.SetActive(false);
+
+                blueTank2Childern[3].gameObject.SetActive(false);
+                blueTank2Childern[6].gameObject.SetActive(true);
+            }
+        }
+        /*else if (whatLevelIsThis == 3)                                              //level 3 so it updates 3 tanks
+        {
+            if (blueTanksHp[0] <= 90 && blueTanksHp[0] > 0)
+            {
+                blueTank1Childern[4].gameObject.SetActive(true);
+
+                if (blueTanksHp[0] <= 50)
+                {
+                    blueTank1Childern[5].gameObject.SetActive(true);
+                }
+            }
+            else if (blueTanksHp[0] <= 0)
+            {
+                blueTank1Childern[4].gameObject.SetActive(false);
+                blueTank1Childern[5].gameObject.SetActive(false);
+
+                blueTank1Childern[3].gameObject.SetActive(false);
+                blueTank1Childern[6].gameObject.SetActive(true);
+            }
+
+            if (blueTanksHp[1] <= 90 && blueTanksHp[1] > 0)
+            {
+                blueTank2Childern[4].gameObject.SetActive(true);
+
+                if (blueTanksHp[1] <= 50)
+                {
+                    blueTank2Childern[5].gameObject.SetActive(true);
+                }
+            }
+            else if (blueTanksHp[1] <= 0)
+            {
+                blueTank2Childern[4].gameObject.SetActive(false);
+                blueTank2Childern[5].gameObject.SetActive(false);
+
+                blueTank2Childern[3].gameObject.SetActive(false);
+                blueTank2Childern[6].gameObject.SetActive(true);
+            }
+            if (blueTanksHp[2] <= 90 && blueTanksHp[2] > 0)
+            {
+                blueTank3Childern[4].gameObject.SetActive(true);
+
+                if (blueTanksHp[2] <= 50)
+                {
+                    blueTank3Childern[5].gameObject.SetActive(true);
+                }
+            }
+            else if (blueTanksHp[2] <= 0)
+            {
+                blueTank3Childern[4].gameObject.SetActive(false);
+                blueTank3Childern[5].gameObject.SetActive(false);
+
+                blueTank3Childern[3].gameObject.SetActive(false);
+                blueTank3Childern[6].gameObject.SetActive(true);
+            }
+        }
+        */
+    }
 }
 
 

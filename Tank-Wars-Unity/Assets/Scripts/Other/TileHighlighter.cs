@@ -19,7 +19,7 @@ public class TileHighlighter
 
                 if ((int)child.transform.position.x == currentCoordinates.getX() && (int)child.transform.position.z == currentCoordinates.getY()){
                     if (round == Rounds.Move) {
-                        meshRenderer.material.color = Color.yellow;
+                        meshRenderer.material.color = Color.gray;
                     }
                     else if(round == Rounds.Attack){
                         meshRenderer.material.color = Color.red;

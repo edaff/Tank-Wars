@@ -393,22 +393,22 @@ public class SelectScreen : MonoBehaviour
         else if(whatLevelAmI == 2)
         {
             P2BoxColorPick();
-            player2TankPicks[0] = Random.Range(1, 3);
+            player2TankPicks[0] = Random.Range(1, 4);
             p2ArrayIdex++;
             P2BoxColorPick();
-            player2TankPicks[1] = Random.Range(1, 3);
+            player2TankPicks[1] = Random.Range(1, 4);
             p2DonePicking();
         }
         else if(whatLevelAmI == 3)
         {
             P2BoxColorPick();
-            player2TankPicks[0] = Random.Range(1, 3);
+            player2TankPicks[0] = Random.Range(1, 4);
             p2ArrayIdex++;
             P2BoxColorPick();
-            player2TankPicks[1] = Random.Range(1, 3);
+            player2TankPicks[1] = Random.Range(1, 4);
             p2ArrayIdex++;
             P2BoxColorPick();
-            player2TankPicks[2] = Random.Range(1, 3);
+            player2TankPicks[2] = Random.Range(1, 4);
             p2ArrayIdex++;
             p2DonePicking();
         }

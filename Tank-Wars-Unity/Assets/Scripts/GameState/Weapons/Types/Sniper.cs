@@ -11,7 +11,7 @@ public class Sniper : Weapon {
 
     // Constructors
     public Sniper(Tank tank) {
-        this.damage = 50;
+        this.damage = 45;
         this.distance = 10;
         this.tank = tank;
         this.knockback = 2;

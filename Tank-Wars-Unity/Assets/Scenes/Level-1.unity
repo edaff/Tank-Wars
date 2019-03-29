@@ -21486,21 +21486,15 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 275353832}
-    - target: {fileID: 1204965018, guid: 67511dd76f0f690458c3ab9fe98122fd, type: 3}
-      propertyPath: redTanksNomrmalFire10Per
-      value: 
+    - target: {fileID: 108816682965515069, guid: 67511dd76f0f690458c3ab9fe98122fd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -179.29999
       objectReference: {fileID: 0}
-    - target: {fileID: 1204965018, guid: 67511dd76f0f690458c3ab9fe98122fd, type: 3}
-      propertyPath: redTanksNormalFire40Per
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1204965018, guid: 67511dd76f0f690458c3ab9fe98122fd, type: 3}
-      propertyPath: redTanksNormalFire100Per
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1204965018, guid: 67511dd76f0f690458c3ab9fe98122fd, type: 3}
-      propertyPath: redTankNormalHead
-      value: 
+    - target: {fileID: 108816682965515069, guid: 67511dd76f0f690458c3ab9fe98122fd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 149.29999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67511dd76f0f690458c3ab9fe98122fd, type: 3}

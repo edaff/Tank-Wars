@@ -19,12 +19,14 @@ public class LevelGUIController : MonoBehaviour
     [SerializeField] GameObject redTankAttackGUI;
     [SerializeField] GameObject redTankGambleGUI;
     [SerializeField] Animator redPhaseAni;
+    [SerializeField] GameObject redOverlay;
 
     [Header("Blue Player's GUI Controller")]
     [SerializeField] GameObject blueTankMoveGUI;
     [SerializeField] GameObject blueTankAttackGUI;
     [SerializeField] GameObject blueTankGambleGUI;
     [SerializeField] Animator bluePhaseAni;
+    [SerializeField] GameObject blueOverlay;
 
     [Header("Game State info")]
     [SerializeField] GameStatus currentState;
@@ -107,6 +109,8 @@ public class LevelGUIController : MonoBehaviour
         if (whatRoundAmi == "Move" && whoesTurnisIt == "Red")
         {
             redTankMoveGUI.SetActive(true);
+            redOverlay.SetActive(true);
+            blueOverlay.SetActive(false);
 
             if (redPhase == true)
             {
@@ -139,12 +143,14 @@ public class LevelGUIController : MonoBehaviour
         if (whatRoundAmi == "Move" && whoesTurnisIt == "Blue")
         {
             blueTankMoveGUI.SetActive(true);
+            redOverlay.SetActive(false);
 
             if (bluePhase == true && aIOn != true)
             {
                 bluePhaseAni.Play("Phase_Blue");
                 bluePhaseAni.Play("Idle");
                 bluePhase = false;
+                blueOverlay.SetActive(true);
             }
         }
         else { blueTankMoveGUI.SetActive(false); }

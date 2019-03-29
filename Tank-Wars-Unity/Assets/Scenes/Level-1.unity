@@ -14565,6 +14565,7 @@ MonoBehaviour:
   aiON: 0
   camera: {fileID: 0}
   mainCamera: {fileID: 0}
+  tankMoveSpeed: 3
   hpController: {fileID: 1971806327}
 --- !u!114 &1330315670
 MonoBehaviour:
@@ -21490,6 +21491,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594700677338793129, guid: 67511dd76f0f690458c3ab9fe98122fd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 149.29999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328907091871903031, guid: 67511dd76f0f690458c3ab9fe98122fd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328907091871903031, guid: 67511dd76f0f690458c3ab9fe98122fd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328907091871903031, guid: 67511dd76f0f690458c3ab9fe98122fd,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328907091871903031, guid: 67511dd76f0f690458c3ab9fe98122fd,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 501435256520055271, guid: 67511dd76f0f690458c3ab9fe98122fd,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 501435256520055271, guid: 67511dd76f0f690458c3ab9fe98122fd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 501435256520055271, guid: 67511dd76f0f690458c3ab9fe98122fd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67511dd76f0f690458c3ab9fe98122fd, type: 3}

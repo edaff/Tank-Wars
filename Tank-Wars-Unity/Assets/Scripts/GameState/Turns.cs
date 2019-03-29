@@ -25,6 +25,8 @@ public class Turns : MonoBehaviour
     ClickItems items;
     public CameraAngles camera;
     public GameObject mainCamera;
+    public float tankMoveSpeed = 3f;
+    float aiCount = 0;
 
     [SerializeField] HpController hpController;
 
@@ -191,12 +193,8 @@ public class Turns : MonoBehaviour
                 TileHighlighter.resetTiles();
                 Tank currentTank = gs.getPlayerTank(playerTurn, tileCoordinates);
 
-                if(currentTank is CannonTank) {
-                    tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 1, tileClicked.transform.position.z);
-                }
-                else {
-                    tankClicked.transform.position = new Vector3(tileClicked.transform.position.x, 0.8f, tileClicked.transform.position.z);
-                }
+                // Tank moving animation
+                StartCoroutine(moveTank(tileClicked, tankClicked, currentTank));
 
                 tileClicked = null;
                 tankClicked = null;
@@ -206,6 +204,34 @@ public class Turns : MonoBehaviour
                 printTurn();
             }
         }
+    }
+
+    IEnumerator moveTank(GameObject tileClicked, GameObject tankClicked, Tank currentTank)
+    {
+        Vector3 startPos = tankClicked.transform.position;
+        Vector3 endPos = new Vector3(0, 0, 0);
+        if(currentTank is CannonTank)
+        {
+            endPos = new Vector3(tileClicked.transform.position.x, 1f, tileClicked.transform.position.z);
+        }
+        else
+        {
+            endPos = new Vector3(tileClicked.transform.position.x, 0.8f, tileClicked.transform.position.z);
+        }
+        float step = (tankMoveSpeed / (startPos - endPos).magnitude) * Time.fixedDeltaTime;
+        float t = 0;
+        while (t <= 1.0f)
+        {
+            t += step;
+            tankClicked.transform.position = Vector3.Lerp(startPos, endPos, t);
+            yield return new WaitForFixedUpdate();
+        }
+        tankClicked.transform.position = endPos;
+
+        tileClicked = null;
+        tankClicked = null;
+        
+        yield return null;
     }
 
     private void assignTanksClicked(RaycastHit hit) {
@@ -471,14 +497,15 @@ public class Turns : MonoBehaviour
         if(!handleAttack(false))
         {
             Tank aiTank = gs.getPlayerTank(PlayerColors.Blue, aiLocation);
-            if (aiTank is CannonTank) {
-                blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
+
+            // Coroutines should only run once
+            if (aiCount == 0)
+            {
+                // Tank moving animation
+                StartCoroutine(moveAITank(blue, aiTank, targetLocation));
+                gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
+                aiCount++;
             }
-            else {
-                blue.transform.position = new Vector3(targetLocation.getX(), 0.8f, targetLocation.getY());
-            }
-            
-            gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
 
             // AI will game 1/5 of the time if it moves
             System.Random randomNumberGenerator = new System.Random();
@@ -495,6 +522,33 @@ public class Turns : MonoBehaviour
         changeTurns();
         round = Rounds.Move;
         gs.updatePlayerHealthBars(hpController);
+    }
+
+    IEnumerator moveAITank(GameObject blue, Tank aiTank, CoordinateSet targetLocation)
+    {
+        Vector3 startPos = blue.transform.position;
+        Vector3 endPos = new Vector3(0, 0, 0);
+        if (aiTank is CannonTank)
+        {
+            endPos = new Vector3(targetLocation.getX(), 1f, targetLocation.getY());
+        }
+        else
+        {
+            endPos = new Vector3(targetLocation.getX(), 0.8f, targetLocation.getY());
+        }
+        float step = (tankMoveSpeed / (startPos - endPos).magnitude) * Time.fixedDeltaTime;
+        float t = 0;
+        while (t <= 1.0f)
+        {
+            t += step;
+            blue.transform.position = Vector3.Lerp(startPos, endPos, t);
+            yield return new WaitForFixedUpdate();
+        }
+        blue.transform.position = endPos;
+
+        aiCount--;
+
+        yield return null;
     }
     
     public string[] getPlayerPowerups(PlayerColors player) {

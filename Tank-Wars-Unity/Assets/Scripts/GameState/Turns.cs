@@ -500,13 +500,24 @@ public class Turns : MonoBehaviour
             Tank aiTank = gs.getPlayerTank(PlayerColors.Blue, aiLocation);
 
             // Coroutines should only run once
-            if (aiCount == 0)
+            // if (aiCount == 0)
+            //{
+            // Tank moving animation
+            //StartCoroutine(moveAITank(blue, aiTank, targetLocation));
+            // gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
+            // aiCount++;
+            //  }
+            if (aiTank is CannonTank)
             {
-                // Tank moving animation
-                StartCoroutine(moveAITank(blue, aiTank, targetLocation));
-                gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
-                aiCount++;
+                tankClicked.transform.position = new Vector3(targetLocation.getX(), 1f, targetLocation.getY());
             }
+            else
+            {
+                tankClicked.transform.position = new Vector3(targetLocation.getX(), 0.8f, targetLocation.getY());
+            }
+
+            gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
+
 
             // AI will game 1/5 of the time if it moves
             System.Random randomNumberGenerator = new System.Random();

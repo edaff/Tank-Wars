@@ -12,6 +12,7 @@ TagManager:
   - Blue Tank
   - Grid
   - Lava
+  - ToolTips
   layers:
   - Default
   - TransparentFX

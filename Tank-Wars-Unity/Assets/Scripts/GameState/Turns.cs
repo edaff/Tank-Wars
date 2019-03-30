@@ -27,6 +27,9 @@ public class Turns : MonoBehaviour
     public GameObject mainCamera;
     public float tankMoveSpeed = 3f;
     float aiCount = 0;
+    GameObject tooltip;
+    List<GameObject> tooltips;
+    int roundCounter = 0;
 
     [SerializeField] HpController hpController;
 
@@ -48,17 +51,19 @@ public class Turns : MonoBehaviour
         blueTanks = GameObject.FindGameObjectsWithTag("Blue Tank");
 
         // Set a default level if this isn't initialized so that the game can still be played
-        if(currentLevel != 0) {
+        if (currentLevel != 0)
+        {
             gs = new GameState(currentLevel, tankSet1, tankSet2);
         }
-        else {
-            gs = new GameState(Levels.Level1, new int[] {1,0,0}, new int[] {1,0,0});
+        else
+        {
+            gs = new GameState(Levels.Level1, new int[] { 1, 0, 0 }, new int[] { 1, 0, 0 });
         }
 
         // Set up the turns and start
         oc = GetComponent<ObjectClicker>();
-    	round = Rounds.Move;
-    	playerTurn = PlayerColors.Red;
+        round = Rounds.Move;
+        playerTurn = PlayerColors.Red;
         printTurn();
 
         // Get main camera object for CameraAngles functions
@@ -66,6 +71,15 @@ public class Turns : MonoBehaviour
         camera = mainCamera.GetComponent<CameraAngles>();
         camera.translateToPlayer(PlayerColors.Red);
         gs.highlightPlayerTiles(playerTurn, round);
+
+        tooltip = GameObject.FindGameObjectWithTag("ToolTips");
+        tooltips = new List<GameObject>();
+        foreach (Transform obj in tooltip.transform)
+        {
+            tooltips.Add(obj.gameObject);
+        }
+
+        updateTooltips("Move1");
     }
 
     // Update is called once per frame
@@ -79,17 +93,24 @@ public class Turns : MonoBehaviour
             //handleGreedyAi();
             handleMinMaxAi();
         }
+
         // Skip turn if spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space)) {
             round++;
             TileHighlighter.resetTiles();
 
             if (round == Rounds.Gamble) {
+                updateTooltips("Gamble");
                 gs.updatePlayerPowerupState(playerTurn);
+            }
+
+            if(round == Rounds.Attack) {
+                updateTooltips("Attack1");
             }
 
             if(round > Rounds.Gamble) {
                 round = Rounds.Move;
+                updateTooltips("Move1");
 
                 changeTurns();
             }
@@ -149,6 +170,7 @@ public class Turns : MonoBehaviour
         }
         TileHighlighter.resetTiles();
         gs.highlightPlayerTiles(playerTurn, Rounds.Move);
+        roundCounter++;
     }
 
     private ClickItems getItemClicked() {
@@ -183,6 +205,7 @@ public class Turns : MonoBehaviour
 
             TileHighlighter.resetTiles();
             TileHighlighter.highlightValidTiles(currentTank.getValidMovements(gs.getGrid(), tankCoordinates), round);
+            updateTooltips("Move2");
         }
         else if (tankClicked != null) {
             tileClicked = hit.transform.gameObject;
@@ -203,6 +226,7 @@ public class Turns : MonoBehaviour
                 TileHighlighter.resetTiles();
                 gs.highlightPlayerTiles(playerTurn, Rounds.Move);
                 printTurn();
+                updateTooltips("Attack1");
             }
         }
     }
@@ -264,6 +288,7 @@ public class Turns : MonoBehaviour
                 TileHighlighter.resetTiles();
             }
         }
+        updateTooltips("Attack2");
     }
 
     private void highlightAttackTiles(CoordinateSet currentTankCoordinates) {
@@ -311,6 +336,7 @@ public class Turns : MonoBehaviour
             printTurn();
             tankClicked = null;
             tankClicked2 = null;
+            updateTooltips("Gamble");
         }
 
         return true;
@@ -431,6 +457,7 @@ public class Turns : MonoBehaviour
         changeTurns();
         printTurn();
         gs.updatePlayerHealthBars(hpController);
+        updateTooltips("Move1");
     }
 
     private void handleGreedyAi() {
@@ -573,6 +600,21 @@ public class Turns : MonoBehaviour
 
     public GameState getGameState() {
         return this.gs;
+    }
+
+    public void updateTooltips(string name) {
+        if(roundCounter >= 3) {
+            name = "GLHF";
+        }
+
+        foreach (GameObject obj in tooltips) {
+            if (obj.name == name && roundCounter <= 4) {
+                obj.SetActive(true);
+            }
+            else {
+                obj.SetActive(false);
+            }
+        }
     }
 }
 

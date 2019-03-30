@@ -25,7 +25,7 @@ public class TileHighlighter
                         meshRenderer.material.color = Color.red;
                     }
                     else {
-                        meshRenderer.material.color = Color.magenta;
+                        //meshRenderer.material.color = Color.magenta;
                     }
                 }
             }
@@ -33,7 +33,6 @@ public class TileHighlighter
     }
 
     public static void resetTiles() {
-
         GameObject grid = GameObject.FindGameObjectWithTag("Grid");
         GameObject child;
         MeshRenderer meshRenderer;

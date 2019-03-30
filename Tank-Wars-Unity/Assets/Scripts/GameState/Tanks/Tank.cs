@@ -106,6 +106,10 @@ public abstract class Tank
         int targetNodeX = targetNode.getCoordinateSet().getX();
         int targetNodeY = targetNode.getCoordinateSet().getY();
 
+        if(targetNodeX == currentTankX && targetNodeY == currentTankY){
+            return true;
+        }
+
         for (int i = 1; i <= this.movement; i++) {
             switch (currentIteration) {
                 case 0:
@@ -201,6 +205,8 @@ public abstract class Tank
         int currentTankY = currentTankCoordinates.getY();
         bool skip = false;
         ArrayList validMoves = new ArrayList();
+
+        validMoves.Add(new CoordinateSet(currentTankX, currentTankY));
 
         for (int i = 0; i < 4; i++) {
             skip = false;

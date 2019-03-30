@@ -140,6 +140,8 @@ public class Sniper : Weapon {
         int currentTankY = this.tank.getCoordinates().getY();
         ArrayList validAttacks = new ArrayList();
 
+        validAttacks.Add(new CoordinateSet(currentTankX, currentTankY));
+
         switch (this.orientation) {
             case Orientations.Up:
                 for (int i = 1; i <= this.distance; i++) {

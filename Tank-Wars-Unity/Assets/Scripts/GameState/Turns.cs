@@ -82,8 +82,9 @@ public class Turns : MonoBehaviour
         // Skip turn if spacebar is pressed
         if (Input.GetKeyDown(KeyCode.Space)) {
             round++;
+            TileHighlighter.resetTiles();
 
-            if(round == Rounds.Gamble) {
+            if (round == Rounds.Gamble) {
                 gs.updatePlayerPowerupState(playerTurn);
             }
 

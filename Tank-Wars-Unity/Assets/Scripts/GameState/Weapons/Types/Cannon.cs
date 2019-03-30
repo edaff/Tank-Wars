@@ -175,6 +175,8 @@ public class Cannon : Weapon
         ArrayList validAttacks = new ArrayList();
         bool skip = false;
 
+        validAttacks.Add(new CoordinateSet(currentTankX, currentTankY));
+
         for (int i = 0; i < 4; i++) {
             skip = false;
             for (int j = 1; j <= this.distance; j++) {

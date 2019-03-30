@@ -158,6 +158,8 @@ public class Mortar : Weapon
         int currentTankY = this.tank.getCoordinates().getY();
         ArrayList validAttacks = new ArrayList();
 
+        validAttacks.Add(new CoordinateSet(currentTankX, currentTankY));
+
         for (int i = 0; i < 4; i++) {
             for (int j = 1; j <= this.distance; j++) {
                 switch (i) {

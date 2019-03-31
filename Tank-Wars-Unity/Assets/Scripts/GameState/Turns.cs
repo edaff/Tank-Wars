@@ -309,8 +309,15 @@ public class Turns : MonoBehaviour
                 tankClicked = hit.transform.gameObject;
                 TileHighlighter.resetTiles();
                 highlightAttackTiles(new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z));
+                
+                if (gs.playerHasValidAttack(playerTurn, new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z))) {
+                    updateTooltips("Attack2");
+                }
+                else {
+                    updateTooltips("Attack3");
+                }
             }
-            else if(!currentTank.isDead()) {
+            else if (!currentTank.isDead()) {
                 tankClicked2 = hit.transform.gameObject;
                 TileHighlighter.resetTiles();
             }
@@ -322,13 +329,18 @@ public class Turns : MonoBehaviour
                 tankClicked = hit.transform.gameObject;
                 TileHighlighter.resetTiles();
                 highlightAttackTiles(new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z));
+                if (gs.playerHasValidAttack(playerTurn, new CoordinateSet((int)hit.transform.position.x, (int)hit.transform.position.z))) {
+                    updateTooltips("Attack2");
+                }
+                else {
+                    updateTooltips("Attack3");
+                }
             }
-            else if(!currentTank.isDead()) {
+            else if (!currentTank.isDead()) {
                 tankClicked2 = hit.transform.gameObject;
                 TileHighlighter.resetTiles();
             }
         }
-        updateTooltips("Attack2");
     }
 
     private void highlightAttackTiles(CoordinateSet currentTankCoordinates) {
@@ -546,6 +558,7 @@ public class Turns : MonoBehaviour
         round = Rounds.Move;
         gs.updatePlayerHealthBars(hpController);
         numGambles++;
+        updateTooltips("Move1");
     }
 
     private void handleMinMaxAi(){
@@ -594,6 +607,7 @@ public class Turns : MonoBehaviour
         round = Rounds.Move;
         gs.updatePlayerHealthBars(hpController);
         numGambles++;
+        updateTooltips("Move1");
     }
     
     public string[] getPlayerPowerups(PlayerColors player) {

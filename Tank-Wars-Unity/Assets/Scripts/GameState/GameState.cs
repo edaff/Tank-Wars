@@ -186,6 +186,30 @@ public class GameState {
 
         return health;
     }
+
+    public bool playerHasValidAttack(PlayerColors player, CoordinateSet playerCoordinates) {
+        Tank playerTank;
+        Tank[] enemyTanks;
+
+        if (player == PlayerColors.Red) {
+            playerTank = player1.getPlayerTankByCoordinates(playerCoordinates);
+            enemyTanks = player2.getPlayerTanks();
+        }
+        else {
+            playerTank = player2.getPlayerTankByCoordinates(playerCoordinates);
+            enemyTanks = player1.getPlayerTanks();
+        }
+
+        for (int i = 0; i < 3; i++) {
+            if (enemyTanks[i] is EmptyTankSlot) { continue; }
+
+            if (checkValidAttack(player, playerCoordinates, enemyTanks[i].getCoordinates(), false)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
 
 public enum Levels {

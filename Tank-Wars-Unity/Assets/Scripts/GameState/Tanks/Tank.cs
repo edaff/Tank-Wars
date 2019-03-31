@@ -106,10 +106,6 @@ public abstract class Tank
         int targetNodeX = targetNode.getCoordinateSet().getX();
         int targetNodeY = targetNode.getCoordinateSet().getY();
 
-        if(targetNodeX == currentTankX && targetNodeY == currentTankY){
-            return true;
-        }
-
         for (int i = 1; i <= this.movement; i++) {
             switch (currentIteration) {
                 case 0:

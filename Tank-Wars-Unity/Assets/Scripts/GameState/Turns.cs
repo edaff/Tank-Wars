@@ -306,7 +306,6 @@ public class Turns : MonoBehaviour
     private bool handleAttack(bool updateState) {
         // If both tanks have been clicked, orchestrate the attack
         if (tankClicked != null && tankClicked2 != null) {
-
             // Create coordinates
             CoordinateSet currentPlayerTankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
             CoordinateSet targetPlayerTankCoordinates = new CoordinateSet((int)tankClicked2.transform.position.x, (int)tankClicked2.transform.position.z);

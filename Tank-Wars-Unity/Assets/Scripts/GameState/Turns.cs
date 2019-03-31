@@ -29,6 +29,7 @@ public class Turns : MonoBehaviour
     GameObject tooltip;
     List<GameObject> tooltips;
     int roundCounter = 0;
+    int numGambles = 0;
 
     [SerializeField] HpController hpController;
 
@@ -84,6 +85,10 @@ public class Turns : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(numGambles == 4) {
+            updateTooltips("GLHF");
+        }
+
         // Check if gameover
         gameOver();
 
@@ -110,6 +115,7 @@ public class Turns : MonoBehaviour
             if(round > Rounds.Gamble) {
                 round = Rounds.Move;
                 updateTooltips("Move1");
+                numGambles++;
 
                 changeTurns();
             }
@@ -491,6 +497,7 @@ public class Turns : MonoBehaviour
         printTurn();
         gs.updatePlayerHealthBars(hpController);
         updateTooltips("Move1");
+        numGambles++;
     }
 
     private void handleGreedyAi() {
@@ -538,6 +545,7 @@ public class Turns : MonoBehaviour
         changeTurns();
         round = Rounds.Move;
         gs.updatePlayerHealthBars(hpController);
+        numGambles++;
     }
 
     private void handleMinMaxAi(){
@@ -585,6 +593,7 @@ public class Turns : MonoBehaviour
         changeTurns();
         round = Rounds.Move;
         gs.updatePlayerHealthBars(hpController);
+        numGambles++;
     }
     
     public string[] getPlayerPowerups(PlayerColors player) {
@@ -611,12 +620,12 @@ public class Turns : MonoBehaviour
     }
 
     public void updateTooltips(string name) {
-        if(roundCounter >= 3) {
+        if(numGambles >= 4) {
             name = "GLHF";
         }
 
         foreach (GameObject obj in tooltips) {
-            if (obj.name == name && roundCounter <= 4) {
+            if (obj.name == name && numGambles <= 5) {
                 obj.SetActive(true);
             }
             else {

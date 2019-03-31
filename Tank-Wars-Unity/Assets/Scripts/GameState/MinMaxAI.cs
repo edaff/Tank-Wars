@@ -86,111 +86,143 @@ public class MinMaxAI
 
     public CoordinateSet MinMaxTurn()
     {
-        removeDeadTanks();
-        ArrayList val = new ArrayList();
-        CoordinateSet aiCoordinates;
-        int highestWeight = -99999;
-        double minDis = 99999;
-        int row = 100;
-        int column = blueTanks.Length;
-        int[,] min = new int[column, row];
-        int[,] max = new int[column, row];
-        int[,] net = new int[column, row];
-        double[,] zero = new double[column, row];
+        //This while loop is used to allow the continue code to retry the MinMaxTurn
+        while (true) {
+            removeDeadTanks();
+            ArrayList val = new ArrayList();
+            CoordinateSet aiCoordinates;
+            int highestWeight = -99999;
+            double minDis = 99999;
+            int row = 100;
+            int column = blueTanks.Length;
+            int[,] min = new int[column, row];
+            int[,] max = new int[column, row];
+            int[,] net = new int[column, row];
+            double[,] zero = new double[column, row];
 
-        Debug.Log("Row: " + row);
-        Debug.Log("Column: " + column);
-        //For each blue tank
-        for (int i = 0; i < column; i++)
-        {
-            //find the valid moves
-            CoordinateSet tempCoordinates = new CoordinateSet((int)blueTanks[i].transform.position.x, (int)blueTanks[i].transform.position.z);
-            validMoves = findValidMoves(tempCoordinates, (PlayerColors)PlayerColors.Blue);
-            Debug.Log("validMoves.Count: " + validMoves.Count);
-            //and for each valid move, find the min outcome for the player
-            for (int j = 0; j < validMoves.Count; j++)
+            Debug.Log("Row: " + row);
+            Debug.Log("Column: " + column);
+            //For each blue tank
+            for (int i = 0; i < column; i++)
             {
-                min[i, j] = findMinForPlayers((CoordinateSet)validMoves[j]);
-            }
-
-            //and for each valid move, find the max outcome for the AI
-            for (int j = 0; j < validMoves.Count; j++)
-            {
-                max[i, j] = findMaxForAI((CoordinateSet)validMoves[j]);
-            }
-        }
-
-        //For each blue tank
-        for (int i = 0; i < column; i++)
-        {
-            //For each move calculate the net gamestate change for the AI
-            for (int j = 0; j < row; j++)
-            {
-                net[i, j] = min[i, j] + max[i, j];
-            }
-        }
-
-        //Create matrix that shows the possible valid moves
-        for (int i = 0; i < column; i++)
-        {
-            for (int j = 0; j < row; j++)
-            {
-                if (net[i, j] > highestWeight)
+                //find the valid moves
+                CoordinateSet tempCoordinates = new CoordinateSet((int)blueTanks[i].transform.position.x, (int)blueTanks[i].transform.position.z);
+                validMoves = findValidMoves(tempCoordinates, (PlayerColors)PlayerColors.Blue);
+                Debug.Log("validMoves.Count: " + validMoves.Count);
+                //and for each valid move, find the min outcome for the player
+                for (int j = 0; j < validMoves.Count; j++)
                 {
-                    zero = new double[column, row];
-                    highestWeight = net[i, j];
-                    zero[i, j] = 1;
+                    min[i, j] = findMinForPlayers((CoordinateSet)validMoves[j]);
                 }
-                else if (net[i, j] == highestWeight)
+
+                //and for each valid move, find the max outcome for the AI
+                for (int j = 0; j < validMoves.Count; j++)
                 {
-                    zero[i, j] = 1;
+                    max[i, j] = findMaxForAI((CoordinateSet)validMoves[j]);
                 }
             }
-        }
 
-        //Find Which valid move is closer to the player
-        for (int i = 0; i < column; i++)
-        {
-            for (int j = 0; j < row; j++)
+            //For each blue tank
+            for (int i = 0; i < column; i++)
             {
-                if (zero[i, j] == 1)
+                //For each move calculate the net gamestate change for the AI
+                for (int j = 0; j < row; j++)
                 {
-                    aiCoordinates = new CoordinateSet((int)blueTanks[i].transform.position.x, (int)blueTanks[i].transform.position.z);
-                    validMoves = findValidMoves(aiCoordinates, (PlayerColors)PlayerColors.Blue);
-                    //Debug.Log("# of val moves: " + validMoves.Count);
-                    zero[i, j] = findDisToPlayer((CoordinateSet)validMoves[j]);
-                    //Debug.Log(findDisToPlayer((CoordinateSet)validMoves[j]));
+                    net[i, j] = min[i, j] + max[i, j];
                 }
             }
-        }
-        int i_ = 0;
-        int j_ = 0;
-        for (int i = 0; i < column; i++)
-        {
-            for (int j = 0; j < row; j++)
+
+            //Create matrix that shows the possible valid moves
+            for (int i = 0; i < column; i++)
             {
-                if (zero[i, j] != 0)
+                for (int j = 0; j < row; j++)
                 {
-                    if (zero[i, j] < minDis)
+                    if (net[i, j] > highestWeight)
                     {
-                        i_ = i;
-                        j_ = j;
-                        minDis = zero[i, j];
+                        zero = new double[column, row];
+                        highestWeight = net[i, j];
+                        zero[i, j] = 1;
+                    }
+                    else if (net[i, j] == highestWeight)
+                    {
+                        zero[i, j] = 1;
                     }
                 }
             }
-        }
 
-        //Now return the best move
-        aiCoordinates = new CoordinateSet((int)blueTanks[i_].transform.position.x, (int)blueTanks[i_].transform.position.z);
-        validMoves = findValidMoves(aiCoordinates, (PlayerColors)PlayerColors.Blue);
-        aiTank = blueTanks[i_];
-        closestTank = findClosestTanks((CoordinateSet)validMoves[j_]);
-        if (j_ == 0)
-        {
-            move = false;
+            //Find Which valid move is closer to the player
+            for (int i = 0; i < column; i++)
+            {
+                for (int j = 0; j < row; j++)
+                {
+                    if (zero[i, j] == 1)
+                    {
+                        aiCoordinates = new CoordinateSet((int)blueTanks[i].transform.position.x, (int)blueTanks[i].transform.position.z);
+                        validMoves = findValidMoves(aiCoordinates, (PlayerColors)PlayerColors.Blue);
+                        //Debug.Log("# of val moves: " + validMoves.Count);
+                        zero[i, j] = findDisToPlayer((CoordinateSet)validMoves[j]);
+                        //Debug.Log(findDisToPlayer((CoordinateSet)validMoves[j]));
+                    }
+                }
+            }
+            int i_ = 0;
+            int j_ = 0;
+            for (int i = 0; i < column; i++)
+            {
+                for (int j = 0; j < row; j++)
+                {
+                    if (zero[i, j] != 0)
+                    {
+                        if (zero[i, j] < minDis)
+                        {
+                            i_ = i;
+                            j_ = j;
+                            minDis = zero[i, j];
+                        }
+                    }
+                }
+            }
+
+            //Now return the best move
+            aiCoordinates = new CoordinateSet((int)blueTanks[i_].transform.position.x, (int)blueTanks[i_].transform.position.z);
+            validMoves = findValidMoves(aiCoordinates, (PlayerColors)PlayerColors.Blue);
+            aiTank = blueTanks[i_];
+            //blueTunks[i_].getWeapon();
+            closestTank = findClosestTanks((CoordinateSet)validMoves[j_]);
+            CoordinateSet closestCoordinates = new CoordinateSet((int)closestTank.transform.position.x, (int) closestTank.transform.position.z);
+            bool canAtt = handleAttack(i_, aiCoordinates, closestCoordinates, (PlayerColors)PlayerColors.Blue, false);
+            //bool canAtt = true;
+            if (j_ == 0 && blueTanks.Length == 1)
+            {
+                move = false;
+            }
+            else if (j_ == 0 && blueTanks.Length > 1 && canAtt == false)
+            {
+                deleteStagTank(i_);
+                continue;
+                Debug.Log("I'm fed up");
+            }
+            return (CoordinateSet)validMoves[j_];
         }
-        return (CoordinateSet)validMoves[j_];
+    }
+
+    void deleteStagTank(int i)
+    {
+        GameObject[] tempTanks = new GameObject[blueTanks.Length - 1];
+        Tank[] tempTunks = new Tank[blueTunks.Length - 1];
+        int count = 0;
+
+        for (int j = 0; j < blueTanks.Length; j++)
+        {
+            if (j == i)
+            {
+                continue;
+            }
+            tempTanks[count] = blueTanks[j];
+            tempTunks[count] = blueTunks[j];
+            count++;
+        }
+        blueTanks = tempTanks;
     }
 
     public double findDisToPlayer(CoordinateSet aiCoor)

@@ -273,7 +273,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 296889190}
+  - component: {fileID: 402381370654032531}
   - component: {fileID: 296889191}
   m_Layer: 0
   m_Name: ScreenOverlay
@@ -282,20 +282,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &296889190
-Transform:
+--- !u!224 &402381370654032531
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296889189}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 1.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 0}
   m_Children: []
   m_Father: {fileID: 1883554759}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1, y: 1.7}
+  m_SizeDelta: {x: 19.21, y: 10.81}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &296889191
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1066,7 +1071,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 744886054}
+  - component: {fileID: 2297221658601420572}
   - component: {fileID: 744886055}
   m_Layer: 0
   m_Name: Overlay_Bleu
@@ -1075,20 +1080,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &744886054
-Transform:
+--- !u!224 &2297221658601420572
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744886053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 450, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 150, z: 0}
   m_Children: []
   m_Father: {fileID: 1883554759}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -2, y: -90}
+  m_SizeDelta: {x: 19.22, y: 1.2800293}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &744886055
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4198,11 +4208,11 @@ RectTransform:
   - {fileID: 8964714805230672098}
   - {fileID: 2995934054366326592}
   - {fileID: 2995934054664924373}
-  - {fileID: 875154412528232241}
-  - {fileID: 2657967810010739060}
-  - {fileID: 296889190}
-  - {fileID: 1983494354}
-  - {fileID: 744886054}
+  - {fileID: 4012638995253469583}
+  - {fileID: 7721516852556240949}
+  - {fileID: 402381370654032531}
+  - {fileID: 4767515202477803595}
+  - {fileID: 2297221658601420572}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4453,7 +4463,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1983494354}
+  - component: {fileID: 4767515202477803595}
   - component: {fileID: 1983494355}
   m_Layer: 0
   m_Name: Overlay_Red
@@ -4462,20 +4472,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &1983494354
-Transform:
+--- !u!224 &4767515202477803595
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983494353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 450, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 150, z: 0}
   m_Children: []
   m_Father: {fileID: 1883554759}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -2, y: 450}
+  m_SizeDelta: {x: 19.22, y: 1.28}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1983494355
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4922,6 +4937,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Phase_RedTeam_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 4012638995365666045, guid: b2f954564902de249a61f7c642aeefa8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 875154412405545539, guid: b2f954564902de249a61f7c642aeefa8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4994,9 +5014,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2f954564902de249a61f7c642aeefa8, type: 3}
---- !u!4 &875154412528232241 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 875154412405545539, guid: b2f954564902de249a61f7c642aeefa8,
+--- !u!224 &4012638995253469583 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4012638995365666045, guid: b2f954564902de249a61f7c642aeefa8,
     type: 3}
   m_PrefabInstance: {fileID: 156253554}
   m_PrefabAsset: {fileID: 0}
@@ -5456,41 +5476,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedTankPowerUpGUI (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479207, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_Name
-      value: Bonus Damage Red (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479207, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8964714805933388751, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5596,12 +5581,31 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479225, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 462beccc7981ac54e9f8c242651ec5a7,
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8964714805391201547, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5647,6 +5651,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479207, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_Name
+      value: Bonus Damage Red (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479207, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8964714805391201546, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
       propertyPath: m_Name
@@ -5657,6 +5671,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bonus Movement Red (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479225, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 462beccc7981ac54e9f8c242651ec5a7,
+        type: 3}
     - target: {fileID: 8964714805391201548, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
       propertyPath: m_Sprite
@@ -5886,6 +5906,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Phase_BleuTeam_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 7721516853450125598, guid: 1412a93a29c47f945ab9a5341efe950b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 2657967810994788447, guid: 1412a93a29c47f945ab9a5341efe950b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5964,9 +5989,9 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 987277611}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2657967810010739060 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2657967810994788447, guid: 1412a93a29c47f945ab9a5341efe950b,
+--- !u!224 &7721516852556240949 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7721516853450125598, guid: 1412a93a29c47f945ab9a5341efe950b,
     type: 3}
   m_PrefabInstance: {fileID: 987277611}
   m_PrefabAsset: {fileID: 0}
@@ -5981,31 +6006,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RedTankPowerUpGUI (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479207, guid: 73fbd8259c7f85c4bae71d7fae76434d,
-        type: 3}
-      propertyPath: m_Name
-      value: Bonus Damage Red (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8964714805933388751, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
@@ -6112,12 +6112,26 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8964714805512479225, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 462beccc7981ac54e9f8c242651ec5a7,
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479224, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8964714805391201547, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6157,12 +6171,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479207, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_Name
+      value: Bonus Damage Red (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8964714805391201546, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
       propertyPath: m_Name
       value: Bonus Invincibility Red (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8964714805512479225, guid: 73fbd8259c7f85c4bae71d7fae76434d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 462beccc7981ac54e9f8c242651ec5a7,
+        type: 3}
     - target: {fileID: 8964714805391201548, guid: 73fbd8259c7f85c4bae71d7fae76434d,
         type: 3}
       propertyPath: m_Sprite

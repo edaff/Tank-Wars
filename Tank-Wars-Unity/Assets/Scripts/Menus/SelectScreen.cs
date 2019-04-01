@@ -161,7 +161,7 @@ public class SelectScreen : MonoBehaviour
 
     }
     //player1 pick functions
-    private void Player1Qpick()
+    public void Player1Qpick()
     {
         if(whatLevelAmI > p1ArrayIdex) 
         {
@@ -177,7 +177,7 @@ public class SelectScreen : MonoBehaviour
         }
     }
 
-    private void Player1Wpick()
+    public void Player1Wpick()
     {
         if (whatLevelAmI > p1ArrayIdex)
         {
@@ -192,7 +192,7 @@ public class SelectScreen : MonoBehaviour
         }
     }
 
-    private void Player1Epick()
+    public void Player1Epick()
     {
         if (whatLevelAmI > p1ArrayIdex)
         {
@@ -252,6 +252,30 @@ public class SelectScreen : MonoBehaviour
         else
         {
             return;
+        }
+    }
+
+    public void ButtonIPick()
+    {
+        if (!isAiOn)
+        {
+            Player2Ipick();
+        }
+    }
+
+    public void ButtonOPick()
+    {
+        if (!isAiOn)
+        {
+            Player2Opick();
+        }
+    }
+
+    public void ButtonPPick()
+    {
+        if (!isAiOn)
+        {
+            Player2Ppick();
         }
     }
     //end of player 2 functions

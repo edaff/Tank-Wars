@@ -458,7 +458,7 @@ public class Turns : MonoBehaviour
             }
             else {
                 if(i == 0) {
-                    targetTank.decrementHealth(10);
+                    targetTank.decrementHealth(5);
                     return;
                 }
             }
@@ -476,12 +476,12 @@ public class Turns : MonoBehaviour
             // If the knockback was less than the number of tiles, the target tank must have hit an obstacle along the way.
             // Take damage.
             if (validKnockbackIndex < knockbackArray.Count - 1) {
-                targetTank.decrementHealth(10);
+                targetTank.decrementHealth(5);
             }
         }
         else {
             // If the move was invalid, take damage
-            targetTank.decrementHealth(10);
+            targetTank.decrementHealth(5);
         }
     }
 

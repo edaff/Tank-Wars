@@ -169,7 +169,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 232088161}
+  - component: {fileID: 6835824704669337732}
   - component: {fileID: 232088162}
   m_Layer: 0
   m_Name: Overlay_Red
@@ -178,20 +178,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &232088161
-Transform:
+--- !u!224 &6835824704669337732
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232088160}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 450, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 150, z: 0}
   m_Children: []
   m_Father: {fileID: 1208896272573985634}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -2, y: 450}
+  m_SizeDelta: {x: 19.22, y: 1.28}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &232088162
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1285,7 +1290,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1999913961}
+  - component: {fileID: 7564219840763932110}
   - component: {fileID: 1999913962}
   m_Layer: 0
   m_Name: Overlay_Bleu
@@ -1294,20 +1299,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &1999913961
-Transform:
+--- !u!224 &7564219840763932110
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999913960}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 450, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 150, z: 0}
   m_Children: []
   m_Father: {fileID: 1208896272573985634}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -2, y: 450}
+  m_SizeDelta: {x: 19.22, y: 1.28}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1999913962
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1625,7 +1635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -179.29999, y: 149.30002}
+  m_AnchoredPosition: {x: -179.2998, y: 149.30005}
   m_SizeDelta: {x: 240.31, y: 217.29001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3587941099590301935
@@ -2503,7 +2513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -179.29999, y: 149.29999}
+  m_AnchoredPosition: {x: -179.2998, y: 149.30005}
   m_SizeDelta: {x: 240.31, y: 217.29001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3352446737243013085
@@ -2970,7 +2980,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6183033232011383257}
+  - component: {fileID: 7732037520334082579}
   - component: {fileID: 8683602821725569641}
   m_Layer: 0
   m_Name: ScreenOverlay
@@ -2979,20 +2989,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6183033232011383257
-Transform:
+--- !u!224 &7732037520334082579
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5360067218444257913}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 1.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 0}
   m_Children: []
   m_Father: {fileID: 1208896272573985634}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1, y: 1.7}
+  m_SizeDelta: {x: 19.21, y: 10.81}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &8683602821725569641
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3478,9 +3493,9 @@ RectTransform:
   - {fileID: 853312786}
   - {fileID: 3328907091871903031}
   - {fileID: 501435256520055271}
-  - {fileID: 6183033232011383257}
-  - {fileID: 232088161}
-  - {fileID: 1999913961}
+  - {fileID: 7732037520334082579}
+  - {fileID: 6835824704669337732}
+  - {fileID: 7564219840763932110}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

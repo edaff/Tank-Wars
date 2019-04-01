@@ -10,11 +10,13 @@ public class Level1PowerUpController : MonoBehaviour
     [SerializeField] GameObject redTank1BonusDamageGUI;
     [SerializeField] GameObject redTank1BonusMovementGUI;
     [SerializeField] GameObject redTank1InvicibilityGUI;
+    [SerializeField] GameObject redTank1HealingGUI;
 
     [Header("Blue Player's PowerUp GUI Controller")]
     [SerializeField] GameObject blueTank1BonusDamageGUI;
     [SerializeField] GameObject blueTank1BonusMovementGUI;
     [SerializeField] GameObject blueTank1InvicibilityGUI;
+    [SerializeField] GameObject blueTank1HealingGUI;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,7 @@ public class Level1PowerUpController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Red Tank PowerUps " + getPowerUpInfo.getPlayerPowerups(PlayerColors.Red)[0]);
+        Debug.Log("Red Tank PowerUps " + getPowerUpInfo.getPlayerPowerups(PlayerColors.Red)[0]);
         //Debug.Log("Blue Tank PowerUps " + getPowerUpInfo.getPlayerPowerups(PlayerColors.Blue)[0]);
 
         RedTanks1PowerUpGUIController();
@@ -48,11 +50,16 @@ public class Level1PowerUpController : MonoBehaviour
         {
             redTank1InvicibilityGUI.SetActive(true);
         }
+        else if (getPowerUpInfo.getPlayerPowerups(PlayerColors.Red)[0] == "Healing")
+        {
+            redTank1HealingGUI.SetActive(true);
+        }
         else
         {
             redTank1InvicibilityGUI.SetActive(false);
             redTank1BonusMovementGUI.SetActive(false);
             redTank1BonusDamageGUI.SetActive(false);
+            redTank1HealingGUI.SetActive(false);
         }
     }
 
@@ -71,11 +78,16 @@ public class Level1PowerUpController : MonoBehaviour
         {
             blueTank1InvicibilityGUI.SetActive(true);
         }
+        else if (getPowerUpInfo.getPlayerPowerups(PlayerColors.Blue)[0] == "Healing")
+        {
+            blueTank1HealingGUI.SetActive(true);
+        }
         else
         {
             blueTank1InvicibilityGUI.SetActive(false);
             blueTank1BonusMovementGUI.SetActive(false);
             blueTank1BonusDamageGUI.SetActive(false);
+            blueTank1HealingGUI.SetActive(false);
         }
     }
 

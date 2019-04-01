@@ -10,21 +10,25 @@ public class Level2PowerUpController : MonoBehaviour
     [SerializeField] GameObject redTank1BonusDamageGUI;
     [SerializeField] GameObject redTank1BonusMovementGUI;
     [SerializeField] GameObject redTank1InvicibilityGUI;
+    [SerializeField] GameObject redTank1HealingGUI;
 
     [Header("Red Player's PowerUp GUI Controller Tank2")]
     [SerializeField] GameObject redTank2BonusDamageGUI;
     [SerializeField] GameObject redTank2BonusMovementGUI;
     [SerializeField] GameObject redTank2InvicibilityGUI;
+    [SerializeField] GameObject redTank2HealingGUI;
 
     [Header("Blue Player's PowerUp GUI Controller Tank1")]
     [SerializeField] GameObject blueTank1BonusDamageGUI;
     [SerializeField] GameObject blueTank1BonusMovementGUI;
     [SerializeField] GameObject blueTank1InvicibilityGUI;
+    [SerializeField] GameObject blueTank1HealingGUI;
 
     [Header("Blue Player's PowerUp GUI Controller Tank2")]
     [SerializeField] GameObject blueTank2BonusDamageGUI;
     [SerializeField] GameObject blueTank2BonusMovementGUI;
     [SerializeField] GameObject blueTank2InvicibilityGUI;
+    [SerializeField] GameObject blueTank2HealingGUI;
 
     // Start is called before the first frame update
     void Start()
@@ -60,11 +64,16 @@ public class Level2PowerUpController : MonoBehaviour
         {
             redTank1InvicibilityGUI.SetActive(true);
         }
+        else if (getPowerUpInfo.getPlayerPowerups(PlayerColors.Red)[0] == "Healing")
+        {
+            redTank1HealingGUI.SetActive(true);
+        }
         else
         {
             redTank1InvicibilityGUI.SetActive(false);
             redTank1BonusMovementGUI.SetActive(false);
             redTank1BonusDamageGUI.SetActive(false);
+            redTank1HealingGUI.SetActive(false);
         }
     }
 
@@ -84,11 +93,16 @@ public class Level2PowerUpController : MonoBehaviour
         {
             redTank2InvicibilityGUI.SetActive(true);
         }
+        else if (getPowerUpInfo.getPlayerPowerups(PlayerColors.Red)[1] == "Healing")
+        {
+            redTank2HealingGUI.SetActive(true);
+        }
         else
         {
             redTank2InvicibilityGUI.SetActive(false);
             redTank2BonusMovementGUI.SetActive(false);
             redTank2BonusDamageGUI.SetActive(false);
+            redTank2HealingGUI.SetActive(false);
         }
     }
 
@@ -107,11 +121,16 @@ public class Level2PowerUpController : MonoBehaviour
         {
             blueTank1InvicibilityGUI.SetActive(true);
         }
+        else if (getPowerUpInfo.getPlayerPowerups(PlayerColors.Blue)[0] == "Healing")
+        {
+            blueTank1HealingGUI.SetActive(true);
+        }
         else
         {
             blueTank1InvicibilityGUI.SetActive(false);
             blueTank1BonusMovementGUI.SetActive(false);
             blueTank1BonusDamageGUI.SetActive(false);
+            blueTank1HealingGUI.SetActive(false);
         }
     }
 
@@ -130,11 +149,16 @@ public class Level2PowerUpController : MonoBehaviour
         {
             blueTank2InvicibilityGUI.SetActive(true);
         }
+        else if (getPowerUpInfo.getPlayerPowerups(PlayerColors.Blue)[1] == "Healing")
+        {
+            blueTank2HealingGUI.SetActive(true);
+        }
         else
         {
             blueTank2InvicibilityGUI.SetActive(false);
             blueTank2BonusMovementGUI.SetActive(false);
             blueTank2BonusDamageGUI.SetActive(false);
+            blueTank2HealingGUI.SetActive(false);
         }
     }
 }

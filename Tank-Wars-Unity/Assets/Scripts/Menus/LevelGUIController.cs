@@ -20,6 +20,7 @@ public class LevelGUIController : MonoBehaviour
     [SerializeField] GameObject redTankGambleGUI;
     [SerializeField] Animator redPhaseAni;
     [SerializeField] GameObject redOverlay;
+    [SerializeField] GameObject redTeamIcon;
 
     [Header("Blue Player's GUI Controller")]
     [SerializeField] GameObject blueTankMoveGUI;
@@ -27,9 +28,10 @@ public class LevelGUIController : MonoBehaviour
     [SerializeField] GameObject blueTankGambleGUI;
     [SerializeField] Animator bluePhaseAni;
     [SerializeField] GameObject blueOverlay;
+    [SerializeField] GameObject blueTeamIcon;
 
     [Header("Game State info")]
-    [SerializeField] GameStatus currentState;
+    GameStatus currentState;
     Turns getTurnsInfo;
     GameState getCurrentHp;
     RedTankSpawner1 redTankInfo;
@@ -111,6 +113,8 @@ public class LevelGUIController : MonoBehaviour
             redTankMoveGUI.SetActive(true);
             redOverlay.SetActive(true);
             blueOverlay.SetActive(false);
+            redTeamIcon.SetActive(true);
+            blueTeamIcon.SetActive(false);
 
             if (redPhase == true)
             {
@@ -151,6 +155,8 @@ public class LevelGUIController : MonoBehaviour
                 bluePhaseAni.Play("Idle");
                 bluePhase = false;
                 blueOverlay.SetActive(true);
+                redTeamIcon.SetActive(false);
+                blueTeamIcon.SetActive(true);
             }
         }
         else { blueTankMoveGUI.SetActive(false); }

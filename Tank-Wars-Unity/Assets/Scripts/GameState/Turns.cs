@@ -104,7 +104,7 @@ public class Turns : MonoBehaviour
         }
 
         // Skip turn if spacebar is pressed
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) && !aiMove) {
             round++;
             TileHighlighter.resetTiles();
 
@@ -271,6 +271,10 @@ public class Turns : MonoBehaviour
         else if (endPos.z < startPos.z)
         {
             endRot = Quaternion.Euler(0f, 180f, 0f);
+        }
+        else
+        {
+            endRot = tankClicked.transform.rotation;
         }
         float rotStep = tankMoveSpeed * Time.fixedDeltaTime;
         float rotT = 0;
@@ -585,9 +589,9 @@ public class Turns : MonoBehaviour
         {
             Tank aiTank = gs.getPlayerTank(PlayerColors.Blue, aiLocation);
 
-            Vector3 startPos = tankClicked.transform.position;
+            Vector3 startPos = blue.transform.position;
             Vector3 endPos = new Vector3(0, 0, 0);
-            Quaternion startRot = tankClicked.transform.rotation;
+            Quaternion startRot = blue.transform.rotation;
             Quaternion endRot = Quaternion.Euler(0f, 0f, 0f);
             if (aiTank is CannonTank)
             {
@@ -614,25 +618,29 @@ public class Turns : MonoBehaviour
             {
                 endRot = Quaternion.Euler(0f, 180f, 0f);
             }
+            else
+            {
+                endRot = blue.transform.rotation;
+            }
             float rotStep = tankMoveSpeed * Time.fixedDeltaTime;
             float rotT = 0;
             while (rotT <= 1.0f)
             {
                 rotT += rotStep;
-                tankClicked.transform.rotation = Quaternion.Lerp(startRot, endRot, rotT);
+                blue.transform.rotation = Quaternion.Lerp(startRot, endRot, rotT);
                 yield return new WaitForFixedUpdate();
             }
-            tankClicked.transform.rotation = endRot;
+            blue.transform.rotation = endRot;
 
             float step = (tankMoveSpeed / (startPos - endPos).magnitude) * Time.fixedDeltaTime;
             float t = 0;
             while (t <= 1.0f)
             {
                 t += step;
-                tankClicked.transform.position = Vector3.Lerp(startPos, endPos, t);
+                blue.transform.position = Vector3.Lerp(startPos, endPos, t);
                 yield return new WaitForFixedUpdate();
             }
-            tankClicked.transform.position = endPos;
+            blue.transform.position = endPos;
 
             rotT = 0;
             if (aiTank is SniperTank)
@@ -640,7 +648,7 @@ public class Turns : MonoBehaviour
                 while (rotT <= 1.0f)
                 {
                     rotT += rotStep;
-                    tankClicked.transform.rotation = Quaternion.Lerp(endRot, startRot, rotT);
+                    blue.transform.rotation = Quaternion.Lerp(endRot, startRot, rotT);
                     yield return new WaitForFixedUpdate();
                 }
             }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 88341614}
-  m_IndirectSpecularColor: {r: 0.48746386, g: 0.46014583, b: 0.495326, a: 1}
+  m_IndirectSpecularColor: {r: 0.25329244, g: 0.21699427, b: 0.23319966, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14977,7 +14977,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: beedb7632b1152247965ac56db7f4e5b, type: 2}
+  - {fileID: 2100000, guid: 67151d0d462dd5d4dbac3e02283fc592, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20144,11 +20144,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 770026117}
     m_Modifications:
-    - target: {fileID: 325906669176093806, guid: baef7e9eead72da4a956bdb938682ffb,
-        type: 3}
-      propertyPath: m_Name
-      value: Particle_FIRE_Light_40%
-      objectReference: {fileID: 0}
     - target: {fileID: 4152441425153043207, guid: baef7e9eead72da4a956bdb938682ffb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20203,6 +20198,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 325906669176093806, guid: baef7e9eead72da4a956bdb938682ffb,
+        type: 3}
+      propertyPath: m_Name
+      value: Particle_FIRE_Light_40%
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baef7e9eead72da4a956bdb938682ffb, type: 3}

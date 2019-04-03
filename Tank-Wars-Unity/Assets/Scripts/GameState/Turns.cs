@@ -86,6 +86,10 @@ public class Turns : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(aiON && aiMove) {
+            return;
+        }
+
         if(numGambles == 4) {
             updateTooltips("GLHF");
         }
@@ -101,7 +105,14 @@ public class Turns : MonoBehaviour
             if (aiMove == false)
             {
                 aiMove = true;
-                StartCoroutine(handleMinMaxAi());
+
+                if(currentLevel == Levels.Level1) {
+                    handleGreedyAi();
+                }
+                else {
+                    StartCoroutine(handleMinMaxAi());
+                }
+                
             }
         }
 
@@ -578,6 +589,7 @@ public class Turns : MonoBehaviour
         gs.updatePlayerHealthBars(hpController);
         numGambles++;
         updateTooltips("Move1");
+        aiMove = false;
     }
 
     private IEnumerator handleMinMaxAi(){
@@ -693,10 +705,11 @@ public class Turns : MonoBehaviour
         PlayerColors player = gs.isGameOver();
 
         if(player == PlayerColors.Red) {
-            Debug.Log("DEAD!!");
+            Debug.Log("PLAYER 1 DEAD!!");
             gameStatus.GetComponent<GameStatus>().SetPlayer2Win();
         }
         else if(player == PlayerColors.Blue){
+            Debug.Log("PLAYER 2 DEAD!!");
             gameStatus.GetComponent<GameStatus>().SetPlayer1Win();
         }
         else {

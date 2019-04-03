@@ -19,19 +19,20 @@ public class MortarProjectile : MonoBehaviour
     [SerializeField] float speed = 3;
     private float startProgress = -1;
     private float endProgress = -1;
+    private bool rotateBackOnce = false;
+    private bool rotateTowardsOnce = false;
 
     // Update is called once per frame
     void Update()
     {
-        if (startProgress < 1 && startProgress >= 0)
+        if (rotateTowardsOnce == true)
         {
-            startProgress += Time.deltaTime * 5;
-            gun.rotation = Quaternion.Lerp(startRotation, endRotation, startProgress);
+            rotateTowardsOnce = false;
+            StartCoroutine(rotateTowards());
         }
 
         if (clone != null)
         {
-            // Compute the next position, with arc added in
             float x0 = start.x;
             float x1 = end.x;
             float y0 = start.z;
@@ -43,11 +44,9 @@ public class MortarProjectile : MonoBehaviour
                 float baseY = Mathf.Lerp(start.y, end.y, (nextX - x0) / dist);
                 float arc = height * (nextX - x0) * (nextX - x1) / (-0.25f * dist * dist);
                 nextPos = new Vector3(nextX, baseY + arc, clone.transform.position.z);
-                // Rotate to face the next position, and then move there
                 Vector2 forward = nextPos - clone.transform.position;
-                //clone.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg);
                 clone.transform.position = nextPos;
-                endProgress = 0;
+                rotateBackOnce = true;
             }
 
             else if(y1 - y0 != 0)
@@ -57,18 +56,16 @@ public class MortarProjectile : MonoBehaviour
                 float baseY = Mathf.Lerp(start.y, end.y, (nextY - y0) / dist);
                 float arc = height * (nextY - y0) * (nextY - y1) / (-0.25f * dist * dist);
                 nextPos = new Vector3(clone.transform.position.x, baseY + arc, nextY);
-                // Rotate to face the next position, and then move there
                 Vector2 forward = nextPos - clone.transform.position;
-                //clone.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg);
                 clone.transform.position = nextPos;
-                endProgress = 0;
+                rotateBackOnce = true;
             }
         }
 
-        if(endProgress < 1 && endProgress >= 0)
+        if (rotateBackOnce == true)
         {
-            endProgress += Time.deltaTime * 5;
-            gun.rotation = Quaternion.Lerp(endRotation, startRotation, endProgress);
+            rotateBackOnce = false;
+            StartCoroutine(rotateBack());
         }
     }
 
@@ -76,8 +73,7 @@ public class MortarProjectile : MonoBehaviour
     {
         startRotation = gun.rotation;
         endRotation = Quaternion.Euler(0f, (float)orientation, 0f);
-        startProgress = 0;
-        StartCoroutine(Wait());
+        rotateTowardsOnce = true;
     }
 
     public void setStart(int currentTankX, int currentTankY)
@@ -92,9 +88,37 @@ public class MortarProjectile : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(.5f);
         AudioSource sound = gameObject.GetComponent<AudioSource>();
         sound.Play();
         clone = Instantiate(projectile, spawnpoint.position, Quaternion.identity);
+    }
+
+    IEnumerator rotateTowards()
+    {
+        startProgress = Time.fixedDeltaTime * 5;
+        float rotT = 0;
+        while(rotT <= 1.0f)
+        {
+            rotT += startProgress;
+            gun.rotation = Quaternion.Lerp(startRotation, endRotation, rotT);
+            yield return new WaitForFixedUpdate();
+        }
+        gun.rotation = endRotation;
+        StartCoroutine(Wait());
+    }
+
+    IEnumerator rotateBack()
+    {
+        yield return new WaitForSeconds(.5f);
+        endProgress = Time.fixedDeltaTime * 5;
+        float rotT = 0;
+        while (rotT <= 1.0f)
+        {
+            rotT += endProgress;
+            gun.rotation = Quaternion.Lerp(endRotation, startRotation, rotT);
+            yield return new WaitForFixedUpdate();
+        }
+        gun.rotation = startRotation;
     }
 }

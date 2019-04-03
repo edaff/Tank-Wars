@@ -41,12 +41,7 @@ public class TileHighlighter
             child = grid.transform.GetChild(i).gameObject;
             meshRenderer = child.GetComponent<MeshRenderer>();
 
-            if(child.tag == "Water") {
-                meshRenderer.material.color = new Color(1.000f, 1.000f, 1.000f, 0.820f);
-            }
-            else {
-                meshRenderer.material.color = new Color(1.000f, 1.000f, 1.000f, 1.000f);
-            }
+            meshRenderer.material.color = new Color(1.000f, 1.000f, 1.000f, 1.000f);
         }
     }
 }

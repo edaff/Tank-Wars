@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LevelGUIController : MonoBehaviour
 {
-    
+
     string whatRoundAmi;
     string whoesTurnisIt;
 
@@ -21,6 +22,14 @@ public class LevelGUIController : MonoBehaviour
     [SerializeField] Animator redPhaseAni;
     [SerializeField] GameObject redOverlay;
     [SerializeField] GameObject redTeamIcon;
+
+    [Header("Red Player's Hp text")]
+    [SerializeField] TextMeshProUGUI redTank1;
+    [SerializeField] TextMeshProUGUI redTank2;
+
+    [Header("Blue Player's Hp text")]
+    [SerializeField] TextMeshProUGUI blueTank1;
+    [SerializeField] TextMeshProUGUI blueTank2;
 
     [Header("Blue Player's GUI Controller")]
     [SerializeField] GameObject blueTankMoveGUI;
@@ -60,6 +69,9 @@ public class LevelGUIController : MonoBehaviour
         whatLevelIsThis = currentState.GetDifficuity();
 
 
+        //box = RedTank1.GetComponent<TextMeshProUGUI>();
+        //RedTank1 = FindObjectOfType<GameObject>();
+
         CreateChildArray();
     }
 
@@ -70,6 +82,10 @@ public class LevelGUIController : MonoBehaviour
         redTanksHp = getCurrentHp.getHealthForPlayerTanks(PlayerColors.Red);
         blueTanksHp = getCurrentHp.getHealthForPlayerTanks(PlayerColors.Blue);
 
+        //box = RedTank1.GetComponent<TextMeshPro>();
+        //Debug.Log(redTank1);
+
+        //redTank1.SetText("LeveL "+ whatLevelIsThis.ToString());
         //Debug.Log("Red Tanks 1 hp is " + redTanksHp[0]);                        //hp of red tank 1
         //Debug.Log("Red Tanks 2 hp is " + redTanksHp[1]);                        //hp og red tank 2
         //Debug.Log("blue Tanks 1 hp is " + blueTanksHp[0]);                        //hp of blue tank 1
@@ -101,6 +117,20 @@ public class LevelGUIController : MonoBehaviour
 
         RedTankGUIController();
         BlueTankGUIController();
+
+        if(whatLevelIsThis == 1)
+        {
+            redTank1.SetText("HP:" + redTanksHp[0]);
+            blueTank1.SetText("HP:" + blueTanksHp[0]);
+ 
+        }
+        else if(whatLevelIsThis == 2)
+        {
+            redTank1.SetText("HP:" + redTanksHp[0]);
+            redTank2.SetText("HP:" + redTanksHp[1]);
+            blueTank1.SetText("HP:" + blueTanksHp[0]);
+            blueTank2.SetText("HP:" + blueTanksHp[1]);
+        }
         
         
     }

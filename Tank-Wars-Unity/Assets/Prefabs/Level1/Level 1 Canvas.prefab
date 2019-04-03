@@ -4910,12 +4910,17 @@ MonoBehaviour:
   redTankGambleGUI: {fileID: 1130902325}
   redPhaseAni: {fileID: 3328907091871903033}
   redOverlay: {fileID: 232088160}
+  redTeamIcon: {fileID: 0}
+  redTank1: {fileID: 0}
+  redTank2: {fileID: 0}
+  blueTank1: {fileID: 0}
+  blueTank2: {fileID: 0}
   blueTankMoveGUI: {fileID: 1353828515}
   blueTankAttackGUI: {fileID: 241835757}
   blueTankGambleGUI: {fileID: 1098253711}
   bluePhaseAni: {fileID: 501435256520055269}
   blueOverlay: {fileID: 1999913960}
-  currentState: {fileID: 0}
+  blueTeamIcon: {fileID: 0}
   redTank1Childern:
   - {fileID: 0}
   - {fileID: 0}

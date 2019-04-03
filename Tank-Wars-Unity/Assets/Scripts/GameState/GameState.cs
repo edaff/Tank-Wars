@@ -1,5 +1,6 @@
 ﻿
 using System.Collections;
+using UnityEngine;
 
 public class GameState {
     protected Grid grid;
@@ -127,12 +128,19 @@ public class GameState {
         return this.grid;
     }
 
-    public void highlightPlayerTiles(PlayerColors player, Rounds round) {
-        if (player == PlayerColors.Red) {
-            TileHighlighter.highlightValidTiles(player1.getAllTankCoordinates(), round);
-        }
-        else {
-            TileHighlighter.highlightValidTiles(player2.getAllTankCoordinates(), round);
+    public void toggleTankRings(GameObject[] tanks, CoordinateSet targetTankCoordinates, bool toggle) {
+        foreach (GameObject tank in tanks) {
+            if (targetTankCoordinates.getX() != -1 && targetTankCoordinates.getY() != -1) {
+                if (new CoordinateSet((int)tank.transform.position.x, (int)tank.transform.position.z) != targetTankCoordinates) {
+                    continue;
+                }
+            }
+
+            foreach (Transform t in tank.GetComponent<Transform>()) {
+                if(t.name == "Ring_Red" || t.name == "Ring_Bleu") {
+                    t.gameObject.SetActive(toggle);
+                }
+            }
         }
     }
 

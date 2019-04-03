@@ -71,7 +71,7 @@ public class Turns : MonoBehaviour
         mainCamera = GameObject.Find("Main Camera");
         camera = mainCamera.GetComponent<CameraAngles>();
         camera.translateToPlayer(PlayerColors.Red);
-        gs.highlightPlayerTiles(playerTurn, round);
+        //gs.toggleTankRings(redTanks, new CoordinateSet(-1, -1), true);
 
         tooltip = GameObject.FindGameObjectWithTag("ToolTips");
         tooltips = new List<GameObject>();
@@ -95,6 +95,8 @@ public class Turns : MonoBehaviour
 
         // Run if ai's turn
         if(playerTurn == PlayerColors.Blue && aiON){
+            gs.toggleTankRings(redTanks, new CoordinateSet(-1, -1), false);
+            gs.toggleTankRings(blueTanks, new CoordinateSet(-1, -1), false);
             //handleGreedyAi();
             if (aiMove == false)
             {
@@ -109,11 +111,15 @@ public class Turns : MonoBehaviour
             TileHighlighter.resetTiles();
 
             if (round == Rounds.Gamble) {
+                gs.toggleTankRings(playerTurn == PlayerColors.Red ? redTanks : blueTanks, new CoordinateSet(-1, -1), true);
+                gs.toggleTankRings(playerTurn == PlayerColors.Red ? blueTanks : redTanks, new CoordinateSet(-1, -1), false);
                 updateTooltips("Gamble");
                 gs.updatePlayerPowerupState(playerTurn);
             }
 
             if(round == Rounds.Attack) {
+                gs.toggleTankRings(redTanks, new CoordinateSet(-1, -1), false);
+                gs.toggleTankRings(blueTanks, new CoordinateSet(-1, -1), false);
                 updateTooltips("Attack1");
             }
 
@@ -179,7 +185,8 @@ public class Turns : MonoBehaviour
             }
         }
         TileHighlighter.resetTiles();
-        gs.highlightPlayerTiles(playerTurn, Rounds.Move);
+        gs.toggleTankRings(redTanks, new CoordinateSet(-1, -1), false);
+        gs.toggleTankRings(blueTanks, new CoordinateSet(-1, -1), false);
         roundCounter++;
     }
 
@@ -215,6 +222,8 @@ public class Turns : MonoBehaviour
 
             TileHighlighter.resetTiles();
             TileHighlighter.highlightValidTiles(currentTank.getValidMovements(gs.getGrid(), tankCoordinates), round);
+            gs.toggleTankRings(playerTurn == PlayerColors.Red ? redTanks : blueTanks, tankCoordinates, true);
+            gs.toggleTankRings(playerTurn == PlayerColors.Red ? blueTanks : redTanks, new CoordinateSet(-1, -1), false);
             updateTooltips("Move2");
         }
         else if (tankClicked != null) {
@@ -234,9 +243,10 @@ public class Turns : MonoBehaviour
                 tankClicked = null;
                 round = Rounds.Attack;
                 TileHighlighter.resetTiles();
-                gs.highlightPlayerTiles(playerTurn, Rounds.Move);
                 printTurn();
                 updateTooltips("Attack1");
+                gs.toggleTankRings(redTanks, new CoordinateSet(-1, -1), false);
+                gs.toggleTankRings(blueTanks, new CoordinateSet(-1, -1), false);
             }
         }
     }
@@ -353,12 +363,9 @@ public class Turns : MonoBehaviour
     }
 
     private void highlightAttackTiles(CoordinateSet currentTankCoordinates) {
-        if (playerTurn == PlayerColors.Red) {
-            gs.highlightPlayerTiles(PlayerColors.Blue, Rounds.Gamble);
-        }
-        else {
-            gs.highlightPlayerTiles(PlayerColors.Red, Rounds.Gamble);
-        }
+        gs.toggleTankRings(playerTurn == PlayerColors.Red ? redTanks : blueTanks, currentTankCoordinates, true);
+        gs.toggleTankRings(playerTurn == PlayerColors.Red ? blueTanks : redTanks, new CoordinateSet(-1, -1), true);
+
 
         Tank currentTank = gs.getPlayerTank(playerTurn, currentTankCoordinates);
         TileHighlighter.highlightValidTiles(currentTank.getWeapon().getValidAttacks(gs.getGrid()), round);
@@ -392,7 +399,8 @@ public class Turns : MonoBehaviour
             // Update the state information
             round = Rounds.Gamble;
             TileHighlighter.resetTiles();
-            gs.highlightPlayerTiles(playerTurn, Rounds.Move);
+            gs.toggleTankRings(playerTurn == PlayerColors.Red ? redTanks : blueTanks, new CoordinateSet(-1, -1), true);
+            gs.toggleTankRings(playerTurn == PlayerColors.Red ? blueTanks : redTanks, new CoordinateSet(-1, -1), false);
             printTurn();
             tankClicked = null;
             tankClicked2 = null;
@@ -519,6 +527,8 @@ public class Turns : MonoBehaviour
         gs.updatePlayerHealthBars(hpController);
         updateTooltips("Move1");
         numGambles++;
+        gs.toggleTankRings(redTanks, new CoordinateSet(-1, -1), false);
+        gs.toggleTankRings(blueTanks, new CoordinateSet(-1, -1), false);
     }
 
     private void handleGreedyAi() {

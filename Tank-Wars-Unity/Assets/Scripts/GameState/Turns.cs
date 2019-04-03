@@ -104,7 +104,7 @@ public class Turns : MonoBehaviour
         }
 
         // Skip turn if spacebar is pressed
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) && !aiMove) {
             round++;
             TileHighlighter.resetTiles();
 

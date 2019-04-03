@@ -117,22 +117,8 @@ public class LevelGUIController : MonoBehaviour
 
         RedTankGUIController();
         BlueTankGUIController();
+        UpDateTanksHpNum();
 
-        if(whatLevelIsThis == 1)
-        {
-            redTank1.SetText("HP:" + redTanksHp[0]);
-            blueTank1.SetText("HP:" + blueTanksHp[0]);
- 
-        }
-        else if(whatLevelIsThis == 2)
-        {
-            redTank1.SetText("HP:" + redTanksHp[0]);
-            redTank2.SetText("HP:" + redTanksHp[1]);
-            blueTank1.SetText("HP:" + blueTanksHp[0]);
-            blueTank2.SetText("HP:" + blueTanksHp[1]);
-        }
-        
-        
     }
 
     //moves control for red tanks/player
@@ -467,7 +453,68 @@ public class LevelGUIController : MonoBehaviour
             }
         }
         */
+
     }
+
+    private void UpDateTanksHpNum()
+    {
+        if (whatLevelIsThis == 1)
+        {
+            if (redTanksHp[0] <= 100)
+            {
+                redTank1.SetText("HP:" + redTanksHp[0]);
+            }
+            else if (redTanksHp[0] > 100)
+            {
+                redTank1.SetText("HP: ITS OVER 9000!!!");
+            }
+            if (blueTanksHp[0] <= 100)
+            {
+                blueTank1.SetText("HP:" + blueTanksHp[0]);
+            }
+            else if (blueTanksHp[0] > 100)
+            {
+                blueTank1.SetText("HP: ITS OVER 9000!!!");
+            }
+
+        }
+        else if (whatLevelIsThis == 2)
+        {
+            if (redTanksHp[0] <= 100)
+            {
+                redTank1.SetText("HP:" + redTanksHp[0]);
+            }
+            else if (redTanksHp[0] > 100)
+            {
+                redTank1.SetText("HP: ITS OVER 9000!!!");
+            }
+            if (redTanksHp[1] <= 100)
+            {
+                redTank2.SetText("HP:" + redTanksHp[1]);
+            }
+            else if (redTanksHp[1] > 100)
+            {
+                redTank2.SetText("HP: ITS OVER 9000!!!");
+            }
+            if (blueTanksHp[0] <= 100)
+            {
+                blueTank1.SetText("HP:" + blueTanksHp[0]);
+            }
+            else if (blueTanksHp[0] > 100)
+            {
+                blueTank1.SetText("HP: ITS OVER 9000!!!");
+            }
+            if (blueTanksHp[1] <= 100)
+            {
+                blueTank2.SetText("HP:" + blueTanksHp[1]);
+            }
+            else if (blueTanksHp[1] > 100)
+            {
+                blueTank2.SetText("HP: ITS OVER 9000!!!");
+            }
+        }
+    }
+
 }
 
 

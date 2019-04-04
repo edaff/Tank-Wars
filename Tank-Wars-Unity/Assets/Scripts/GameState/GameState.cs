@@ -131,9 +131,15 @@ public class GameState {
     public void toggleTankRings(GameObject[] tanks, CoordinateSet targetTankCoordinates, bool toggle) {
         foreach (GameObject tank in tanks) {
             if (targetTankCoordinates.getX() != -1 && targetTankCoordinates.getY() != -1) {
-                if (new CoordinateSet((int)tank.transform.position.x, (int)tank.transform.position.z) != targetTankCoordinates) {
-                    continue;
+                foreach (Transform t in tank.GetComponent<Transform>()) {
+                    if ((t.name == "Ring_Red" || t.name == "Ring_Bleu") && new CoordinateSet((int)tank.transform.position.x, (int)tank.transform.position.z) == targetTankCoordinates) {
+                        t.gameObject.SetActive(toggle);
+                    }
+                    else if ((t.name == "Ring_Red" || t.name == "Ring_Bleu")) {
+                        t.gameObject.SetActive(!toggle);
+                    }
                 }
+                continue;
             }
 
             foreach (Transform t in tank.GetComponent<Transform>()) {

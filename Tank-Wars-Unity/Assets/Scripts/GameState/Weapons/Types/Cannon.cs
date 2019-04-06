@@ -51,7 +51,7 @@ public class Cannon : Weapon
 
         }
         else {
-            Debug.Log("Invalid Attack!");
+            //Debug.Log("Invalid Attack!");
         }
 
         return false;

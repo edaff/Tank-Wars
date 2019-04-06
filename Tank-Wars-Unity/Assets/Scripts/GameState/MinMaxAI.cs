@@ -87,6 +87,7 @@ public class MinMaxAI
     public CoordinateSet MinMaxTurn()
     {
         //This while loop is used to allow the continue code to retry the MinMaxTurn
+        CoordinateSet lastAiCoordinates = null;
         while (true) {
             removeDeadTanks();
             ArrayList val = new ArrayList();
@@ -167,6 +168,10 @@ public class MinMaxAI
             }
             int i_ = 0;
             int j_ = 0;
+            int j__ = 0;
+            double maxDis = 0;
+
+            //Gives you i and j for min dis
             for (int i = 0; i < column; i++)
             {
                 for (int j = 0; j < row; j++)
@@ -181,6 +186,71 @@ public class MinMaxAI
                         }
                     }
                 }
+            }
+
+            if (blueTanks.Length == 0)
+            {
+                move = false;
+                return lastAiCoordinates;
+            }
+
+            bool snipCanAttack = false;
+            CoordinateSet aiSave = null;
+            aiCoordinates = new CoordinateSet((int)blueTanks[i_].transform.position.x, (int)blueTanks[i_].transform.position.z);
+            validMoves = findValidMoves(aiCoordinates, (PlayerColors)PlayerColors.Blue);
+
+            for (int j = 0; j < validMoves.Count + 1; j++)
+            {
+                if (zero[i_, j] != 0) {
+                    aiCoordinates = new CoordinateSet((int)blueTanks[i_].transform.position.x, (int)blueTanks[i_].transform.position.z);
+                    aiSave = aiCoordinates;
+                    if (gs.getPlayerTank((PlayerColors)PlayerColors.Blue, aiCoordinates) is SniperTank)
+                    {
+                        Debug.Log("HELLO1");
+                        validMoves = findValidMoves(aiCoordinates, (PlayerColors)PlayerColors.Blue);
+                        aiTank = blueTanks[i_];
+                        //blueTunks[i_].getWeapon();
+                        closestTank = findClosestTanks((CoordinateSet)validMoves[j]);
+                        CoordinateSet closestCoordinate = new CoordinateSet((int)closestTank.transform.position.x, (int)closestTank.transform.position.z);
+                        //checkValidMove(PlayerColors playerTurn, CoordinateSet tankCoordinates, CoordinateSet targetCoordinates, bool updateState)
+                        Debug.Log(gs.checkValidMove((PlayerColors)PlayerColors.Blue, aiCoordinates, (CoordinateSet)validMoves[j], true));
+                        bool canAt = handleAttack(i_, (CoordinateSet)validMoves[j], closestCoordinate, (PlayerColors)PlayerColors.Blue, false);
+                        Debug.Log(gs.checkValidMove((PlayerColors)PlayerColors.Blue, (CoordinateSet)validMoves[j], aiCoordinates, true));
+                        if (canAt)
+                        {
+                            Debug.Log("HELLO2");
+                            if (zero[i_, j] > maxDis)
+                            {
+                                j__ = j;
+                                maxDis = zero[i_, j];
+                                snipCanAttack = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            bool isSnip = false;
+
+
+            aiCoordinates = new CoordinateSet((int)blueTanks[i_].transform.position.x, (int)blueTanks[i_].transform.position.z);
+            aiTank = blueTanks[i_];
+            closestTank = findClosestTanks((CoordinateSet)validMoves[j_]);
+            lastAiCoordinates = aiCoordinates;
+            if (gs.getPlayerTank((PlayerColors)PlayerColors.Blue, aiCoordinates) is SniperTank)
+            {
+                j_ = j__;
+                isSnip = true;
+            }
+            if (!snipCanAttack && isSnip)
+            {
+                deleteStagTank(i_);
+                continue;
+            }
+            else if (isSnip)
+            {
+                Debug.Log("I'm fed up");
+                return (CoordinateSet)validMoves[j_];
             }
 
             //Now return the best move

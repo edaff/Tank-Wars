@@ -52,7 +52,7 @@ public class Mortar : Weapon
 
         }
         else {
-            Debug.Log("Invalid Attack!");
+            //Debug.Log("Invalid Attack!");
         }
 
         return false;

@@ -359,7 +359,10 @@ public class MinMaxAI
 
             if (handleAttack(i, tempCoordinates, valMoves, (PlayerColors)PlayerColors.Blue, false))
             {
-                temp += 2;
+                temp += 3;
+            }
+            if((handleAttack(i, valMoves, tempCoordinates, (PlayerColors)PlayerColors.Red, false))){
+                temp -= 1;
             }
             if (gs.getGrid().getGridNode(valMoves).getTerrain() is Water)
             {

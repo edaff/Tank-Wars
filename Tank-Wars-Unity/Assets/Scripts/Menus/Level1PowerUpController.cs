@@ -27,9 +27,6 @@ public class Level1PowerUpController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Red Tank PowerUps " + getPowerUpInfo.getPlayerPowerups(PlayerColors.Red)[0]);
-        //Debug.Log("Blue Tank PowerUps " + getPowerUpInfo.getPlayerPowerups(PlayerColors.Blue)[0]);
-
         RedTanks1PowerUpGUIController();
         BlueTanks1PowerUpGUIController();
     }

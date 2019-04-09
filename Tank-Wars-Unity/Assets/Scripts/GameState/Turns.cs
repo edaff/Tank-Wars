@@ -107,12 +107,11 @@ public class Turns : MonoBehaviour
                 aiMove = true;
 
                 if(currentLevel == Levels.Level1) {
-                    handleGreedyAi();
+                    StartCoroutine(handleGreedyAi());
                 }
                 else {
                     StartCoroutine(handleMinMaxAi());
                 }
-                
             }
         }
 
@@ -542,7 +541,7 @@ public class Turns : MonoBehaviour
         gs.toggleTankRings(blueTanks, new CoordinateSet(-1, -1), false);
     }
 
-    private void handleGreedyAi() {
+    private IEnumerator handleGreedyAi() {
         ai = new AI(redTanks, blueTanks, gs);
         CoordinateSet aiLocation;
         CoordinateSet playerLocation;
@@ -563,11 +562,69 @@ public class Turns : MonoBehaviour
         if(!handleAttack(false))
         {
             Tank aiTank = gs.getPlayerTank(PlayerColors.Blue, aiLocation);
-            if (aiTank is CannonTank) {
-                blue.transform.position = new Vector3(targetLocation.getX(), 1, targetLocation.getY());
+            
+            Vector3 startPos = blue.transform.position;
+            Vector3 endPos = new Vector3(0, 0, 0);
+            Quaternion startRot = blue.transform.rotation;
+            Quaternion endRot = Quaternion.Euler(0f, 0f, 0f);
+            if (aiTank is CannonTank)
+            {
+                endPos = new Vector3(targetLocation.getX(), 1f, targetLocation.getY());
             }
-            else {
-                blue.transform.position = new Vector3(targetLocation.getX(), 0.8f, targetLocation.getY());
+            else
+            {
+                endPos = new Vector3(targetLocation.getX(), 0.8f, targetLocation.getY());
+            }
+
+            if (endPos.x > startPos.x)
+            {
+                endRot = Quaternion.Euler(0f, 90f, 0f);
+            }
+            else if (endPos.x < startPos.x)
+            {
+                endRot = Quaternion.Euler(0f, 270f, 0f);
+            }
+            else if (endPos.z > startPos.z)
+            {
+                endRot = Quaternion.Euler(0f, 0f, 0f);
+            }
+            else if (endPos.z < startPos.z)
+            {
+                endRot = Quaternion.Euler(0f, 180f, 0f);
+            }
+            else
+            {
+                endRot = blue.transform.rotation;
+            }
+            float rotStep = tankMoveSpeed * Time.fixedDeltaTime;
+            float rotT = 0;
+            while (rotT <= 1.0f)
+            {
+                rotT += rotStep;
+                blue.transform.rotation = Quaternion.Lerp(startRot, endRot, rotT);
+                yield return new WaitForFixedUpdate();
+            }
+            blue.transform.rotation = endRot;
+
+            float step = (tankMoveSpeed / (startPos - endPos).magnitude) * Time.fixedDeltaTime;
+            float t = 0;
+            while (t <= 1.0f)
+            {
+                t += step;
+                blue.transform.position = Vector3.Lerp(startPos, endPos, t);
+                yield return new WaitForFixedUpdate();
+            }
+            blue.transform.position = endPos;
+
+            rotT = 0;
+            if (aiTank is SniperTank)
+            {
+                while (rotT <= 1.0f)
+                {
+                    rotT += rotStep;
+                    blue.transform.rotation = Quaternion.Lerp(endRot, startRot, rotT);
+                    yield return new WaitForFixedUpdate();
+                }
             }
 
             gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);

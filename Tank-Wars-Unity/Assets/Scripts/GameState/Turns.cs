@@ -663,6 +663,7 @@ public class Turns : MonoBehaviour
         aiLocation = new CoordinateSet((int)blue.transform.position.x, (int)blue.transform.position.z);
         tankClicked = blue;
         tankClicked2 = red;
+        bool canAt = true;
 
         if(!handleAttack(false))
         {
@@ -734,18 +735,22 @@ public class Turns : MonoBehaviour
 
             gs.checkValidMove(PlayerColors.Blue, aiLocation, targetLocation, true);
 
-            // AI will game 1/5 of the time if it moves
-            System.Random randomNumberGenerator = new System.Random();
-            int randomNumber = randomNumberGenerator.Next(1, 4);
-            if(randomNumber == 1)
-            {
-                //string powerup = gs.playerGamble(playerTurn, targetLocation);
-                //Debug.Log("Player " + playerTurn + "'s gamble results in: " + powerup);
-            }
+            canAt = false;
 
         }
 
         handleAttack(true);
+        if(canAt)
+        {
+            // AI will game 1/5 of the time if it moves
+            System.Random randomNumberGenerator = new System.Random();
+            int randomNumber = randomNumberGenerator.Next(1,3);
+            if (randomNumber == 1)
+            {
+                    string powerup = gs.playerGamble(playerTurn, targetLocation);
+                    Debug.Log("Player " + playerTurn + "'s gamble results in: " + powerup);
+            }
+        }
         changeTurns();
         round = Rounds.Move;
         gs.updatePlayerHealthBars(hpController);

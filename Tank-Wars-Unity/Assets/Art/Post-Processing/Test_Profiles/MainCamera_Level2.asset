@@ -39,7 +39,7 @@ MonoBehaviour:
     value: 0
   color:
     overrideState: 1
-    value: {r: 0.21048418, g: 0.7659086, b: 0.8113208, a: 1}
+    value: {r: 0.120149545, g: 0.5310662, b: 0.5660378, a: 1}
   center:
     overrideState: 1
     value: {x: 0.5, y: 0.5}
@@ -290,10 +290,10 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 1
-    value: {x: 0.73506516, y: 1, z: 0.85433614, w: 0}
+    value: {x: 0.9200788, y: 1, z: 0.8401557, w: 0}
   gamma:
     overrideState: 1
-    value: {x: 0.77438426, y: 1, z: 0.93185717, w: 0}
+    value: {x: 0.8118131, y: 1, z: 0.87467486, w: 0}
   gain:
     overrideState: 1
     value: {x: 1, y: 0.96305704, z: 0.9517759, w: 0}

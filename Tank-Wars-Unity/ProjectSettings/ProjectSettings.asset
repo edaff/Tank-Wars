@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: We Make Tanks
   productName: Tank Wars
-  defaultCursor: {fileID: 2800000, guid: 4a6569e9e9e15334b9c0a8387332095d, type: 3}
+  defaultCursor: {fileID: 2800000, guid: a67a5f8b35748994eb47201c8c600a02, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1

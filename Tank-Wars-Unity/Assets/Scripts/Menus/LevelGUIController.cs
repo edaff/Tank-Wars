@@ -162,11 +162,12 @@ public class LevelGUIController : MonoBehaviour
     {
         if (whatRoundAmi == "Move" && whoesTurnisIt == "Blue")
         {
-            blueTankMoveGUI.SetActive(true);
+            //blueTankMoveGUI.SetActive(true);
             redOverlay.SetActive(false);
 
             if (bluePhase == true && aIOn != true)
             {
+                blueTankMoveGUI.SetActive(true);
                 bluePhaseAni.Play("Phase_Blue");
                 bluePhaseAni.Play("Idle");
                 bluePhase = false;

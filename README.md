@@ -35,7 +35,7 @@
 	Weapon: Sniper, Attack Distance: 10, Attack Damage: 45, Knockback: 2
 	Description: Specialized tank with high damage and range, but vulnerable to flanking.
   - **Mortar Tank** -
-  Health: 100, Move Distance:
+  Health: 100, Move Distance: 3
 	Weapon: Mortar, Attack Distance: 4, Attack Damage: 30, Knockback: 0
 	Description: Moderate tank with ability to shoot over trees & mountains
   

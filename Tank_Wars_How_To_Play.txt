@@ -5,12 +5,12 @@ Cannon Tank:
 
 Sniper Tank:
 	Health: 100, Move Distance: 5
-	Weapon: Sniper, Attack Distance: 10, Attack Damage: 50, Knockback: 2
+	Weapon: Sniper, Attack Distance: 10, Attack Damage: 45, Knockback: 2
 	Description: Specialized tank with high damage and range, but vulnerable to flanking.
 
 Mortar Tank
 	Health: 100, Move Distance:
-	Weapon: Mortar, Attack Distance: 4, Attack Damage: 20, Knockback: 0
+	Weapon: Mortar, Attack Distance: 4, Attack Damage: 30, Knockback: 0
 	Description: Moderate tank with ability to shoot over trees & mountains
 
 

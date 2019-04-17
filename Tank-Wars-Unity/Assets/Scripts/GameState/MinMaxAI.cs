@@ -217,12 +217,22 @@ public class MinMaxAI
                         validMoves = findValidMoves(aiCoordinates, (PlayerColors)PlayerColors.Blue);
                         aiTank = blueTanks[i_];
                         //blueTunks[i_].getWeapon();
-                        closestTank = findClosestTanks((CoordinateSet)validMoves[j]);
-                        CoordinateSet closestCoordinate = new CoordinateSet((int)closestTank.transform.position.x, (int)closestTank.transform.position.z);
-                        //checkValidMove(PlayerColors playerTurn, CoordinateSet tankCoordinates, CoordinateSet targetCoordinates, bool updateState)
-                        Debug.Log(gs.checkValidMove((PlayerColors)PlayerColors.Blue, aiCoordinates, (CoordinateSet)validMoves[j], true));
-                        bool canAt = handleAttack(i_, (CoordinateSet)validMoves[j], closestCoordinate, (PlayerColors)PlayerColors.Blue, false);
-                        Debug.Log(gs.checkValidMove((PlayerColors)PlayerColors.Blue, (CoordinateSet)validMoves[j], aiCoordinates, true));
+
+
+                        // THIS HAS A BUG. DOESN'T FIND CLOSEST TANK SOMETIMES
+                        bool canAt = false;
+                        try {
+                            closestTank = findClosestTanks((CoordinateSet)validMoves[j]);
+                            CoordinateSet closestCoordinate = new CoordinateSet((int)closestTank.transform.position.x, (int)closestTank.transform.position.z);
+                            //checkValidMove(PlayerColors playerTurn, CoordinateSet tankCoordinates, CoordinateSet targetCoordinates, bool updateState)
+                            Debug.Log(gs.checkValidMove((PlayerColors)PlayerColors.Blue, aiCoordinates, (CoordinateSet)validMoves[j], true));
+                            canAt = handleAttack(i_, (CoordinateSet)validMoves[j], closestCoordinate, (PlayerColors)PlayerColors.Blue, false);
+                            Debug.Log(gs.checkValidMove((PlayerColors)PlayerColors.Blue, (CoordinateSet)validMoves[j], aiCoordinates, true));
+                        }
+                        catch (Exception ex) {
+                            Debug.Log("Caught exception finding closest tank");
+                        }
+
                         if (canAt)
                         {
                             Debug.Log("HELLO2");

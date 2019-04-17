@@ -387,6 +387,18 @@ public class Turns : MonoBehaviour
             // Create coordinates
             CoordinateSet currentPlayerTankCoordinates = new CoordinateSet((int)tankClicked.transform.position.x, (int)tankClicked.transform.position.z);
             CoordinateSet targetPlayerTankCoordinates = new CoordinateSet((int)tankClicked2.transform.position.x, (int)tankClicked2.transform.position.z);
+            PlayerColors opposingPlayer;
+
+            if (playerTurn == PlayerColors.Red) {
+                opposingPlayer = PlayerColors.Blue;
+            }
+            else {
+                opposingPlayer = PlayerColors.Red;
+            }
+
+            if (gs.getPlayerTank(playerTurn, currentPlayerTankCoordinates).getHealth() <= 0 || gs.getPlayerTank(opposingPlayer, targetPlayerTankCoordinates).getHealth() <= 0) {
+                return false;
+            }
 
             // Check if the attack is valid
             if (gs.checkValidAttack(playerTurn, currentPlayerTankCoordinates, targetPlayerTankCoordinates, updateState)) {
@@ -747,8 +759,18 @@ public class Turns : MonoBehaviour
             int randomNumber = randomNumberGenerator.Next(1,3);
             if (randomNumber == 1)
             {
-                    string powerup = gs.playerGamble(playerTurn, targetLocation);
-                    Debug.Log("Player " + playerTurn + "'s gamble results in: " + powerup);
+                CoordinateSet gambleCoordinates;
+                Tank tempTank = gs.getPlayerTank(PlayerColors.Blue, targetLocation);
+
+                if(tempTank is EmptyTankSlot) {
+                    gambleCoordinates = aiLocation;
+                }
+                else {
+                    gambleCoordinates = targetLocation;
+                }
+
+                string powerup = gs.playerGamble(playerTurn, gambleCoordinates);
+                Debug.Log("Player " + playerTurn + "'s gamble results in: " + powerup);
             }
         }
         changeTurns();

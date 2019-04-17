@@ -161,7 +161,14 @@ public class MinMaxAI
                         aiCoordinates = new CoordinateSet((int)blueTanks[i].transform.position.x, (int)blueTanks[i].transform.position.z);
                         validMoves = findValidMoves(aiCoordinates, (PlayerColors)PlayerColors.Blue);
                         //Debug.Log("# of val moves: " + validMoves.Count);
-                        zero[i, j] = findDisToPlayer((CoordinateSet)validMoves[j]);
+
+                        // THIS HAS A BUG. GOES OUT OF RANGE OF THE INDEX.
+                        try {
+                            zero[i, j] = findDisToPlayer((CoordinateSet)validMoves[j]);
+                        }
+                        catch (Exception ex) {
+                            continue;
+                        }
                         //Debug.Log(findDisToPlayer((CoordinateSet)validMoves[j]));
                     }
                 }
